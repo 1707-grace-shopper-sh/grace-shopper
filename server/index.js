@@ -2,13 +2,11 @@ const express = require('express');
 const path = require('path');
 const db = require('./db');
 const session = require('express-session');
-const passport = require('passport');
 
 const app = express();
 
 
 // general purpose middleware
-app.use(morgan('dev'));
 app.use(require('./middleware/logging'));
 app.use(require('./middleware/body-parsing'));
 app.use(express.static(path.join(__dirname, '../public')));
@@ -28,10 +26,7 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// initialize passport
-// consume req.session object and attach the user to the request object
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(require('./middleware/passport'));
 
 // serve api routes
 app.use('/api', require('./apiRoutes')); // matches all requests to /api
@@ -51,7 +46,7 @@ const port = process.env.PORT || 3000;
 db.sync() 
   .then(function(){
   	// then start listening with our express server once we have synced
-    app.listen(port , function () {
+    app.listen(port, function () {
 	  console.log("Knock, knock");
 	  console.log("Who's there?");
 	  console.log(`Your server, listening on port ${port}`);
