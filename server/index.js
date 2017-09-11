@@ -1,6 +1,4 @@
 const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./db');
 const session = require('express-session');
@@ -11,9 +9,9 @@ const app = express();
 
 // general purpose middleware
 app.use(morgan('dev'));
+app.use(require('./middleware/logging'));
+app.use(require('./middleware/body-parsing'));
 app.use(express.static(path.join(__dirname, '../public')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // configure and create our database store
 // store session information on postgres database to restart without interrupting users
@@ -44,11 +42,7 @@ app.get('*', function (req, res) {
 });
 
 // error handling
-app.use(function (err, req, res, next) {
-  console.error(err);
-  console.error(err.stack);
-  res.status(err.status || 500).send(err.message || 'Internal server error.');
-});
+app.use(require('./middleware/error'));
 
 // process.env.PORT for deploying to Heroku or 3000 for local
 const port = process.env.PORT || 3000; 
