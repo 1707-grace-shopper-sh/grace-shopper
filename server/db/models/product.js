@@ -27,6 +27,14 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER
   }
 }, {
+  // getterMethods: {
+  //   snippet: function() {
+  //     const len = 50;
+  //     const snippet = this.description.slice(0,len) + "...";
+  //     console.log(snippet);
+  //     return snippet;
+  //   }
+  // },
   hooks: {
     // randomly generate quantity given max and min
     beforeCreate: (product, options) => {
