@@ -39,16 +39,24 @@ function NewProduct (props){
                 />
                 <label>category:</label>
                 <select>
-                    <option>dummy category 1</option>
-                    <option>dummy category 2</option>
-                    {/* need to somehow map categories to props from state */}
-                    {/* {props.categories.map(category => {
+                    {/* hardcoded the few categories we have. If we want categories to be dynamic, we will have to chnge this */}
+                     {props.categories.map(category => {
                         return (
-                            <option key={category.id} value={category.id}>{category.name}</option>
+                             <option>{category}</option> 
                         )
-                    })} */}
+                    })} 
                 </select>
             </form>
         </div>
     )
 }
+
+const mapState = function(state){
+    return {
+        categories: ['Seafood', 'Candy', 'Condiments & Seasonings', 'Tea & Beverages']
+    }
+}
+
+export default NewProduct
+
+// export default connect(mapState,mapDispatch)(NewProduct)
