@@ -33,6 +33,14 @@ api.route('/:id')
 				id: req.params.id
 			}
 		})
+		.then(() => {
+            return Product.findOne({
+                where: {
+                    id: req.params.id
+                }
+            })
+		})
+		.then(product => res.status(200).json(product))
 	})
 
 
