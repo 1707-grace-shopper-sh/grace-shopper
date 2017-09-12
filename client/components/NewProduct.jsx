@@ -57,6 +57,5 @@ const mapState = function(state){
     }
 }
 
-export default NewProduct
 
-// export default connect(mapState,mapDispatch)(NewProduct)
+export default connect(mapState)(NewProduct)
