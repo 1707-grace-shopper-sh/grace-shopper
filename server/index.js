@@ -29,7 +29,7 @@ app.use(session({
 app.use(require('./middleware/passport'));
 
 // serve api routes
-app.use('/api', require('./apiRoutes')); // matches all requests to /api
+app.use('/api', require('./api')); // matches all requests to /api
 
 // serve index.html for all non-api routes
 app.get('*', function (req, res) {

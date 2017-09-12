@@ -1,8 +1,11 @@
 const router = require('express').Router();
 
 // router.use('/users', require('./users')); // matches all requests to /api/users/
-router.use('/puppies', require('./puppies')); // matches all requests to  /api/puppies/
-// router.use('/kittens', require('./kittens')); // matches all requests to  /api/kittens/
+router.use('/login', require('./sessions/login')); // matches all requests to  /api/login
+router.use('/signup', require('./sessions/signup'));
+router.use('/logout', require('./sessions/logout'));
+router.use('/getme', require('./sessions/getme'));
+router.use('/products', require('./products'));
 
 // if user requests an API route that doesn't exist
 router.use(function (req, res, next) {
