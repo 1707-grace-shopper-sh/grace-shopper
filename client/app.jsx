@@ -2,18 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './reducer';
+import AllProducts from './components/AllProducts.jsx';
 import '../scss/index.scss';
-import Main from './components/Main.jsx'
-// import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+
+import NewProduct from './components/NewProduct.jsx'
 
 ReactDOM.render(
   <Provider store={store}>
-   {/*Router*/}
-
-      <div>Hello, world!
-        <Main />
-      </div>
- 	{/*/Router*/}
+    <Router>
+      <NewProduct />
+    </Router>
   </Provider>,
   document.getElementById('app')
-);
+)
