@@ -6,13 +6,12 @@ import '../scss/index.scss';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 
-import Main from './components/Main'
+import NewProduct from './components/NewProduct.jsx'
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <div>Hello, world!</div>
-      <Main />
+      <NewProduct />
     </Router>
   </Provider>,
   document.getElementById('app')
