@@ -10,7 +10,31 @@ api.route('/')
 	.get(function(req, res) {
 		Product.findAll()
 		.then(products => res.status(200).json(products));
+	})
+	// post new product to database
+	.post(function(req,res){
+		Product.create(req.body)
+		.then(product => res.status(200).json(product))
 	});
+
+api.route('/:id')
+	//get a single product
+	.get(function(req, res) {
+		Product.findOne({
+			where: {
+				id: req.params.id
+			}
+		})
+		.then(product => res.status(200).json(product));
+	})
+	.put(function(req, res) {
+		Product.update(req.body, {
+			where: {
+				id: req.params.id
+			}
+		})
+	})
+
 
 // api.route('/reviews')
 // 	// load all data
