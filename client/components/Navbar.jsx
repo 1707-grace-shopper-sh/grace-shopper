@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
 function Navbar(props) {
 
@@ -31,4 +30,4 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = null;
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
