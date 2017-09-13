@@ -3,6 +3,8 @@ const db = require('../db');
 const sentiment = require('sentiment');
 
 const Review = db.define('review', {
+  //KM try some easy ways of sanitizing data
+  //Also, documenting that these are from Amazon
   reviewerID: {
     type: Sequelize.STRING
   },
@@ -21,19 +23,19 @@ const Review = db.define('review', {
       // need to add minimum number of characters
       len: [10, 1000000]
     }
-  }, 
+  },
   overall: {
     type: Sequelize.FLOAT
-  }, 
+  },
   summary: {
     type: Sequelize.TEXT
-  }, 
+  },
   unixReviewTime: {
     type: Sequelize.BIGINT
-  }, 
+  },
   reviewTime: {
     type: Sequelize.TEXT
-  }, 
+  },
   score: {
     type: Sequelize.INTEGER
   },
@@ -45,7 +47,7 @@ const Review = db.define('review', {
     link: function() {
       return 'https://www.amazon.com/dp/' + this.asin;
     }
-  }, 
+  },
   hooks: {
     beforeCreate: (review, options) => {
       let data = sentiment(review.reviewText);

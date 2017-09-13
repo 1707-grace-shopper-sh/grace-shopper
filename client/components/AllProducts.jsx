@@ -8,7 +8,7 @@ function AllProducts(props) {
 
 
 		return (
-			<div className="row"> 
+			<div className="row">
 				{
 				props.products.map((product, idx) => {
 					return (
@@ -32,7 +32,7 @@ function AllProducts(props) {
 				}
 			</div>
 		);
-	
+
 };
 
 const mapStateToProps = function(state) {
@@ -42,6 +42,7 @@ const mapStateToProps = function(state) {
 	};
 };
 
+//KM can be null
 const mapDispatchToProps = function(dispatch) {
 	return {};
 }

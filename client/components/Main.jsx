@@ -36,6 +36,7 @@ const mapStateToProps = null;
 const mapDispatchToProps = function(dispatch) {
   return {
     fetchInitialData: function() {
+			//KM: No console.logs in master
     	console.log('in the fetching initial data func');
       const productsThunk = fetchProducts();
       dispatch(productsThunk);
@@ -43,4 +44,5 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
+//KM: You shouldn't need this
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

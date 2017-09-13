@@ -17,6 +17,7 @@ export function getProducts(products) {
 export function fetchProducts() {
 	return function thunk(dispatch) {
 		return axios.get('/api/products')
+		//KM console.logs
 		.then(res => res.data)
 		.then(products => {
 			console.log('reducer products: ', products)
@@ -24,6 +25,7 @@ export function fetchProducts() {
 			console.log('reducer action: ', action)
 			dispatch(action);
 		});
+		//KM: handle errors - toastr
 	};
 }
 

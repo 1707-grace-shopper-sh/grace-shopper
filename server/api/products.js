@@ -2,6 +2,8 @@
 const api = require('express').Router()
 const db = require('../db')
 
+//KM: ERROR HANDLING! please :)
+
 const Review = db.models.review;
 const Product = db.models.product;
 
@@ -17,6 +19,7 @@ api.route('/')
 		.then(product => res.status(200).json(product))
 	});
 
+	//KM/SH consistent formatting - Make a contribution guide! (configure your editors/linters)
 api.route('/:id')
 	//get a single product
 	.get(function(req, res) {
@@ -28,6 +31,7 @@ api.route('/:id')
 		.then(product => res.status(200).json(product));
 	})
 	.put(function(req, res) {
+		//KM/SH - use { returning: true }
 		Product.update(req.body, {
 			where: {
 				id: req.params.id
@@ -43,6 +47,7 @@ api.route('/:id')
 		.then(product => res.status(200).json(product))
 	})
 
+//KM/SH: don't put in master :)
 
 // api.route('/reviews')
 // 	// load all data

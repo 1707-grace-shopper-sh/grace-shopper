@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+//M/SH consolidate these routers and use restful convention
 // router.use('/users', require('./users')); // matches all requests to /api/users/
 router.use('/login', require('./sessions/login')); // matches all requests to  /api/login
 router.use('/signup', require('./sessions/signup'));

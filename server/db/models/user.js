@@ -6,6 +6,7 @@ const db = require('../db');
 
 const User = db.define('user', {
   email: {
+    //KM: validators for email?
     type: Sequelize.STRING,
     unique: true,
     allowNull: false
