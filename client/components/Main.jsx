@@ -2,6 +2,7 @@ import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
 import AllProducts from './AllProducts.jsx';
+import SingleProduct from './SingleProduct.jsx';
 import { fetchProducts } from '../reducer/product';
 import { connect } from 'react-redux';
 
@@ -15,6 +16,7 @@ class Main extends Component {
 		return (
 			<div>
 				<Switch>
+					<Route exact path="/product/:id" component={SingleProduct} />
 					<Route component={AllProducts} />
 				</Switch>
 			</div>
