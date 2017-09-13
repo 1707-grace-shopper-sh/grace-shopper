@@ -34,11 +34,13 @@ export function updateProduct(product) {
 export function fetchProducts() {
 	return function thunk(dispatch) {
 		return axios.get('/api/products')
+		//KM console.logs
 		.then(res => res.data)
 		.then(products => {
 			const action = getProducts(products);
 			dispatch(action);
 		});
+		//KM: handle errors - toastr
 	};
 }
 

@@ -6,11 +6,12 @@ const Product = db.define('product', {
     type: Sequelize.STRING
   },
   category: {
+    //KM: In slack is a link to Sequelize issue with pg version to rollback to
     // change to enum?
     type: Sequelize.STRING
-  }, 
+  },
   description: {
-    type: Sequelize.TEXT, 
+    type: Sequelize.TEXT,
     allowNull: false
   },
   title: {

@@ -1,4 +1,5 @@
 import React from 'react';
+//KM generally don't need axios in component
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -8,7 +9,7 @@ function SingleProduct(props) {
 	const product = props.currentProduct;
 
 		return (
-			<div className="row"> 
+			<div className="row">
 				<p>{product.title}</p>
 				<img className="card-img-top" src={product.imUrl} alt />
 				<h5>Price: {product.price}</h5>
@@ -32,5 +33,5 @@ const mapStateToProps = function(state, ownProps) {
 
 const mapDispatchToProps = null;
 
-
+//KM: withRouter
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SingleProduct));
