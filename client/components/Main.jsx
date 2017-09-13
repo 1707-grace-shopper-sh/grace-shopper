@@ -19,16 +19,9 @@ class Main extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Dummy home page title</h1>
-				<p>navigation component will go here</p>
-				<main>
-					<Switch>
-						<Route exact path='/products' component={AllProducts} />
-						{/* <Route path='/products/:id' component={products} /> */}
-						<Route path='/products/:id/edit' component={EditProduct} />
-						<Route path='/products/new' component={NewProduct} />
-					</Switch>
-				</main>
+				<Switch>
+					<Route component={AllProducts} />
+				</Switch>
 			</div>
 		);
 	}
@@ -39,6 +32,7 @@ const mapStateToProps = null;
 const mapDispatchToProps = function(dispatch) {
   return {
     fetchInitialData: function() {
+    	console.log('in the fetching initial data func');
       const productsThunk = fetchProducts();
       dispatch(productsThunk);
     }
