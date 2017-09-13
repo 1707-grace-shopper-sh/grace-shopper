@@ -6,11 +6,16 @@ import { Link } from 'react-router-dom';
 
 function AllProducts(props) {
 
+		const category = props.category.replace("-", " & ");
+		function inCategory(product) {
+			return product.category == category;
+		}
+		const products = category ? props.products.filter(inCategory) : props.products;
 
 		return (
 			<div className="row"> 
 				{
-				props.products.map((product, idx) => {
+				products.map((product, idx) => {
 					return (
 						<div key={idx} className="col-lg-4 col-md-6 mb-4">
 							<div className="card h-100">
@@ -35,17 +40,14 @@ function AllProducts(props) {
 	
 };
 
-const mapStateToProps = function(state) {
-	console.log('the state is', state);
+const mapStateToProps = function(state, ownProps) {
 	return {
-		products: state.products
+		products: state.products,
+		category: ownProps.match.params.category || ""
 	};
 };
 
-const mapDispatchToProps = function(dispatch) {
-	return {};
-}
-
+const mapDispatchToProps = null;
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllProducts));
 
