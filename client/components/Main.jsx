@@ -1,7 +1,4 @@
 // general imports
-
-import AllProducts from './AllProducts.jsx';
-import SingleProduct from './SingleProduct.jsx';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
@@ -9,9 +6,11 @@ import { fetchProducts } from '../reducer/product';
 import { connect } from 'react-redux';
 
 //component imports
+import SingleProduct from './SingleProduct.jsx';
 import AllProducts from './AllProducts.jsx';
 import EditProduct from './EditProduct.jsx';
 import NewProduct from './NewProduct.jsx';
+import Navbar from './Navbar.jsx';
 
 class Main extends Component {
 
@@ -22,8 +21,10 @@ class Main extends Component {
 	render() {
 		return (
 			<div>
+				<Navbar />
 				<Switch>
 					<Route exact path="/product/:id" component={SingleProduct} />
+					<Route path='/:category' component={AllProducts} />
 					<Route component={AllProducts} />
 				</Switch>
 			</div>
