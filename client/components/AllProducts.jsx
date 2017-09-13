@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function AllProducts(props) {
 
@@ -13,7 +14,7 @@ function AllProducts(props) {
 					return (
 						<div key={idx} className="col-lg-4 col-md-6 mb-4">
 							<div className="card h-100">
-							<a href="#"><img className="card-img-top" src={product.imUrl} alt /></a>
+							<Link to={`/product/${product.id}`}><img className="card-img-top" src={product.imUrl} alt /></Link>
 							<div className="card-body">
 								<h4 className="card-title">
 									<a href="#">Title: {product.title}</a>
