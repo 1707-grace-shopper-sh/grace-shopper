@@ -3,10 +3,10 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
 
-import usersReducer from './usersReducer';
+import users from './usersReducer';
 
 const reducer = combineReducers({
-  usersReducer
+  users
 });
 
 const store = createStore(
