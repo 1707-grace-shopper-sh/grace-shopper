@@ -19,9 +19,16 @@ class Main extends Component {
 	render() {
 		return (
 			<div>
-				<Switch>
-					<Route component={AllProducts} />
-				</Switch>
+				<h1>Dummy home page title</h1>
+				<p>navigation component will go here</p>
+				<main>
+					<Switch>
+						<Route exact path='/products' component={AllProducts} />
+						{/* <Route path='/products/:id' component={products} /> */}
+						<Route path='/products/:id/edit' component={EditProduct} />
+						<Route path='/products/new' component={NewProduct} />
+					</Switch>
+				</main>
 			</div>
 		);
 	}
