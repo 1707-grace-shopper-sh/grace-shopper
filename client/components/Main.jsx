@@ -1,10 +1,17 @@
+// general imports
+
+import AllProducts from './AllProducts.jsx';
+import SingleProduct from './SingleProduct.jsx';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
-import AllProducts from './AllProducts.jsx';
-import SingleProduct from './SingleProduct.jsx';
 import { fetchProducts } from '../reducer/product';
 import { connect } from 'react-redux';
+
+//component imports
+import AllProducts from './AllProducts.jsx';
+import EditProduct from './EditProduct.jsx';
+import NewProduct from './NewProduct.jsx';
 
 class Main extends Component {
 
