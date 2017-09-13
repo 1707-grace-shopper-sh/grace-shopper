@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-import reducer from './reducer';
+import reducer from './product';
 
 // const reducer = combineReducers({
 // 	reducer1,
