@@ -6,7 +6,6 @@ import { withRouter } from 'react-router';
 function Navbar(props) {
 
 	const categories = props.categories;
-	console.log(categories);
 
 	return (
 		<nav className="navbar navbar-default navbar-static-top" role="navigation" style={{marginBottom: 0}}>

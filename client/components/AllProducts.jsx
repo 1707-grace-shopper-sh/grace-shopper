@@ -7,17 +7,10 @@ import { Link } from 'react-router-dom';
 function AllProducts(props) {
 
 		const category = props.category.replace("-", " & ");
-		console.log('the category is', category);
 		function inCategory(product) {
 			return product.category == category;
 		}
 		const products = category ? props.products.filter(inCategory) : props.products;
-		console.log('the products to use are', products);
-		// const category = .campusId;
-		// function matchesCampus(student) {
-		// 	return student.campusId == campusId;
-		// }
-		// const currentStudents = campusId ? props.students.filter(matchesCampus) : props.students;
 
 		return (
 			<div className="row"> 
@@ -54,10 +47,7 @@ const mapStateToProps = function(state, ownProps) {
 	};
 };
 
-const mapDispatchToProps = function(dispatch) {
-	return {};
-}
-
+const mapDispatchToProps = null;
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllProducts));
 
