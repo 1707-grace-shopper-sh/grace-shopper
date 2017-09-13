@@ -14,7 +14,9 @@ class Main extends Component {
 	render() {
 		return (
 			<div>
-				<AllProducts />
+				<Switch>
+					<Route component={AllProducts} />
+				</Switch>
 			</div>
 		);
 	}
@@ -25,6 +27,7 @@ const mapStateToProps = null;
 const mapDispatchToProps = function(dispatch) {
   return {
     fetchInitialData: function() {
+    	console.log('in the fetching initial data func');
       const productsThunk = fetchProducts();
       dispatch(productsThunk);
     }
