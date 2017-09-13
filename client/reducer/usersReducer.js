@@ -13,7 +13,7 @@ export const creatingUser = (user) => {
     return axios.post('/api/users', user)  //finish route with what comes back from server
       .then(res=>{
         console.log(res.data)
-        dispatch(createUser(res.data))
+        dispatch(createUser({email: res.data}))
       })
       .catch(err=> {console.log("creating user was unsuccessful", err)})
   }

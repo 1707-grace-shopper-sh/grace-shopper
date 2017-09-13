@@ -25,7 +25,7 @@ api.route('/')
       return user
     })
     .then(user=>{
-      res.json(user)
+      res.json(user.email)
     }) 
     .catch(next)
   })
