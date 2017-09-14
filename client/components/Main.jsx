@@ -16,9 +16,7 @@ import Navbar from './Navbar.jsx';
 class Main extends Component {
 
 	componentDidMount() {
-		console.log('before inital fetchdata')		
 		this.props.fetchInitialData();
-		console.log('after inital fetchdata')
 		this.props.loadSessionData();
 	}
 
@@ -56,7 +54,6 @@ const mapDispatchToProps = function (dispatch) {
 			dispatch(productsThunk);
 		},
 		loadSessionData: function () {
-			console.log('in load session data function')
 			const meThunk = me();
 			dispatch(meThunk)
 		}

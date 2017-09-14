@@ -1,10 +1,13 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-//if (process.env.NODE_ENV !== 'production') require('../secrets')
+if (process.env.NODE_ENV !== 'production') require('../../secrets')
+
 
 // passport registration DEFINING FUNCTIONS HERE
-passport.serializeUser((user, done) => done(null, user.id))
+passport.serializeUser((user, done) => {
+  return done(null, user.id)
+})
 passport.deserializeUser((id, done) =>
   db.models.user.findById(id)
     .then(user => done(null, user))

@@ -7,16 +7,13 @@ const REMOVE_USER = 'REMOVE_USER'
 
 
 const getUser = user => {
-  console.log('inside get user')
   return { type: GET_USER, user }
 }
 
 export const me = () => {
-  console.log('in me thunk')
-  function meThunk(dispatch) {
-    axios.post('/auth/me')
+  return function thunk(dispatch) {
+    axios.get('api/auth/me')
       .then(res => {
-        console.log("res", res)
         dispatch(getUser(res.data))
       })
       .catch(err => console.log('me thunk failed', err))

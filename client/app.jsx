@@ -6,13 +6,14 @@ import Main from './components/Main.jsx';
 import '../scss/index.scss';
 import { BrowserRouter as Router } from 'react-router-dom';
 import history from './history'
+import CreateAccount from './components/CreateAccount.jsx' //takeout
 
 import NewProduct from './components/NewProduct.jsx'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history = {history}>
-      <Main />
+    <Router history={history}>
+        <Main />
     </Router>
   </Provider>,
   document.getElementById('app')

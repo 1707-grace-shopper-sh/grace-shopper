@@ -21,8 +21,6 @@ class CreateAccount extends Component {
   }
 
   handleSubmit(event) {
-    console.log('here I am')
-
     event.preventDefault();
     const user = {
       email: this.state.emailInput,

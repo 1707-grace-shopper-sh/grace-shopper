@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const db = require('./db');
 const session = require('express-session');
-const secrets = require('../secrets')
 
 const app = express();
 
