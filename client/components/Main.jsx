@@ -6,9 +6,11 @@ import { fetchProducts } from '../reducer/product';
 import { connect } from 'react-redux';
 
 //component imports
+import SingleProduct from './SingleProduct.jsx';
 import AllProducts from './AllProducts.jsx';
 import EditProduct from './EditProduct.jsx';
 import NewProduct from './NewProduct.jsx';
+import Navbar from './Navbar.jsx';
 
 class Main extends Component {
 
@@ -19,16 +21,12 @@ class Main extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Dummy home page title</h1>
-				<p>navigation component will go here</p>
-				<main>
-					<Switch>
-						<Route exact path='/products' component={AllProducts} />
-						{/* <Route path='/products/:id' component={products} /> */}
-						<Route path='/products/:id/edit' component={EditProduct} />
-						<Route path='/products/new' component={NewProduct} />
-					</Switch>
-				</main>
+				<Navbar />
+				<Switch>
+					<Route exact path="/product/:id" component={SingleProduct} />
+					<Route path='/:category' component={AllProducts} />
+					<Route component={AllProducts} />
+				</Switch>
 			</div>
 		);
 	}
