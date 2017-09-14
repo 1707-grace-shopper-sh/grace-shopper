@@ -48,7 +48,7 @@ export function postProduct(product, history){
 		.then(res => res.data)
 		.then(newProduct => {
 			dispatch(getProduct(product))
-			history.push(`/products/${newProduct.id}`)
+			history.push(`/product/${newProduct.id}`)
 		})
 	}
 }
@@ -59,7 +59,7 @@ export function editProduct(product, prodID, history){
 		.then(res => res.data)
 		.then(product => {
 			dispatch(updateProduct(product))
-			history.push(`/products/${product.id}`)
+			history.push(`/product/${product.id}`)
 		})
 	}
 }
