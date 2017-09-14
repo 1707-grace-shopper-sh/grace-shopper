@@ -1,12 +1,12 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+// import productReducer from './product'
 
 import reducer from './product';
 
 // const reducer = combineReducers({
-// 	reducer1,
-// 	reducer2
+// 	productReducer
 // });
 
 const store = createStore(
