@@ -24,6 +24,8 @@ class Main extends Component {
 				<Navbar />
 				<Switch>
 					<Route exact path="/product/:id" component={SingleProduct} />
+					<Route path="/product/:id/edit" component={EditProduct} />
+					<Route exact path="/product/new" component={NewProduct} />
 					<Route path='/:category' component={AllProducts} />
 					<Route component={AllProducts} />
 				</Switch>
