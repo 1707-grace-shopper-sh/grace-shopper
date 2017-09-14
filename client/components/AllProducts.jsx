@@ -14,6 +14,7 @@ function AllProducts(props) {
 
 		return (
 			<div className="row"> 
+				<h1>Test</h1>
 				{
 				products.map((product, idx) => {
 					return (
