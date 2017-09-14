@@ -3,24 +3,15 @@ const db = require('../db');
 
 const Order = db.define('order', {
 	// orders must belong to a user or a guess session (auth vs. unauth)
-	user: {
+	session: {
 		type: Sequelize.STRING
 	},
-	products: {
-		// an array of objects?
-		// needs to contain product name, id, price, and quantity, maybe others?
-		type: Sequelize.ARRAY(Sequelize.JSON)
+	quantity: {
+		type: Sequelize.INTEGER
 	}, 
-	total: {
-		type: Sequelize.DECIMAL
-	}, 
-	complete: {
-		// error when using enums
-		type: Sequelize.STRING
-	}, 
-	shipped: {
-		// error when using enums
-		type: Sequelize.STRING
+	date: {
+		type: Sequelize.DATE,
+		allowNull: true
 	}
 });
 
