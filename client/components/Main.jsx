@@ -11,6 +11,7 @@ import AllProducts from './AllProducts.jsx';
 import EditProduct from './EditProduct.jsx';
 import NewProduct from './NewProduct.jsx';
 import Navbar from './Navbar.jsx';
+import Checkout from './Checkout.jsx';
 
 class Main extends Component {
 
@@ -26,6 +27,7 @@ class Main extends Component {
 					<Route exact path="/product/:id" component={SingleProduct} />
 					<Route path='/:category' component={AllProducts} />
 					<Route component={AllProducts} />
+					<Route exact path="/checkout" component={Checkout} />
 				</Switch>
 			</div>
 		);
