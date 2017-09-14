@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
 import { fetchProducts } from '../reducer/product';
 import { connect } from 'react-redux';
+import { me } from '../reducer/currentUserReducer'
 
 //component imports
 import SingleProduct from './SingleProduct.jsx';
@@ -15,7 +16,10 @@ import Navbar from './Navbar.jsx';
 class Main extends Component {
 
 	componentDidMount() {
+		console.log('before inital fetchdata')		
 		this.props.fetchInitialData();
+		console.log('after inital fetchdata')
+		this.props.loadSessionData();
 	}
 
 	render() {
@@ -28,22 +32,37 @@ class Main extends Component {
 					<Route exact path="/product/new" component={NewProduct} />
 					<Route path='/:category' component={AllProducts} />
 					<Route component={AllProducts} />
+					{
+						this.props.isLoggedIn &&
+						<Switch>
+							{/* User hompage, only available after logging in */}
+							<Route path='/home' component={UserHome} />
+						</Switch>
+					}
 				</Switch>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = null;
+const mapStateToProps = (state) =>{
+	return {
+		isLoggedIn: !!state.currentUser.id
+	}
+};
 
-const mapDispatchToProps = function(dispatch) {
-  return {
-    fetchInitialData: function() {
-    	console.log('in the fetching initial data func');
-      const productsThunk = fetchProducts();
-      dispatch(productsThunk);
-    }
-  }
+const mapDispatchToProps = function (dispatch) {
+	return {
+		fetchInitialData: function () {
+			const productsThunk = fetchProducts();
+			dispatch(productsThunk);
+		},
+		loadSessionData: function () {
+			console.log('in load session data function')
+			const meThunk = me();
+			dispatch(meThunk)
+		}
+	}
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

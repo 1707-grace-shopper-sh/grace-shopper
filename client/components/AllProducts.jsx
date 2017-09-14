@@ -42,7 +42,7 @@ function AllProducts(props) {
 
 const mapStateToProps = function(state, ownProps) {
 	return {
-		products: state.products,
+		products: state.products || [],
 		category: ownProps.match.params.category || ""
 	};
 };
