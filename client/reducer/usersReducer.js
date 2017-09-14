@@ -21,7 +21,7 @@ export const creatingUser = (user) => {
 export default function users (users = [], action) {
   switch(action.type) {
     case CREATE_USER: {
-      return Object.assign({}, users, [...users, action.user])
+      return  [...users, action.user]
     }
     default: return users
   } 

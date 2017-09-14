@@ -1,80 +1,76 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postProduct } from '../reducer/product';
-
 
 function NewProduct (props){
     return (
         <div>
-            <h2>Enter new product information</h2>
-            <form onSubmit={props.submitNewProduct}>
+            <h2>Edit this product's information</h2>
+            <form>
                 <label>title:</label>
                 <input 
                     name='title'
                     type='text'
+                    value = {props.product.title}
                     required
                 />
                 <label>description:</label>
                 <input 
                     name='description'
                     type='text'
+                    value = {props.product.description}
                     required
                 />
                 <label>price:</label>
                 <input 
                     name='price'
                     type='number'
+                    value = {props.product.price}
                     required
                 />
                 <label>image URL:</label>
                 <input 
                     name='imageURL'
                     type='text'
+                    value = {props.product.imURL}
                     required
                 />
                 <label>inventory:</label>
                 <input 
                     name='inventory'
                     type='number'
+                    value = {props.product.inventory}
                     required
                 />
                 <label>category:</label>
-                <select name='category'>
+                <select>
                     {/* hardcoded the few categories we have. If we want categories to be dynamic, we will have to chnge this */}
                      {props.categories.map(category => {
-                        return (
+                         if (category === props.product.category) {
+                            return (
+                                <option selected='selected'>{category}</option>
+                            )
+                         } else {
+                            return (
                              <option>{category}</option> 
                         )
+                         }
                     })} 
                 </select>
-                <button type='submit'>Create Product</button>
+                <button type='submit'>Edit Product</button>
             </form>
         </div>
     )
 }
 
-const mapState = function(state){
+const mapState = function(state, ownProps){
+    console.log(state.products)
+    const prodId = ownProps.match.params.id //last part after params can change potentially depending on frontend router
     return {
-        categories: ['Seafood', 'Candy', 'Condiments & Seasonings', 'Tea & Beverages']
+        categories: ['Seafood', 'Candy', 'Condiments & Seasonings', 'Tea & Beverages'],
+        product: state.products.find(product => product.id ===prodId) || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: ''}
     }
 }
 
-const mapDispatch = function(dispatch, ownProps){
-    return {
-        submitNewProduct(event){
-            event.preventDefault();
-            const newProductDetails = {
-                category: event.target.category.value,
-                description: event.target.description.value,
-                title: event.target.title.value,
-                price: event.target.price.value,
-                imUrl: event.target.imageURL.value,
-                inventory: event.target.inventory.value
-            }
-            dispatch(postProduct(newProductDetails, ownProps.history))
-        }
-    }
-}
 
-export default connect(mapState, mapDispatch)(NewProduct)
+export default connect(mapState)(NewProduct)
