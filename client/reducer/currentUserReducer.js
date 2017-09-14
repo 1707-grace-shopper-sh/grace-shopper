@@ -7,10 +7,21 @@ const REMOVE_USER = 'REMOVE_USER'
 
 const defaultUser = {}
 
-const getUser = user => {type: GET_USER, user}
+const getUser = user => { type: GET_USER, user }
 
 const me = () => {
-  function meThunk() {
-  //Look in   boilermaker==> client/store/user
+  function meThunk(dispatch) {
+    axios.post('/auth/me')
+      .then(res => {
+        dispatch(getUser(res.data))
+      })
+      .catch(err => console.log('me thunk failed', err))
+  }
+}
+
+export default function (state = defaultUser, action) {
+  switch (action.type) {
+    case GET_USER: return action.user
+    default: return state
   }
 }
