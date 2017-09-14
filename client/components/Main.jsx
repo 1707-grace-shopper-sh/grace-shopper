@@ -26,7 +26,8 @@ class Main extends Component {
 					<Route exact path="/product/:id" component={SingleProduct} />
 					<Route path="/product/:id/edit" component={EditProduct} />
 					<Route exact path="/product/new" component={NewProduct} />
-					<Route path='/:category' component={AllProducts} />
+					<Route path='/filter' component={AllProducts} />
+					<Route path='/search' component={AllProducts} />
 					<Route component={AllProducts} />
 				</Switch>
 			</div>
