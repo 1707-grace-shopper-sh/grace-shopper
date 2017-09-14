@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Searchbar from './Searchbar.jsx';
 
 function Navbar(props) {
 
@@ -16,18 +17,18 @@ function Navbar(props) {
 						return <Link key={idx} className="navbar-brand" to={`/${url}`}>{category}</Link>
 					})
 				}
+				<Searchbar />
 			</div>
 		</nav>
-	);
+	)
 }
 
-const mapStateToProps = function(state) {
+const mapState = function(state) {
     return {
         categories: ['Seafood', 'Candy', 'Condiments & Seasonings', 'Tea & Beverages']
     }
 }
 
-const mapDispatchToProps = null;
+const mapDispatch = null;
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connect(mapState, mapDispatch)(Navbar);
