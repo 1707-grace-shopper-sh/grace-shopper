@@ -14,9 +14,8 @@ function AllProducts(props) {
 
 		return (
 			<div className="row"> 
-				<h1>Test</h1>
 				{
-				products.map((product, idx) => {
+				products.products.map((product, idx) => {
 					return (
 						<div key={idx} className="col-lg-4 col-md-6 mb-4">
 							<div className="card h-100">
