@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import Searchbar from './Searchbar.jsx';
 
 function Navbar(props) {
@@ -13,8 +14,7 @@ function Navbar(props) {
 				<Link className="navbar-brand" to="/">Grace's Gourmet Goods</Link>
 				{
 					categories.map((category, idx) => {
-						const url = category.replace(" & ", "-");
-						return <Link key={idx} className="navbar-brand" to={`/${url}`}>{category}</Link>
+						return <Link key={idx} className="navbar-brand" to={`/filter?category=${category}`}>{category}</Link>
 					})
 				}
 				<Searchbar />
@@ -31,4 +31,4 @@ const mapState = function(state) {
 
 const mapDispatch = null;
 
-export default connect(mapState, mapDispatch)(Navbar);
+export default withRouter(connect(mapState, mapDispatch)(Navbar));

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import queryString from 'query-string';
 
 function AllProducts(props) {
 
@@ -10,23 +11,29 @@ function AllProducts(props) {
 
 		// if the user reached this from the search route 
 		if (props.location.pathname === '/search') {
-			console.log('You tried to search!');
-			const target = props.location.state.product; 
-			console.log('target is', target);
+			const target = queryString.parse(props.location.search).product;
 
 			// product title must contain search query (ignoring case)
 			function matchesTarget(product) {
-				return product.title.toLowerCase.includes(target.toLowerCase);
+				return product.title.toLowerCase().includes(target.toLowerCase());
 			}
 
 			products = props.products.filter(matchesTarget);
-		}
 
-		const category = props.category.replace("-", " & ");
-		function inCategory(product) {
-			return product.category == category;
+		// if the user is trying to filter by category
+		} else if (props.location.pathname === '/filter') {
+			const category = queryString.parse(props.location.search).category;
+
+			function inCategory(product) {
+				return product.category == category;
+			}
+
+			products = props.products.filter(inCategory);
+
+		// otherwise load all products
+		} else {
+			products = props.products;
 		}
-		const products = category ? props.products.filter(inCategory) : props.products;
 
 		return (
 			<div className="row"> 
@@ -62,8 +69,7 @@ function searchFilter() {
 
 const mapStateToProps = function(state, ownProps) {
 	return {
-		products: state.products,
-		category: ownProps.match.params.category || ""
+		products: state.products
 	};
 };
 

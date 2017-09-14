@@ -26,7 +26,7 @@ class Searchbar extends React.Component {
 		const product = event.target.product.value;
 		this.setState({input: ''});
 		event.target.reset();
-		this.props.history.push(`/search?product=${product}`, {product: product});
+		this.props.history.push(`/search?product=${product}`);
 	}
 
 	render() {
