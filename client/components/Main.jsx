@@ -25,9 +25,9 @@ class Main extends Component {
 				<Navbar />
 				<Switch>
 					<Route exact path="/product/:id" component={SingleProduct} />
+					<Route exact path="/checkout" component={Checkout} />
 					<Route path='/:category' component={AllProducts} />
 					<Route component={AllProducts} />
-					<Route exact path="/checkout" component={Checkout} />
 				</Switch>
 			</div>
 		);

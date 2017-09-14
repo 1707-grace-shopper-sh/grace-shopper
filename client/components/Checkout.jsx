@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import checkout from '../reducer/checkout';
 
 function Checkout(props) {
+    console.log('HI.')
     return (
         <div>
             <h1>Checkout Items</h1>
@@ -18,7 +19,7 @@ function Checkout(props) {
 const mapState = null;
 
 const mapDispatch = function (dispatch) {
-    const dummyorder = {hi:bye}
+    const dummyorder = {hi:'bye'}
     return {
         checkout(event) {
             dispatch(checkout(dummyorder))
