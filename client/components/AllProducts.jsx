@@ -1,10 +1,26 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 function AllProducts(props) {
+
+	let products; 
+
+		// if the user reached this from the search route 
+		if (props.location.pathname === '/search') {
+			console.log('You tried to search!');
+			const target = props.location.state.product; 
+			console.log('target is', target);
+
+			// product title must contain search query (ignoring case)
+			function matchesTarget(product) {
+				return product.title.toLowerCase.includes(target.toLowerCase);
+			}
+
+			products = props.products.filter(matchesTarget);
+		}
 
 		const category = props.category.replace("-", " & ");
 		function inCategory(product) {
@@ -40,6 +56,10 @@ function AllProducts(props) {
 	
 };
 
+function searchFilter() {
+
+}
+
 const mapStateToProps = function(state, ownProps) {
 	return {
 		products: state.products,
@@ -49,5 +69,6 @@ const mapStateToProps = function(state, ownProps) {
 
 const mapDispatchToProps = null;
 
+// DON'T REMOVE THIS ONE EITHER :) 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllProducts));
 

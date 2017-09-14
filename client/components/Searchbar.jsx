@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -22,12 +23,10 @@ class Searchbar extends React.Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const product = event.target.value;
-		console.log('trying to submit');
-		// go to a new page
+		const product = event.target.product.value;
 		this.setState({input: ''});
 		event.target.reset();
-
+		this.props.history.push(`/search?product=${product}`, {product: product});
 	}
 
 	render() {
@@ -37,7 +36,7 @@ class Searchbar extends React.Component {
 					<div className="form-group"> 
 						<label htmlFor="search" className="col-xs-2 control-label">Search</label>
 						<div className="col-xs-6">
-							<input onChange={this.handleChange} className="form-control" placeholder="Enter product name"/>
+							<input name="product" onChange={this.handleChange} className="form-control" placeholder="Enter product name"/>
 						</div>
 					</div> 
 					<div className="form-group">        
@@ -55,4 +54,5 @@ const mapState = null;
 
 const mapDispatch = null;
 
-export default connect(mapState, mapDispatch)(Searchbar);
+// DON'T REMOVE THIS ONE :)
+export default withRouter(connect(mapState, mapDispatch)(Searchbar));
