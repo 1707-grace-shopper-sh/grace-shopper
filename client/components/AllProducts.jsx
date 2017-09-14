@@ -2,24 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
 
 function AllProducts(props) {
 
-		const category = props.category.replace("-", " & ");
-		function inCategory(product) {
-			return product.category == category;
-		}
-		const products = category ? props.products.filter(inCategory) : props.products;
 
 		return (
 			<div className="row"> 
 				{
-				products.map((product, idx) => {
+				props.products.map((product, idx) => {
 					return (
 						<div key={idx} className="col-lg-4 col-md-6 mb-4">
 							<div className="card h-100">
-							<Link to={`/product/${product.id}`}><img className="card-img-top" src={product.imUrl} alt /></Link>
+							<a href="#"><img className="card-img-top" src={product.imUrl} alt /></a>
 							<div className="card-body">
 								<h4 className="card-title">
 									<a href="#">Title: {product.title}</a>
@@ -40,14 +34,17 @@ function AllProducts(props) {
 	
 };
 
-const mapStateToProps = function(state, ownProps) {
+const mapStateToProps = function(state) {
+	console.log('the state is', state);
 	return {
-		products: state.products,
-		category: ownProps.match.params.category || ""
+		products: state.products
 	};
 };
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = function(dispatch) {
+	return {};
+}
+
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllProducts));
 
