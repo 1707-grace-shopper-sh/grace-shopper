@@ -8,16 +8,25 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false, 
+    validate: {
+      isEmail: true
+    }
   },
   type: {
     // enums not working
+    type: Sequelize.STRING
+  },
+  name: {
     type: Sequelize.STRING
   },
   password: {
     type: Sequelize.STRING
   },
   salt: {
+    type: Sequelize.STRING
+  },
+  googleId: {
     type: Sequelize.STRING
   }
 }, {
