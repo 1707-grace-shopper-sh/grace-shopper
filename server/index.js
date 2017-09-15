@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const dbStore = new SequelizeStore({ db: db });
 
-dbStore.sync();
+dbStore.sync();  //DO WE WANT TO HAVE HTIS BEFORE 
 
 // session middleware
 app.use(session({
