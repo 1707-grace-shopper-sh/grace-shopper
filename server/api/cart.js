@@ -12,6 +12,8 @@ api.route('/')
 
 	.post(function(req, res) {
 		console.log('trying to add to the database!')
+		console.log('the req.body is')
+		console.log(req.body)
 	})
 
 module.exports = api;
