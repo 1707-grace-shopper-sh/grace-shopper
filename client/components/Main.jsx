@@ -2,7 +2,7 @@
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
-import { fetchProducts } from '../reducer/product';
+import { fetchProducts } from '../reducer/products';
 import { connect } from 'react-redux';
 import { me } from '../reducer/currentUserReducer'
 

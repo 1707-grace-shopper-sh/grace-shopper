@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postProduct } from '../reducer/product';
+import { postProduct } from '../reducer/products';
 
 
 function NewProduct (props){
