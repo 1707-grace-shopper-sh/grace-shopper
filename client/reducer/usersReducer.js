@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const CREATE_USER = 'CREATE_USER'
 
-const createUser = (user) => {
+export const createUser = (user) => {
  return {type: CREATE_USER, user}
 }
 

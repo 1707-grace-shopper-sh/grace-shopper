@@ -12,6 +12,8 @@ import AllProducts from './AllProducts.jsx';
 import EditProduct from './EditProduct.jsx';
 import NewProduct from './NewProduct.jsx';
 import Navbar from './Navbar.jsx';
+import CreateAccount from './CreateAccount.jsx'
+import UserHome from './UserHome.jsx'
 
 class Main extends Component {
 
@@ -30,6 +32,7 @@ class Main extends Component {
 					<Route exact path="/product/new" component={NewProduct} />
 					<Route path='/filter' component={AllProducts} />
 					<Route path='/search' component={AllProducts} />
+					<Route path='/user/signup' component = {CreateAccount}/>
 					<Route component={AllProducts} />
 					{
 						this.props.isLoggedIn &&

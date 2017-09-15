@@ -2,7 +2,7 @@ const passport = require('passport')
 const router = require('express').Router()
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 const db = require('../../db')
-const {User} = db.models.user
+const User = db.models.user
 
 
 module.exports = router
@@ -32,6 +32,6 @@ passport.use(strategy)
 router.get('/', passport.authenticate('google', {scope: 'email'}))
 
 router.get('/callback', passport.authenticate('google', {
-  successRedirect: '/home',
+  successRedirect: '/',
   failureRedirect: '/login'
 }))

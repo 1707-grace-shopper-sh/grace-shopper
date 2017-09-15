@@ -38,7 +38,7 @@ function AllProducts(props) {
 		return (
 			<div className="row"> 
 				{
-				products.products.map((product, idx) => {
+				products.map((product, idx) => {
 					return (
 						<div key={idx} className="col-lg-4 col-md-6 mb-4">
 							<div className="card h-100">

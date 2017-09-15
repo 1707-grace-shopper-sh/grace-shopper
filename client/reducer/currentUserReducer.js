@@ -14,13 +14,13 @@ export const me = () => {
     axios.get('api/auth/me')
       .then(res => {
         dispatch(getUser(res.data))
+        dispatch()
       })
       .catch(err => console.log('me thunk failed', err))
   }
 }
 
 export default function (state = {}, action) {
-  console.log('action in currentUserReducer', action)
   switch (action.type) {
     case GET_USER: return action.user
     default: return state

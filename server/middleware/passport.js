@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
+const db  = require('../db')
 
 if (process.env.NODE_ENV !== 'production') require('../../secrets')
 

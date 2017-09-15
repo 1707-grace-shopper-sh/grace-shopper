@@ -44,7 +44,7 @@ class CreateAccount extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        <a href='api/google'>Login with Google</a>
+        <a href='/api/auth/google'>Login with Google</a>
       </div>
     )
   }
