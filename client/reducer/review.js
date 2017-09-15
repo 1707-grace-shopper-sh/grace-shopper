@@ -16,6 +16,17 @@ export function addReview(review) {
 }
 
 //THUNK
+export function fetchReviews(prodId) {
+	return function thunk(dispatch) {
+		return axios.get(`/api/reviews/by-product/${prodId}`)
+		.then(res => res.data)
+		.then(reviews => {
+			const action = getReviews(reviews);
+			dispatch(action);
+		});
+	};
+}
+
 export function newReview(review, prodId, history){
     return function thunk(dispatch){
         return axios.post('/api/reviews', review)

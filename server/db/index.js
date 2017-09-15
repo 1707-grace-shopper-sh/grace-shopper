@@ -10,4 +10,6 @@ const Related = require('./models/related');
 Product.belongsTo(Related);
 // Order.belongsTo(User);
 
+Review.belongsTo(Product);
+
 module.exports = db;
