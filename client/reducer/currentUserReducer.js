@@ -14,7 +14,6 @@ export const me = () => {
     axios.get('api/auth/me')
       .then(res => {
         dispatch(getUser(res.data))
-        dispatch()
       })
       .catch(err => console.log('me thunk failed', err))
   }
