@@ -5,6 +5,7 @@ router.use('/login', require('./sessions/login')); // matches all requests to  /
 router.use('/signup', require('./sessions/signup'));
 router.use('/logout', require('./sessions/logout'));
 router.use('/products', require('./products'));
+router.use('/reviews', require('./reviews'));
 router.use('/users', require('./users'))
 router.use('/auth', require('./auth'))
 
