@@ -9,6 +9,16 @@ const getUser = user => {
   return { type: GET_USER, user }
 }
 
+export const creatingUser = (user) => {
+  return function thunk(dispatch) {
+    return axios.post('/api/auth', user)  
+      .then(res=>{
+        dispatch(getUser({email: res.data.email}))
+      })
+      .catch(err=> {console.log("creating user was unsuccessful", err)})
+  }
+}
+
 export const me = () => {
   return function thunk(dispatch) {
     axios.get('api/auth/me')

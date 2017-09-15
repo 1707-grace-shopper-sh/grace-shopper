@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
 import { fetchProducts } from '../reducer/products';
 import { connect } from 'react-redux';
-import { me } from '../reducer/currentUserReducer'
+import { me } from '../reducer/user'
 
 //component imports
 import SingleProduct from './SingleProduct.jsx';

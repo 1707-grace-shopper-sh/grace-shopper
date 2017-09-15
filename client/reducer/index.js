@@ -2,12 +2,10 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import products from './products'
-import users from './usersReducer';
-import currentUser from './currentUserReducer'
+import currentUser from './user';
 
 const reducer = combineReducers({
   products,
-  users,
   currentUser 
 });
 
