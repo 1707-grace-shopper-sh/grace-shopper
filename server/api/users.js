@@ -7,7 +7,6 @@ const User = db.models.user;
 
 api.route('/')
 .post((req, res, next)=>{
-  console.log(req.body)  
   User.findOrBuild({where: {
       email: req.body.email
     }})
@@ -15,17 +14,16 @@ api.route('/')
       if(initialized) {
         user.password= req.body.password
        } else {
-        console.log('in else')
         throw new Error("It seems that there is already an account with this email")  //come back to this
       }
       return user
     })
     .then(user=>{
-      user.save()
-      return user
+        user.save()
+        return user
     })
     .then(user=>{
-      res.json(user.email)
+      res.json(user)
     }) 
     .catch(next)
   })
