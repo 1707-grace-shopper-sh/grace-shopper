@@ -7,6 +7,7 @@ class WriteReview extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            productId: props.pid,
             reviewerID: props.reviewerID,
             reviewerName: props.reviewerName,
             reviewText: '',
@@ -33,8 +34,6 @@ class WriteReview extends Component {
                 <h1>Review {this.props.product.title}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>Reviewing as: {this.props.reviewerName}</label>
-                    <input name='reviewerName' type='hidden' value={this.props.reviewerName} />
-                    <input name='reviewerID' type='hidden' value={this.props.reviewerID} />
                     <label>Rating:</label>
                     <select name='score' onChange={this.handleChange}>
                         {[1, 2, 3, 4, 5].map(score => {
@@ -60,6 +59,7 @@ class WriteReview extends Component {
 const mapState = function (state, ownProps) {
     const prodId = ownProps.match.params.id
     return {
+        pid: prodId,
         product: state.products.find(product => product.id === +prodId) || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' },
         reviewerID: '123', //dummy id
         reviewerName: 'dummy buyer'
