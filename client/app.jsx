@@ -5,14 +5,12 @@ import store from './reducer';
 import Main from './components/Main.jsx';
 import '../scss/index.scss';
 import { BrowserRouter as Router } from 'react-router-dom';
-
-
-import NewProduct from './components/NewProduct.jsx'
+// import history from './history'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <Main />
+    <Router >
+        <Main />
     </Router>
   </Provider>,
   document.getElementById('app')
