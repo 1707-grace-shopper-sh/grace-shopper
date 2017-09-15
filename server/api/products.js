@@ -8,7 +8,6 @@ const Product = db.models.product;
 api.route('/')
 	// load all data
 	.get(function(req, res) {
-		console.log('HI IM OBNOXIOUS')
 		Product.findAll()
 		.then(products => res.status(200).json(products));
 	})

@@ -1,33 +1,26 @@
 import axios from 'axios';
 
-const initialState = {
-	products: [],
-	product: {}
-};
 
 // ACTION
 const GET_PRODUCTS = 'GET_PRODUCTS';
-const GET_PRODUCT = 'GET_PRODUCT';
+const ADD_PRODUCT = 'ADD_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
+
 // ACTION CREATOR
+export function updateProduct(product) {
+	const action= {type: UPDATE_PRODUCT, product}
+	return action
+}
+
 export function getProducts(products) {
 	const action = {type: GET_PRODUCTS, products};
 	return action;
 }
 
-export function getProduct(product) {
-	return {
-		type: GET_PRODUCT,
-		product: product
-	}
-}
-
-export function updateProduct(product) {
-	return {
-		type: UPDATE_PRODUCT,
-		product: product
-	}
+export function addProduct(product) {
+	const action  = {type: ADD_PRODUCT, product}
+	return action
 }
 
 // THUNK CREATOR
@@ -47,7 +40,7 @@ export function postProduct(product, history){
 		return axios.post('/api/products', product)
 		.then(res => res.data)
 		.then(newProduct => {
-			dispatch(getProduct(product))
+			dispatch(addProduct(newProduct))
 			history.push(`/product/${newProduct.id}`)
 		})
 	}
@@ -64,16 +57,21 @@ export function editProduct(product, prodID, history){
 	}
 }
 
-function productReducer(state = initialState, action) {
+function productReducer(state = [], action) {
 	switch (action.type) {
 		case GET_PRODUCTS: {
-			return Object.assign({}, state, {products: action.products});
+			return action.products;
 		}
-		case GET_PRODUCT: {
-			return Object.assign({}, state, {product: action.product});
+		case ADD_PRODUCT: {
+			return [...state, action.product]
 		}
 		case UPDATE_PRODUCT: {
-			return Object.assign({}, state, {product: action.product});
+			const productIndex = state.findIndex((product)=>{
+				return product.id = action.product.id
+			})
+			const nextState = [...state]
+			nextState[productIndex] = action.product
+			return nextState
 		}
 		default: {
 			return state;

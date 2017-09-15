@@ -2,7 +2,7 @@
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
-import { fetchProducts } from '../reducer/product';
+import { fetchProducts } from '../reducer/products';
 import { connect } from 'react-redux';
 
 //component imports
@@ -26,7 +26,8 @@ class Main extends Component {
 					<Route exact path="/product/:id" component={SingleProduct} />
 					<Route path="/product/:id/edit" component={EditProduct} />
 					<Route exact path="/product/new" component={NewProduct} />
-					<Route path='/:category' component={AllProducts} />
+					<Route path='/filter' component={AllProducts} />
+					<Route path='/search' component={AllProducts} />
 					<Route component={AllProducts} />
 				</Switch>
 			</div>
