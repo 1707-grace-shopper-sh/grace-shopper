@@ -51,7 +51,7 @@ export function editProduct(product, prodID, history){
 		return axios.put(`/api/products/${prodID}`, product)
 		.then(res => res.data)
 		.then(product => {
-			dispatch(getProduct(product))
+			dispatch(updateProduct(product))
 			history.push(`/product/${product.id}`)
 		})
 	}
