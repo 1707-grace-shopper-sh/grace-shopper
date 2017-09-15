@@ -6,6 +6,7 @@ router.use('/signup', require('./sessions/signup'));
 router.use('/logout', require('./sessions/logout'));
 router.use('/getme', require('./sessions/getme'));
 router.use('/products', require('./products'));
+router.use('/reviews', require('./reviews'));
 
 // if user requests an API route that doesn't exist
 router.use(function (req, res, next) {
