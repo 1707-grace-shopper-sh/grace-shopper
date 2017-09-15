@@ -45,7 +45,7 @@ function AllProducts(props) {
 							<Link to={`/product/${product.id}`}><img className="card-img-top" src={product.imUrl} alt /></Link>
 							<div className="card-body">
 								<h4 className="card-title">
-									<a href="#">Title: {product.title}</a>
+									<Link to={`/product/${product.id}`}>Title: {product.title}</Link>
 								</h4>
 								<h5>Price: {product.price}</h5>
 								<p className="card-text">{product.description.slice(0,100) + "..."}</p>

@@ -9,10 +9,19 @@ function SingleProduct(props) {
 
 		return (
 			<div className="row"> 
-				<p>{product.title}</p>
-				<img className="card-img-top" src={product.imUrl} alt />
-				<h5>Price: {product.price}</h5>
-				<p className="card-text">{product.description}</p>
+				<div className="col-lg-6 col-md-6 col-s-12 col-xs-12">
+					<p>{product.title}</p>
+					<img className="card-img-top" src={product.imUrl} alt />
+					<h5>Price: {product.price}</h5>
+					<p className="card-text">{product.description}</p>
+				</div>
+				<div className="col-lg-6 col-md-6 col-s-12 col-xs-12">
+					<form action="#">
+					  Quantity
+					  <input type="number" name="quantity" min="1" max={product.inventory}/>
+					  <input type="submit" />
+					</form>
+				</div>
 			</div>
 		);
 };
