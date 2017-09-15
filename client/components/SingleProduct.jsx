@@ -12,6 +12,13 @@ function SingleProduct(props) {
 		options.push(<option key={i}>{i}</option>);
 	}
 
+	function handleSubmit(event) {
+		event.preventDefault();
+		console.log('product', product.id);
+		console.log('You tried to add ' + event.target.quantity.value + ' to cart!')
+
+	}
+
 		return (
 			<div className="row"> 
 				<div className="col-lg-6 col-md-6 col-s-12 col-xs-12">
@@ -21,17 +28,17 @@ function SingleProduct(props) {
 					<p className="card-text">{product.description}</p>
 				</div>
 				<div className="col-lg-6 col-md-6 col-s-12 col-xs-12">
-					<form action="#">
+					<form name="addToCart" onSubmit={handleSubmit}>
 					  Quantity ({product.inventory} remaining)
 						<select name="quantity"> {options} </select>
-					  <button name="addToCart" type="submit">Add To Cart</button>
+					  <button type="submit">Add To Cart</button>
 					</form>
 				</div>
 			</div>
 		);
 };
 
-const mapStateToProps = function(state, ownProps) {
+const mapState = function(state, ownProps) {
 	// pull id off the url
 	const id = ownProps.match.params.id;
 	function thisId(product) {
@@ -44,7 +51,13 @@ const mapStateToProps = function(state, ownProps) {
 	}
 };
 
-const mapDispatchToProps = null;
+const mapDispatch = function(dispatch) {
+	return {
+		addToCart() {
+
+		}
+	}
+};
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SingleProduct));
+export default connect(mapState, mapDispatch)(SingleProduct);
