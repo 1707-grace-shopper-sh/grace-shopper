@@ -6,6 +6,11 @@ import { withRouter } from 'react-router';
 function SingleProduct(props) {
 
 	const product = props.currentProduct;
+	const options = [];
+	// for select dropdown with quantity options (inspired by Amazon UI)
+	for (var i = 1; i <= product.inventory; i++) {
+		options.push(<option key={i}>{i}</option>);
+	}
 
 		return (
 			<div className="row"> 
@@ -17,9 +22,9 @@ function SingleProduct(props) {
 				</div>
 				<div className="col-lg-6 col-md-6 col-s-12 col-xs-12">
 					<form action="#">
-					  Quantity
-					  <input type="number" name="quantity" min="1" max={product.inventory}/>
-					  <input type="submit" />
+					  Quantity ({product.inventory} remaining)
+						<select name="quantity"> {options} </select>
+					  <button name="addToCart" type="submit">Add To Cart</button>
 					</form>
 				</div>
 			</div>
