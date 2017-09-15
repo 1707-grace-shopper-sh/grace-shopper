@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { postCartEntry } from '../reducer/cart';
 
 function SingleProduct(props) {
 
@@ -16,6 +17,7 @@ function SingleProduct(props) {
 		event.preventDefault();
 		console.log('product', product.id);
 		console.log('You tried to add ' + event.target.quantity.value + ' to cart!')
+		props.addToCart();
 
 	}
 
@@ -53,8 +55,10 @@ const mapState = function(state, ownProps) {
 
 const mapDispatch = function(dispatch) {
 	return {
-		addToCart() {
-
+		addToCart: function() {
+			console.log('in the addToCart mapDispatch')
+			const cartThunk = postCartEntry()
+			dispatch(cartThunk)
 		}
 	}
 };
