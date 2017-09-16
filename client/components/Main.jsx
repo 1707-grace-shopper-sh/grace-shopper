@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
 import { fetchProducts } from '../reducer/products';
 import { connect } from 'react-redux';
-import { me } from '../reducer/currentUserReducer'
+import { me } from '../reducer/user'
 
 //component imports
 import SingleProduct from './SingleProduct.jsx';
@@ -14,7 +14,6 @@ import NewProduct from './NewProduct.jsx';
 import WriteReview from './WriteReview.jsx';
 import Navbar from './Navbar.jsx';
 import CreateAccount from './CreateAccount.jsx'
-import UserHome from './UserHome.jsx'
 
 class Main extends Component {
 
@@ -24,6 +23,7 @@ class Main extends Component {
 	}
 
 	render() {
+		console.log('this.props.isLoggedIn', this.props.isLoggedIn)
 		return (
 			<div>
 				<Navbar />
@@ -36,24 +36,12 @@ class Main extends Component {
 					<Route path='/search' component={AllProducts} />
 					<Route path='/user/signup' component = {CreateAccount}/>
 					<Route component={AllProducts} />
-					{
-						this.props.isLoggedIn &&
-						<Switch>
-							{/* User hompage, only available after logging in */}
-							<Route path='/home' component={UserHome} />
-						</Switch>
-					}
 				</Switch>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = (state) =>{
-	return {
-		isLoggedIn: !!state.currentUser.id
-	}
-};
 
 const mapDispatchToProps = function (dispatch) {
 	return {
@@ -68,4 +56,4 @@ const mapDispatchToProps = function (dispatch) {
 	}
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+export default withRouter(connect(null, mapDispatchToProps)(Main));
