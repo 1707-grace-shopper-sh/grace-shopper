@@ -32,7 +32,7 @@ class CreateAccount extends Component {
 
   render() {
     return (
-      <div>
+      <div> Create an Account
         <form onSubmit={this.handleSubmit}>
           <label>
             Email:
@@ -44,7 +44,6 @@ class CreateAccount extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        <a href='/api/auth/google'>Login with Google</a>
       </div>
     )
   }
