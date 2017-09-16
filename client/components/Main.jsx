@@ -13,7 +13,9 @@ import EditProduct from './EditProduct.jsx';
 import NewProduct from './NewProduct.jsx';
 import WriteReview from './WriteReview.jsx';
 import Navbar from './Navbar.jsx';
-import CreateAccount from './CreateAccount.jsx'
+
+import Auth from './Auth.jsx'
+
 
 class Main extends Component {
 
@@ -34,7 +36,7 @@ class Main extends Component {
 					<Route exact path="/product/new" component={NewProduct} />
 					<Route path='/filter' component={AllProducts} />
 					<Route path='/search' component={AllProducts} />
-					<Route path='/user/signup' component = {CreateAccount}/>
+					<Route path='/user/auth' component = {Auth}/>
 					<Route component={AllProducts} />
 				</Switch>
 			</div>
