@@ -1,5 +1,7 @@
 
 import axios from 'axios'
+import history from '../history'
+
 
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
@@ -13,7 +15,8 @@ export const creatingUser = (user) => {
   return function thunk(dispatch) {
     return axios.post('/api/auth', user)  
       .then(res=>{
-        dispatch(getUser({email: res.data.email}))
+        dispatch(getUser({id: res.data.id, email: res.data.email}))
+        history.push('/home')
       })
       .catch(err=> {console.log("creating user was unsuccessful", err)})
   }

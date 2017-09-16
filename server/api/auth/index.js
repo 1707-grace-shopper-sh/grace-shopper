@@ -7,14 +7,13 @@ const User = db.models.user;
 //Google Login
 router.use('/google', require('./google'))
 
-
-router.route('/')
-
-  //Return current user
-  .get('/me', (req, res, next) => {
+router.get('/me', (req, res, next) => {
     res.json(req.user);
   })
 
+router.route('/')
+
+  
   //Local Login
   .post((req, res, next) => {
     User.findOrBuild({
@@ -31,11 +30,9 @@ router.route('/')
         return user
       })
       .then(user => {
-        user.save()
-        return user
+        return user.save()
       })
       .then(user => {
-        console.log('user', user)
         req.login(user, err => err ? next(err) : res.json(user))
       })
       .catch(next)
