@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { creatingUser } from '../reducer/usersReducer'
+import { creatingUser } from '../reducer/user'
 
 class CreateAccount extends Component {
   constructor(props) {
