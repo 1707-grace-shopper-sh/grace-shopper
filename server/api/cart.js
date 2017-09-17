@@ -11,9 +11,26 @@ api.route('/')
 	})
 
 	.post(function(req, res) {
-		console.log('trying to add to the database!')
-		console.log('the req.body is')
-		console.log(req.body)
+		// need to add the session id here
+		console.log('req.session.id')
+		console.log(req.session.id)
+		Order.findOrCreate(
+			{ where: { productId: req.body.id, session: req.session.id } }
+		)
+		.then((res) => {
+			const cartEntry = res[0]
+			return Order.update(
+				{ quantity: req.body.quantity },
+				{ where: { id: cartEntry.id },
+					returning: true
+				}
+			)
+		})
+		.then((data) => {
+			const newEntry = data[1]
+			res.status(200).json(newEntry)
+		})
+		.catch(console.log)
 	})
 
 module.exports = api;

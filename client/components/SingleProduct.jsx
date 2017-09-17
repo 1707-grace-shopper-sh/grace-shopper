@@ -56,7 +56,6 @@ const mapState = function(state, ownProps) {
 const mapDispatch = function(dispatch) {
 	return {
 		addToCart: function(cartEntry) {
-			console.log('in the addToCart mapDispatch')
 			const cartThunk = postCartEntry(cartEntry)
 			dispatch(cartThunk)
 		}
