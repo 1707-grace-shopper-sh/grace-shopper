@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 function Header(props) {
+
+	const userName = props.userName
+	const userEmail =  props.userEmail
+	const isLoggedIn = props.isLoggedIn
 
 	return (
 		<div className="header-area">
@@ -22,7 +27,9 @@ function Header(props) {
 		             	<div className="header-right">
 		                	<ul className="list-unstyled list-inline">
 		                  		<li>
-		                  			Hey there!
+		                  			{
+										isLoggedIn ? (Welcome, (userName || userEmail)) : ""
+									}
 		                  		</li> 
 		                	</ul>
 		              	</div>
@@ -33,4 +40,13 @@ function Header(props) {
 	)
 }
 
-export default Header;
+const mapState = function (state) {
+	return {
+		isLoggedIn: !!state.currentUser.id,
+		userName: state.currentUser.name, 
+		userEmail: state.currentUser.email
+		
+	}
+}
+
+export default connect(mapState)(Header);
