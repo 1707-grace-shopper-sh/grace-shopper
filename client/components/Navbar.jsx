@@ -38,7 +38,7 @@ function Navbar(props) {
 
 const mapState = function (state) {
 	return {
-		categories: ['Seafood', 'Candy', 'Condiments & Seasonings', 'Tea & Beverages']
+		categories: state.categories
 	}
 }
 
