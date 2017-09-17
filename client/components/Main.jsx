@@ -13,6 +13,7 @@ import EditProduct from './EditProduct.jsx';
 import NewProduct from './NewProduct.jsx';
 import WriteReview from './WriteReview.jsx';
 import Navbar from './Navbar.jsx';
+import LogoArea from './LogoArea.jsx'
 
 import Auth from './Auth.jsx'
 
@@ -28,6 +29,7 @@ class Main extends Component {
 		console.log('this.props.isLoggedIn', this.props.isLoggedIn)
 		return (
 			<div>
+				<LogoArea />
 				<Navbar />
 				<Switch>
 					<Route exact path="/product/:id" component={SingleProduct} />

@@ -12,20 +12,37 @@ function Navbar(props) {
 	const isLoggedIn = props.isLoggedIn
 
 	return (
-		<nav className="navbar navbar-default navbar-static-top" role="navigation" style={{ marginBottom: 0 }}>
-			<div className="navbar-header">
-				<Link className="navbar-brand" to="/">Grace's Gourmet Goods</Link>
-				{
-					categories.map((category, idx) => {
-						return <Link key={idx} className="navbar-brand" to={`/filter?category=${category}`}>{category}</Link>
-					})
-				}
-				<Searchbar />
+		<div>
+		<div className="mainmenu-area">
+	        <div className="container">
+	          <div className="row">
+	            <div className="navbar-header">
+	              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	                <span className="sr-only">Toggle navigation</span>
+	                <span className="icon-bar" />
+	                <span className="icon-bar" />
+	                <span className="icon-bar" />
+	              </button>
+	            </div> 
+	            <div className="navbar-collapse collapse">
+	              <ul className="nav navbar-nav">
+	                <li className="active"><Link to="/">Home</Link></li>
+	                {
+	                	categories.map((category, idx) => {
+	                		return <li><Link key={idx} to={`/filter?category=${category}`}>{category}</Link></li>
+	                	})
+	                }
+	                <Searchbar />
+	              </ul>
+	            </div>  
+	          </div>
+	        </div>
+	      </div>
+
 				{
 					isLoggedIn ? <h3>Welcome, {userName || userEmail}</h3> : ""
 				}
-			</div>
-		</nav>
+		</div>
 	)
 }
 
