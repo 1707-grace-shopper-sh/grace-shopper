@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 function Footer(props) {
 	
+	const categories = props.categories
+
 	return (
 		<div className="footer-top-area">
 			<div className="zigzag-bottom" />
@@ -10,13 +13,13 @@ function Footer(props) {
 		  			<div className="row">
 						<div className="col-md-3 col-sm-6">
 			  				<div className="footer-about-us">
-								<h2>u<span>Stora</span></h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+								<h2>Grace's Gourmet Goods</h2>
+								<p>A gourmet foods store built by three senior students at The Grace Hopper Program and very, very loosely inspired by the remarkable Rear Admiral Dr. Grace Murray Hopper.</p>
 								<div className="footer-social">
-				  					<a href="#" target="_blank"><i className="fa fa-facebook" /></a>
-									<a href="#" target="_blank"><i className="fa fa-twitter" /></a>
-									<a href="#" target="_blank"><i className="fa fa-youtube" /></a>
-									<a href="#" target="_blank"><i className="fa fa-linkedin" /></a>
+				  					<a href="/" target="_blank"><i className="fa fa-facebook" /></a>
+									<a href="/" target="_blank"><i className="fa fa-twitter" /></a>
+									<a href="/" target="_blank"><i className="fa fa-youtube" /></a>
+									<a href="/" target="_blank"><i className="fa fa-linkedin" /></a>
 								</div>
 			  				</div>
 						</div>
@@ -36,11 +39,11 @@ function Footer(props) {
 			  				<div className="footer-menu">
 								<h2 className="footer-wid-title">Categories</h2>
 								<ul>
-									<li><a href>Mobile Phone</a></li>
-									<li><a href>Home accesseries</a></li>
-									<li><a href>LED TV</a></li>
-									<li><a href>Computer</a></li>
-									<li><a href>Gadets</a></li>
+								{
+		                			categories.map((category, idx) => {
+		                				return <li key={idx}><Link to={`/filter?category=${category}`}>{category}</Link></li>
+		                			})
+		                		}
 								</ul>                        
 			  				</div>
 						</div>
@@ -60,4 +63,10 @@ function Footer(props) {
 	)
 }
 
-export default Footer
+const mapState = function (state) {
+	return {
+		categories: state.categories
+	}
+}
+
+export default connect(mapState)(Footer)
