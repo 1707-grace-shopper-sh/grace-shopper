@@ -35,12 +35,18 @@ function SingleProduct(props) {
               <ins>${Number.parseInt(product.price).toFixed(2)}</ins>
             </div>      
             <form name="cart" >
-              Quantity ({product.inventory} remaining)
+              <div className="cart-component">
+                Quantity ({product.inventory} remaining)
+              </div>
+              <div className="cart-component">
                 <select name="quantity" className="text qty"> {options} </select>
+              </div>
+              <div className="cart-component">
                 <button className="add_to_cart_button" type="submit">Add To Cart</button>
+              </div>
             </form>
             <div className="product-inner-category">
-              <p>Category: <a href>Summer</a>. Tags: <a href>awesome</a>, <a href>best</a>, <a href>sale</a>, <a href>shoes</a>. </p>
+              <p>Category: <Link to={`/filter?category=${product.category}`}>{product.category}</Link>. Tags: <a href>awesome</a>, <a href>best</a>, <a href>sale</a>, <a href>shoes</a>. </p>
             </div>
           </div>
         </div>
@@ -54,16 +60,20 @@ function SingleProduct(props) {
           <div role="tabpanel">
             <Tabs defaultActiveKey={1} id='products-and-reviews'>
               <Tab eventKey={1} title="Description">
-                <div id="description">
+                <div className="panel-container">
                   <h2>Product Description</h2>  
                   <p>{product.description}</p>
                 </div>
               </Tab>
               <Tab eventKey={2} title="Reviews">
-                <Reviews prodId={product.id}/>
+                <div className="panel-container">
+                  <Reviews prodId={product.id}/>
+                </div>
               </Tab>
               <Tab eventKey={3} title="Add Your Review">
-                <WriteReview prodId={product.id}/>
+                <div className="panel-container">
+                  <WriteReview prodId={product.id}/>
+                </div>
               </Tab>
             </Tabs>
             </div>

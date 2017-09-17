@@ -17,7 +17,7 @@ class Reviews extends Component {
         console.log(this.props.reviews)
         return (
             <div>
-                {this.props.reviews.map(review=>{
+                {this.props.reviews.map(review => {
                     return (
                         <div key={review.id}>
                             <h4>{review.reviewerName}</h4>

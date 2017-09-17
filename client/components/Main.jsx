@@ -11,11 +11,11 @@ import SingleProduct from './SingleProduct.jsx';
 import AllProducts from './AllProducts.jsx';
 import EditProduct from './EditProduct.jsx';
 import NewProduct from './NewProduct.jsx';
-import WriteReview from './WriteReview.jsx';
 import Navbar from './Navbar.jsx';
 import LogoArea from './LogoArea.jsx'
 import Header from './Header.jsx'
 import Auth from './Auth.jsx'
+import Footer from './Footer.jsx'
 
 
 class Main extends Component {
@@ -35,13 +35,13 @@ class Main extends Component {
 				<Switch>
 					<Route exact path="/product/:id" component={SingleProduct} />
 					<Route path="/product/:id/edit" component={EditProduct} />
-					<Route path="/product/:id/write-review" component={WriteReview} />
 					<Route exact path="/product/new" component={NewProduct} />
 					<Route path='/filter' component={AllProducts} />
 					<Route path='/search' component={AllProducts} />
 					<Route path='/user/auth' component = {Auth}/>
 					<Route component={AllProducts} />
 				</Switch>
+				<Footer />
 			</div>
 		);
 	}

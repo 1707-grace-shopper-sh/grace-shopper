@@ -893,6 +893,15 @@ form.cart {
 .tab-content {
     margin-bottom: 30px;
 }
+.panel-container {
+  margin-top: 30px;
+}
+.product-content-right {
+  margin-top: 30px;
+}
+.cart-component {
+  margin-bottom: 10px;
+}
 .submit-review label {
     display: block;
 }

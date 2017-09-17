@@ -18,13 +18,12 @@ class WriteReview extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		this.setState({triedToSubmit: true})
 		// need to add reviewerID
 		this.props.submitReview({
 			productId: this.state.productId,
 			reviewerName: this.state.reviewerName,
 			reviewText: this.state.reviewText,
-			score: this.state.s
+			score: this.state.score
 		})
 	}
 
@@ -63,6 +62,7 @@ const mapState = null
 const mapDispatch = function(dispatch, ownProps) {
 	return {
 		submitReview(review) {
+			// not sure ownProps.history is necessary
 			dispatch(newReview(review, ownProps.prodId, ownProps.history))
 		}
 	}
