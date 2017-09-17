@@ -18,7 +18,7 @@ function AllProducts(props) {
 				return product.title.toLowerCase().includes(target.toLowerCase());
 			}
 
-			products = props.products.products.filter(matchesTarget);
+			products = props.products.filter(matchesTarget);
 
 		// if the user is trying to filter by category
 		} else if (props.location.pathname === '/filter') {
