@@ -466,6 +466,24 @@ z-index: 999;}
 .single-product:hover .product-hover a.add-to-cart-link {top: 32%;}
 .single-product:hover .product-hover a.view-details-link {bottom: 32%;}
 .single-product:hover .product-hover:after{left: 0}
+.product-upper { 
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  height: 250px; 
+}
+.product-upper img {
+  max-height: 225px;
+}
+.product-title {
+  height: 40px;
+  overflow: hidden;
+}
+.product-title h4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+}
 
 
 .product-carousel {
