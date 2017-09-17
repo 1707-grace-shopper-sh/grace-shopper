@@ -14,7 +14,7 @@ import NewProduct from './NewProduct.jsx';
 import WriteReview from './WriteReview.jsx';
 import Navbar from './Navbar.jsx';
 import LogoArea from './LogoArea.jsx'
-
+import Header from './Header.jsx'
 import Auth from './Auth.jsx'
 
 
@@ -29,6 +29,7 @@ class Main extends Component {
 		console.log('this.props.isLoggedIn', this.props.isLoggedIn)
 		return (
 			<div>
+				<Header />
 				<LogoArea />
 				<Navbar />
 				<Switch>

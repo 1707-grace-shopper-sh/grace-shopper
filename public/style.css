@@ -34,16 +34,21 @@ body { font-family:Arial, Helvetica, sans-serif; }
 .header-area {
     background: none repeat scroll 0 0 #f4f4f4;
 }
+.header-area .row {
+  display: flex;
+  align-items: baseline;
+}
 .header-area a {
     color: #888;
 }
+.user-menu li {
+    display: inline-flex;
+}
+
 .user-menu ul {
     list-style: outside none none;
     margin: 0;
     padding: 0;
-}
-.user-menu li {
-    display: inline-block;
 }
 .user-menu li a {
     display: block;
