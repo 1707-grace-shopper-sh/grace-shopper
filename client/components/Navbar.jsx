@@ -24,7 +24,7 @@ function Navbar(props) {
 	                		<li className="active"><Link to="/">Home</Link></li>
 	                		{
 	                			categories.map((category, idx) => {
-	                				return <li><Link key={idx} to={`/filter?category=${category}`}>{category}</Link></li>
+	                				return <li key={idx}><Link to={`/filter?category=${category}`}>{category}</Link></li>
 	                			})
 	                		}
 	                		<Searchbar />

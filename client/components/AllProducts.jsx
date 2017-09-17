@@ -43,7 +43,7 @@ function AllProducts(props) {
 						{
 							products.map((product, idx) => {
 								return (
-									<div className="col-md-3 col-sm-6">
+									<div key={idx} className="col-md-3 col-sm-6">
 								  		<div className="single-shop-product">
 											<div className="product-upper">
 										  			<Link to={`/product/${product.id}`}>
