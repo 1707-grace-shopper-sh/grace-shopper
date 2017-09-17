@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import {loggingInUser} from '../reducer/user'
 
 function Login(props) {
     return (

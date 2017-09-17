@@ -13,12 +13,23 @@ const getUser = user => {
 
 export const creatingUser = (user) => {
   return function thunk(dispatch) {
-    return axios.post('/api/auth', user)  
+    return axios.post('/api/auth/create', user)  
       .then(res=>{
-        dispatch(getUser({id: res.data.id, email: res.data.email}))
-        history.push('/home')
+        dispatch(getUser(user))
+        history.push('/')
       })
       .catch(err=> {console.log("creating user was unsuccessful", err)})
+  }
+}
+
+export const loggingInUser = (user) => {
+  return function thunk(dispatch) {
+    return axios.post('/api/auth/login', user)
+      .then(res=>{
+        dispatch(getUser(user))
+        history.push('/')
+      })
+      .cathc(err=>{console.log("logging in user was unsuccessful", err)})
   }
 }
 
@@ -31,6 +42,8 @@ export const me = () => {
       .catch(err => console.log('me thunk failed', err))
   }
 }
+
+
 
 export default function (state = {}, action) {
   switch (action.type) {
