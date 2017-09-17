@@ -22,7 +22,7 @@ function Navbar(props) {
 				}
 				<Searchbar />
 				{
-					isLoggedIn ? <h3>Welcome, {userName || userEmail}</h3> : ""
+					isLoggedIn ? <h3>Welcome, {userName || userEmail}</h3> : <Link to ="/user/auth">Login or Sign Up</Link>
 				}
 			</div>
 		</nav>
