@@ -14,7 +14,7 @@ function LogoArea(props) {
 					</div>
 					<div className="col-sm-6">
 						<div className="shopping-item">
-							<a href="cart.html">Cart - <span className="cart-amunt">$100</span> <i className="fa fa-shopping-cart" /> <span className="product-count">5</span></a>
+							<Link to="/cart">Cart - <span className="cart-amunt">$100</span> <i className="fa fa-shopping-cart" /> <span className="product-count">5</span></Link>
 						</div>
 					</div>
 				</div>

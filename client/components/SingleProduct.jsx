@@ -17,7 +17,6 @@ function SingleProduct(props) {
 	}
 
 	function handleSubmit(event) {
-    console.log('you tried to submit!')
 		event.preventDefault();
 		const id = product.id
 		const quantity = event.target.quantity.value
