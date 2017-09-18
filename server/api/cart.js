@@ -3,12 +3,17 @@ const api = require('express').Router()
 const db = require('../db')
 
 const Order = db.models.order
+const Product = db.models.product
 
 api.route('/')
 	// fetch the cart on page load
 	.get(function(req, res) {
 		// will eventually filter by user/session
-		Order.findAll()
+		Order.findAll({
+      		include: [{
+        		model: Product
+		    }]
+		})
 		.then(entries => res.status(200).json(entries))
 	})
 
