@@ -8,8 +8,7 @@ const Related = require('./models/related');
 
 // add associations here
 Product.belongsTo(Related);
-// Order.belongsTo(User);
-
 Review.belongsTo(Product);
+// Order.belongsTo(User);
 
 module.exports = db;

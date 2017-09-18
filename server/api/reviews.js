@@ -6,7 +6,7 @@ const Review = db.models.review;
 
 api.route('/')    
     //post new review
-    .post(function(req,res){
+    .post(function(req,res) {
         Review.create(req.body)
         .then(review => res.status(200).json(review))
     })
@@ -14,7 +14,7 @@ api.route('/')
 
 api.route('/by-product/:id')
     //get by product id
-    .get(function(req,res){
+    .get(function(req,res) {
         Review.findAll({
             where: {
                 productId: req.params.id

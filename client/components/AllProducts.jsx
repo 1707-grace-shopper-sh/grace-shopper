@@ -36,36 +36,42 @@ function AllProducts(props) {
 		}
 
 		return (
-			<div className="row"> 
-				{
-				products.map((product, idx) => {
-					return (
-						<div key={idx} className="col-lg-4 col-md-6 mb-4">
-							<div className="card h-100">
-							<Link to={`/product/${product.id}`}><img className="card-img-top" src={product.imUrl} alt /></Link>
-							<div className="card-body">
-								<h4 className="card-title">
-									<Link to={`/product/${product.id}`}>Title: {product.title}</Link>
-								</h4>
-								<h5>Price: {product.price}</h5>
-								<p className="card-text">{product.description.slice(0,100) + "..."}</p>
-							</div>
-							<div className="card-footer">
-								<small className="text-muted">★ ★ ★ ★ ☆</small>
-							</div>
-							</div>
-						</div>
-					)
-				})
-				}
+			<div className="single-product-area">
+				<div className="zigzag-bottom" />
+					<div className="container">
+						<div className="row">
+						{
+							products.map((product, idx) => {
+								return (
+									<div key={idx} className="col-md-3 col-sm-6">
+								  		<div className="single-shop-product">
+											<div className="product-upper">
+										  			<Link to={`/product/${product.id}`}>
+										  				<img src={product.imUrl} alt />
+										  			</Link>
+											</div>
+											<div className="product-title">
+												<Link to={`/product/${product.id}`}>
+													<h4>{product.title}</h4>
+												</Link>
+											</div>
+											<div className="product-carousel-price">
+									  			<ins>Price: ${Number.parseInt(product.price).toFixed(2)}</ins>
+											</div>  
+											<div className="product-option-shop">
+										  		<a className="add_to_cart_button" data-quantity={1} data-product_sku data-product_id={70} rel="nofollow" href="/">Add to cart</a>
+											</div>   
+										</div>                    
+								  	</div>
+						  		)
+						  	})
+						}
+					</div>
+				</div>
 			</div>
 		);
 	
 };
-
-function searchFilter() {
-
-}
 
 const mapStateToProps = function(state, ownProps) {
 	return {
@@ -75,6 +81,6 @@ const mapStateToProps = function(state, ownProps) {
 
 const mapDispatchToProps = null;
 
-// DON'T REMOVE THIS ONE EITHER :) 
+// withRouter necessary for history here
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllProducts));
 
