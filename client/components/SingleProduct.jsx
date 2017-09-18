@@ -17,6 +17,7 @@ function SingleProduct(props) {
 	}
 
 	function handleSubmit(event) {
+    console.log('you tried to submit!')
 		event.preventDefault();
 		const id = product.id
 		const quantity = event.target.quantity.value
@@ -109,6 +110,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = (dispatch) => {
 	return {
 		addToCart: function(cartEntry) {
+      console.log('in add to cart!')
 			const cartThunk = postCartEntry(cartEntry)
 			dispatch(cartThunk)
 		}

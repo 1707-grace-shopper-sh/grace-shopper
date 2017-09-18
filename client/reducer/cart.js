@@ -11,7 +11,9 @@ export function addToCart(cartEntry) {
 
 // THUNK CREATOR
 export function postCartEntry(cartEntry, history) {
+	console.log('in thunk creator!')
 	return function thunk(dispatch) {
+		console.log('trying to dispatch')
 		return axios.post('/api/cart', cartEntry)
 		.then(res => res.data)
 		.then(cartEntry => {

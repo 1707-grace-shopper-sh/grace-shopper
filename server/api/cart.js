@@ -12,10 +12,12 @@ api.route('/')
 
 	.post(function(req, res) {
 		// need to add the session id here
-		console.log('req.session.id')
-		console.log(req.session.id)
+		console.log('in the post request')
+		// console.log('req.session.id')
+		// console.log(req.session.id)
+		console.log(req.body)
 		Order.findOrCreate(
-			{ where: { productId: req.body.id, session: req.session.id } }
+			{ where: { productId: req.body.id } }
 		)
 		.then((res) => {
 			const cartEntry = res[0]
