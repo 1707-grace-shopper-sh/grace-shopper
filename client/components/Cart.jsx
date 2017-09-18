@@ -6,8 +6,13 @@ class Cart extends Component {
 
 	constructor(props) {
 		super(props)
+		var trackedCart = props.cart.map(function(el) {
+			var trackedEntry = Object.assign({}, el)
+			trackedEntry.wasModified = false
+			return trackedEntry
+		})
 		this.state = {
-			cart: props.cart
+			cart: trackedCart
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -19,11 +24,12 @@ class Cart extends Component {
 		const newQuantity = event.target.value
 		let cartCopy = this.state.cart
 		cartCopy[idx].quantity = newQuantity
-		this.setState({cart: cartCopy})
+		this.setState({cart: cartCopy, wasModified: true})
 	}
 
 	handleSubmit(event) {
 		event.preventDefault()
+		for (let i = 0; i < )
 	}
 
 	render () {
@@ -64,7 +70,7 @@ class Cart extends Component {
 										  <td className="product-quantity">
 											<div className="quantity buttons_added">
 											  
-											  <input type="number" size={4} className="input-text qty text" title="Qty" id={idx} defaultValue={entry.id} min={1} step={1} onChange={this.handleChange}/>
+											  <input type="number" size={4} className="input-text qty text" title="Qty" id={idx} defaultValue={entry.quantity} min={1} step={1} onChange={this.handleChange}/>
 											</div>
 										  </td>
 										  <td className="product-subtotal">
