@@ -2,13 +2,36 @@
 const router = require('express').Router();
 const db = require('../../db')
 const User = db.models.user;
+const Order = db.models.order
 
 
 //Google Login
 router.use('/google', require('./google'))
 
 router.get('/me', (req, res, next) => {
-  res.json(req.user);
+  function ifThen(){
+    if(req.user){
+       return Order.update(
+      {user: req.user.id},
+      {
+        where: { session: req.session.id },
+        returning: true
+      })
+    } else {
+      return Order.findAll({where: {
+        session: req.session.ide
+      }})
+    }
+  }  
+  ifThen()
+    .then(orders=>{
+      console.log('orders', orders)
+      const userInfo = {
+        orders: orders,
+        userData: req.user
+      }
+      res.json(userInfo)
+    })
 })
 
 
@@ -34,7 +57,7 @@ router.post('/create', (req, res, next) => {
     .then(user => {
       req.login(user, err => err ? next(err) : user.sanitize())
     })
-    .then(()=>{
+    .then(() => {
       res.json(req.user)
     })
     .catch(next)
@@ -59,7 +82,7 @@ router.post('/login', (req, res, next) => {
         req.login(user, err => err ? next(err) : user.sanitize())
       }
     })
-    .then(()=>res.json(req.user))
+    .then(() => res.json(req.user))
     .catch(next)
 })
 

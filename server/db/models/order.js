@@ -2,9 +2,11 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 const Order = db.define('order', {
-	// orders must belong to a user or a guess session (auth vs. unauth)
-	user: {
+	session: {
 		type: Sequelize.STRING
+	},
+	user: {
+		type: Sequelize.INTEGER
 	},
 	quantity: {
 		type: Sequelize.INTEGER

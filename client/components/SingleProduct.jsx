@@ -19,8 +19,9 @@ function SingleProduct(props) {
 	function handleSubmit(event) {
 		event.preventDefault();
 		const id = product.id
-		const quantity = event.target.quantity.value
-		const cartEntry = {id, quantity}
+    const quantity = event.target.quantity.value
+    const userId = props.userId
+		const cartEntry = {id, quantity, userId}
 		props.addToCart(cartEntry);
 	}
 
@@ -102,14 +103,16 @@ const mapState = (state, ownProps) => {
 	const idx = state.products.findIndex(thisId);
 	return {
 		currentProduct: state.products[idx] || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' },
-		prodId: +id
+    prodId: +id, 
+    userId: state.currentUser.id    
 	}
 };
 
-const mapDispatch = (dispatch) => {
+
+
+const mapDispatch = (dispatch) => { 
 	return {
 		addToCart: function(cartEntry) {
-      console.log('in add to cart!')
 			const cartThunk = postCartEntry(cartEntry)
 			dispatch(cartThunk)
 		}
