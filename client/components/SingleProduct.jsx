@@ -92,7 +92,7 @@ function SingleProduct(props) {
 	);
 };
 
-const mapStateToProps = function (state, ownProps) {
+const mapState = (state, ownProps) => {
 	// pull id off the url
 	const id = ownProps.match.params.id;
 	function thisId(product) {
@@ -106,7 +106,7 @@ const mapStateToProps = function (state, ownProps) {
 	}
 };
 
-const mapDispatch = function(dispatch) {
+const mapDispatch = (dispatch) => {
 	return {
 		addToCart: function(cartEntry) {
 			const cartThunk = postCartEntry(cartEntry)
