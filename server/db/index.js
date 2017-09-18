@@ -6,8 +6,8 @@ const Order = require('./models/order');
 const Review = require('./models/review');
 const Related = require('./models/related');
 
-// add associations here
 Product.belongsTo(Related);
+Order.belongsTo(Product);
 Review.belongsTo(Product);
 // Order.belongsTo(User);
 

@@ -485,7 +485,6 @@ z-index: 999;}
   -webkit-box-orient: vertical;  
 }
 
-
 .product-carousel {
   padding-top: 40px;
 }
@@ -825,7 +824,7 @@ input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
     width: 76px;
 }
 .product-name {
-    font-size: 25px;
+    font-size: 18px;
     margin-bottom: 20px;
 }
 .product-inner-price {
@@ -970,6 +969,9 @@ div.quantity input.plus, div.quantity input.minus {
     height: 25px;
     line-height: 15px;
     width: 25px;
+}
+td.product-quantity {
+  width: 150px;
 }
 td.product-quantity div.quantity {
     float: none;
