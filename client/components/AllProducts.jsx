@@ -1,9 +1,8 @@
-import React from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
-import queryString from 'query-string';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import queryString from 'query-string'
 
 function AllProducts(props) {
 
@@ -11,28 +10,28 @@ function AllProducts(props) {
 
 		// if the user reached this from the search route 
 		if (props.location.pathname === '/search') {
-			const target = queryString.parse(props.location.search).product;
+			const target = queryString.parse(props.location.search).product
 
 			// product title must contain search query (ignoring case)
 			function matchesTarget(product) {
-				return product.title.toLowerCase().includes(target.toLowerCase());
+				return product.title.toLowerCase().includes(target.toLowerCase())
 			}
 
-			products = props.products.filter(matchesTarget);
+			products = props.products.filter(matchesTarget)
 
 		// if the user is trying to filter by category
 		} else if (props.location.pathname === '/filter') {
-			const category = queryString.parse(props.location.search).category;
+			const category = queryString.parse(props.location.search).category
 
 			function inCategory(product) {
-				return product.category == category;
+				return product.category == category
 			}
 
-			products = props.products.filter(inCategory);
+			products = props.products.filter(inCategory)
 
 		// otherwise load all products
 		} else {
-			products = props.products;
+			products = props.products
 		}
 
 		return (
@@ -69,18 +68,18 @@ function AllProducts(props) {
 					</div>
 				</div>
 			</div>
-		);
+		)
 	
-};
+}
 
-const mapStateToProps = function(state, ownProps) {
+const mapState = (state, ownProps) => {
 	return {
 		products: state.products
-	};
-};
+	}
+}
 
-const mapDispatchToProps = null;
+const mapDispatch = null
 
 // withRouter necessary for history here
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllProducts));
+export default withRouter(connect(mapState, mapDispatchToProps)(AllProducts))
 

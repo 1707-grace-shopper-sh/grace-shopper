@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import Searchbar from './Searchbar.jsx';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import Searchbar from './Searchbar.jsx'
 
 function Navbar(props) {
 
@@ -36,12 +36,12 @@ function Navbar(props) {
 	)
 }
 
-const mapState = function (state) {
+const mapState = state => {
 	return {
 		categories: state.categories
 	}
 }
 
+const mapDispatch = null
 
-
-export default connect(mapState)(Navbar);
+export default connect(mapState, mapDispatch)(Navbar)

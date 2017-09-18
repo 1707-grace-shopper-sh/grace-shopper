@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 function Header(props) {
 
@@ -40,13 +40,14 @@ function Header(props) {
 	)
 }
 
-const mapState = function (state) {
+const mapState = state => {
 	return {
 		isLoggedIn: !!state.currentUser.id,
 		userName: state.currentUser.name, 
 		userEmail: state.currentUser.email
-		
 	}
 }
 
-export default connect(mapState)(Header);
+const mapDispatch = null
+
+export default connect(mapState, mapDispatch)(Header)

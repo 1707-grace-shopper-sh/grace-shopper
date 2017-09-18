@@ -2,7 +2,7 @@ import React from 'react'
 import CreateAccount from './CreateAccount.jsx'
 import Login from './Login.jsx'
 
-export default function Auth(){
+export default function Auth() {
     return (
         <div>  
             <Login />

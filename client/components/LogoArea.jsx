@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 function LogoArea(props) {
 
@@ -23,4 +23,4 @@ function LogoArea(props) {
 	)
 }
 
-export default LogoArea;
+export default LogoArea

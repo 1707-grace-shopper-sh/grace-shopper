@@ -1,13 +1,13 @@
-import axios from 'axios';
+import axios from 'axios'
 
-//TYPES
-const GET_REVIEWS = 'GET_REVIEWS';
+// ACTION TYPES
+const GET_REVIEWS = 'GET_REVIEWS'
 const ADD_REVIEW = 'ADD_REVIEW'
 
-//CREATORS
+// ACTION CREATORS
 export function getReviews(reviews) {
-	const action = {type: GET_REVIEWS, reviews};
-	return action;
+	const action = {type: GET_REVIEWS, reviews}
+	return action
 }
 
 export function addReview(review) {
@@ -15,20 +15,20 @@ export function addReview(review) {
 	return action
 }
 
-//THUNK
+// THUNK CREATORS
 export function fetchReviews(prodId) {
 	return function thunk(dispatch) {
 		return axios.get(`/api/reviews/by-product/${prodId}`)
 		.then(res => res.data)
 		.then(reviews => {
-			const action = getReviews(reviews);
-			dispatch(action);
+			const action = getReviews(reviews)
+			dispatch(action)
 		});
 	};
 }
 
-export function newReview(review){
-    return function thunk(dispatch){
+export function newReview(review) {
+    return function thunk(dispatch) {
         return axios.post('/api/reviews', review)
         .then(res => res.data)
         .then(review => {
@@ -40,15 +40,15 @@ export function newReview(review){
 function reviewReducer(state = [], action) {
 	switch (action.type) {
 		case GET_REVIEWS: {
-			return action.reviews;
+			return action.reviews
 		}
 		case ADD_REVIEW: {
 			return [...state, action.review]
 		}
 		default: {
-			return state;
+			return state
 		}
 	}
 }
 
-export default reviewReducer;
+export default reviewReducer

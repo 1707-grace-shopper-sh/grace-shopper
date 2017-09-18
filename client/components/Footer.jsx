@@ -63,7 +63,7 @@ function Footer(props) {
 	)
 }
 
-const mapState = function (state) {
+const mapState = state => {
 	return {
 		categories: state.categories
 	}

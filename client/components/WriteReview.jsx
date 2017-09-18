@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { newReview } from '../reducer/review'
 
 class WriteReview extends Component {
+
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -12,12 +13,13 @@ class WriteReview extends Component {
 			reviewText: '',
 			score: 0
 		}
+
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 	}
 
 	handleSubmit(event) {
-		event.preventDefault();
+		event.preventDefault()
 		// need to add reviewerID
 		this.props.submitReview({
 			productId: this.state.productId,
@@ -28,8 +30,8 @@ class WriteReview extends Component {
 	}
 
 	handleChange(event) {
-		const field = event.target.name;
-		const content = event.target.value;
+		const field = event.target.name
+		const content = event.target.value
 		this.setState({[field]: content})
 	}
 
@@ -59,7 +61,7 @@ class WriteReview extends Component {
 
 const mapState = null
 
-const mapDispatch = function(dispatch, ownProps) {
+const mapDispatch = (dispatch, ownProps) => {
 	return {
 		submitReview(review) {
 			// not sure ownProps.history is necessary

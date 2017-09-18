@@ -1,18 +1,18 @@
 // general imports
-import { withRouter } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
-import React, { Component} from 'react';
-import { fetchProducts } from '../reducer/products';
+import { withRouter } from 'react-router'
+import { Route, Switch } from 'react-router-dom'
+import React, { Component } from 'react'
+import { fetchProducts } from '../reducer/products'
 import { fetchCategories } from '../reducer/category'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import { me } from '../reducer/user'
 
 //component imports
-import SingleProduct from './SingleProduct.jsx';
-import AllProducts from './AllProducts.jsx';
-import EditProduct from './EditProduct.jsx';
-import NewProduct from './NewProduct.jsx';
-import Navbar from './Navbar.jsx';
+import SingleProduct from './SingleProduct.jsx'
+import AllProducts from './AllProducts.jsx'
+import EditProduct from './EditProduct.jsx'
+import NewProduct from './NewProduct.jsx'
+import Navbar from './Navbar.jsx'
 import LogoArea from './LogoArea.jsx'
 import Header from './Header.jsx'
 import Auth from './Auth.jsx'
@@ -22,12 +22,11 @@ import Footer from './Footer.jsx'
 class Main extends Component {
 
 	componentDidMount() {
-		this.props.fetchInitialData();
-		this.props.loadSessionData();
+		this.props.fetchInitialData()
+		this.props.loadSessionData()
 	}
 
 	render() {
-		console.log('this.props.isLoggedIn', this.props.isLoggedIn)
 		return (
 			<div>
 				<Header />
@@ -44,24 +43,22 @@ class Main extends Component {
 				</Switch>
 				<Footer />
 			</div>
-		);
+		)
 	}
 }
 
+const mapState = null
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatch = (dispatch) => {
 	return {
 		fetchInitialData: function () {
-			const productsThunk = fetchProducts();
-			const categoriesThunk = fetchCategories();
-			dispatch(productsThunk);
-			dispatch(categoriesThunk);
+			dispatch(fetchProducts())
+			dispatch(fetchCategories())
 		},
 		loadSessionData: function () {
-			const meThunk = me();
-			dispatch(meThunk)
+			dispatch(me())
 		}
 	}
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Main));
+export default withRouter(connect(mapState, mapDispatch)(Main))
