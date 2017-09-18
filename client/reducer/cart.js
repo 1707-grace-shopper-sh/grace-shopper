@@ -35,6 +35,7 @@ export function fetchCart() {
 
 export function postCartEntry(cartEntry) {
 	return function thunk(dispatch) {
+		console.log('in post cart entry thunk')
 		return axios.post('/api/cart', cartEntry)
 		.then(res => res.data)
 		.then(cartEntry => {

@@ -17,9 +17,13 @@ function SingleProduct(props) {
 	}
 
 	function handleSubmit(event) {
+    console.log('trying to submit')
+
 		event.preventDefault();
 		const id = product.id
 		const quantity = event.target.quantity.value
+    console.log('adding ', quantity)
+    console.log('of product ', id)
 		const cartEntry = {id, quantity}
 		props.addToCart(cartEntry);
 	}
@@ -121,7 +125,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = (dispatch) => {
 	return {
 		addToCart: function(cartEntry) {
-      console.log('in add to cart!')
+      console.log('in add to cart')
 			const cartThunk = postCartEntry(cartEntry)
 			dispatch(cartThunk)
 		}

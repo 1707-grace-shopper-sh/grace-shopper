@@ -36,13 +36,23 @@ api.route('/')
 			}
 		})
 		.then((data) => {
-			const newEntry = data[1]
-			res.status(200).json(newEntry)
+			if (req.body.replaceValue) {
+
+			} else {
+				console.log('sending back')
+				console.log(data[1])
+				const newEntry = data[1]
+				res.status(200).json(newEntry)
+			}
 		})
 		.catch(console.log)
 	})
 
 	.delete(function(req, res) {
+		Order.delete(
+			{ where: { productId: req.body.productId },
+			}
+		)
 
 	})
 
