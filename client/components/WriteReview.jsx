@@ -50,8 +50,8 @@ class WriteReview extends Component {
 								</select>
 							</div>
 							<p><label htmlFor="review">Your review</label> <textarea name="reviewText" onChange={this.handleChange} id cols={30} rows={10} defaultValue={""} required/></p>
-							{(this.state.dirty&&this.state.reviewText.length<10) ? <p>Your review must be longer</p> : null}
 							<p><button type="submit" value="Submit" disabled={this.state.reviewText.length<10}>Submit</button></p>
+							{(this.state.dirty&&this.state.reviewText.length<10) ? <p>Your review must be longer</p> : null}
 						</form>
 					</div>
 				</div>
