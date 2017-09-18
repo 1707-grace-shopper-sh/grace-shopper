@@ -70,7 +70,7 @@ class EditProduct extends Component {
                                             />
                                         </div>
                                         <div className="product-inner-price">
-                                            <label>price:</label>
+                                            <label>Price:</label>
                                             <input
                                                 name='price'
                                                 type='number'

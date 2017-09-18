@@ -17,6 +17,7 @@ import LogoArea from './LogoArea.jsx'
 import Header from './Header.jsx'
 import Auth from './Auth.jsx'
 import Footer from './Footer.jsx'
+import AdminPanel from './AdminPanel.jsx'
 
 
 class Main extends Component {
@@ -34,9 +35,10 @@ class Main extends Component {
 				<LogoArea />
 				<Navbar />
 				<Switch>
+					<Route exact path="/admin" component={AdminPanel} />
+					<Route exact path="/product/new" component={NewProduct} />
 					<Route exact path="/product/:id" component={SingleProduct} />
 					<Route path="/product/:id/edit" component={EditProduct} />
-					<Route exact path="/product/new" component={NewProduct} />
 					<Route path='/filter' component={AllProducts} />
 					<Route path='/search' component={AllProducts} />
 					<Route path='/user/auth' component = {Auth}/>
