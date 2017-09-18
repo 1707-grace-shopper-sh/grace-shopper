@@ -16,7 +16,7 @@ api.route('/')
 	// load all data
 	.get(function(req, res) {
 		Product.findAll()
-		.then(products => res.status(200).json(products));
+		.then(products => res.status(200).json(products))
 	})
 	// post new product to database
 	.post(function(req,res){

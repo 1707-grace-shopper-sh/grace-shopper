@@ -5,9 +5,11 @@ const db = require('../db')
 const Order = db.models.order
 
 api.route('/')
-	// will eventually fetch the cart on page load
+	// fetch the cart on page load
 	.get(function(req, res) {
-
+		// will eventually filter by user/session
+		Order.findAll()
+		.then(entries => res.status(200).json(entries))
 	})
 
 	.post(function(req, res) {

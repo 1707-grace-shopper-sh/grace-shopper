@@ -1,9 +1,10 @@
 // general imports
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router'
 import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
 import { fetchProducts } from '../reducer/products';
 import { fetchCategories } from '../reducer/category'
+import { fetchCart } from '../reducer/cart'
 import { connect } from 'react-redux';
 import { me } from '../reducer/user'
 
@@ -58,6 +59,7 @@ const mapDispatchToProps = function (dispatch) {
 			const categoriesThunk = fetchCategories();
 			dispatch(productsThunk);
 			dispatch(categoriesThunk);
+			dispatch(fetchCart())
 		},
 		loadSessionData: function () {
 			const meThunk = me();
