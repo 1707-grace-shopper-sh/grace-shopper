@@ -27,7 +27,7 @@ export function fetchCart() {
 	}
 }
 
-export function postCartEntry(cartEntry, history) {
+export function postCartEntry(cartEntry) {
 	return function thunk(dispatch) {
 		return axios.post('/api/cart', cartEntry)
 		.then(res => res.data)
@@ -44,7 +44,21 @@ function cartReducer(state = [], action) {
 			return action.cart
 		}
 		case ADD_TO_CART: {
-			return [...state, action.cartEntry]
+			console.log('the state is')
+			console.log(state)
+			const newState = [...state]
+			console.log('the new state is')
+			console.log(newState)
+			function thisEntry(entry) {
+				return entry.id == action.cartEntry[0].id
+			}
+			console.log('action cart Entry')
+			console.log(action.cartEntry)
+			const idx = newState.findIndex(thisEntry)
+			console.log('need to modify')
+			console.log(idx)
+			newState[idx].quantity = action.cartEntry[0].quantity
+			return newState
 		}
 		default: {
 			return state

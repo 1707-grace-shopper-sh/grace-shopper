@@ -18,18 +18,15 @@ api.route('/')
 	})
 
 	.post(function(req, res) {
-		// need to add the session id here
-		// console.log('req.session.id')
-		// console.log(req.session.id)
+		console.log('in api route')
+		console.log(req.body)
 		Order.findOrCreate(
 			{ where: { productId: req.body.id } }
 		)
 		.then((res) => {
 			const cartEntry = res[0]
 			const wasCreated = res[1]
-
-			if (wasCreated) {
-				console.log('creating new entry')
+			if (wasCreated || req.body.replaceValue) {
 				return Order.update(
 					{ quantity: req.body.quantity },
 					{ where: { id: cartEntry.id },
