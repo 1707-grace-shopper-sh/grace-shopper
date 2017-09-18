@@ -8,50 +8,50 @@ import Reviews from './Reviews.jsx';
 
 function SingleProduct(props) {
 
-	const product = props.currentProduct;
+  const product = props.currentProduct;
   const options = [];
   // for select dropdown with quantity options (inspired by Amazon UI)
   for (var i = 1; i <= product.inventory; i++) {
     options.push(<option key={i}>{i}</option>);
   }
 
-	return (
-		<div className="container">
+  return (
+    <div className="container">
 
-		<div className="row">
-		<div className="col-md-12">
-            <div className="product-content-right">
-        <div className="col-sm-3">
-          <div className="product-images">
-            <div className="product-main-img">
-              <img src={product.imUrl} alt />
+      <div className="row">
+        <div className="col-md-12">
+          <div className="product-content-right">
+            <div className="col-sm-3">
+              <div className="product-images">
+                <div className="product-main-img">
+                  <img src={product.imUrl} alt />
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-9">
+              <div className="product-inner">
+                <h2 className="product-name">{product.title}<button type='button'><Link to={`/product/${product.id}/edit`}>Edit</Link></button></h2>
+                <div className="product-inner-price">
+                  <ins>${Number.parseInt(product.price).toFixed(2)}</ins>
+                </div>
+                <form name="cart" >
+                  <div className="cart-component">
+                    Quantity ({product.inventory} remaining)
+              </div>
+                  <div className="cart-component">
+                    <select name="quantity" className="text qty"> {options} </select>
+                  </div>
+                  <div className="cart-component">
+                    <button className="add_to_cart_button" type="submit">Add To Cart</button>
+                  </div>
+                </form>
+                <div className="product-inner-category">
+                  <p>Category: <Link to={`/filter?category=${product.category}`}>{product.category}</Link>. Tags: <a href>awesome</a>, <a href>best</a>, <a href>sale</a>, <a href>shoes</a>. </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="col-sm-9">
-          <div className="product-inner">
-            <h2 className="product-name">{product.title}</h2>
-            <div className="product-inner-price">
-              <ins>${Number.parseInt(product.price).toFixed(2)}</ins>
-            </div>      
-            <form name="cart" >
-              <div className="cart-component">
-                Quantity ({product.inventory} remaining)
-              </div>
-              <div className="cart-component">
-                <select name="quantity" className="text qty"> {options} </select>
-              </div>
-              <div className="cart-component">
-                <button className="add_to_cart_button" type="submit">Add To Cart</button>
-              </div>
-            </form>
-            <div className="product-inner-category">
-              <p>Category: <Link to={`/filter?category=${product.category}`}>{product.category}</Link>. Tags: <a href>awesome</a>, <a href>best</a>, <a href>sale</a>, <a href>shoes</a>. </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
       </div>
 
 
@@ -61,40 +61,40 @@ function SingleProduct(props) {
             <Tabs defaultActiveKey={1} id='products-and-reviews'>
               <Tab eventKey={1} title="Description">
                 <div className="panel-container">
-                  <h2>Product Description</h2>  
+                  <h2>Product Description</h2>
                   <p>{product.description}</p>
                 </div>
               </Tab>
               <Tab eventKey={2} title="Reviews">
                 <div className="panel-container">
-                  <Reviews prodId={product.id}/>
+                  <Reviews prodId={product.id} />
                 </div>
               </Tab>
               <Tab eventKey={3} title="Add Your Review">
                 <div className="panel-container">
-                  <WriteReview prodId={product.id}/>
+                  <WriteReview prodId={product.id} />
                 </div>
               </Tab>
             </Tabs>
-            </div>
+          </div>
         </div>
       </div>
-		</div>
-	);
+    </div>
+  );
 };
 
 const mapStateToProps = function (state, ownProps) {
-	// pull id off the url
-	const id = ownProps.match.params.id;
-	function thisId(product) {
-		return product.id == +id;
-	}
-	// find that element in the products on state
-	const idx = state.products.findIndex(thisId);
-	return {
-		currentProduct: state.products[idx] || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' },
-		prodId: +id
-	}
+  // pull id off the url
+  const id = ownProps.match.params.id;
+  function thisId(product) {
+    return product.id == +id;
+  }
+  // find that element in the products on state
+  const idx = state.products.findIndex(thisId);
+  return {
+    currentProduct: state.products[idx] || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' },
+    prodId: +id
+  }
 };
 
 const mapDispatchToProps = null;

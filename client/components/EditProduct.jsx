@@ -19,7 +19,7 @@ class EditProduct extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    componentWillReceiveProps(newProps){
+    componentWillReceiveProps(newProps) {
         this.setState(newProps.product)
     }
 
@@ -31,71 +31,95 @@ class EditProduct extends Component {
     handleChange(event) {
         const field = event.target.name;
         const content = event.target.value;
-        this.setState({[field]: content})
+        this.setState({ [field]: content })
     }
 
     render() {
         return (
-            <div>
-                <h2>Edit this product's information</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <label>title:</label>
-                    <input
-                        name='title'
-                        type='text'
-                        value={this.state.title}
-                        onChange={this.handleChange}
-                        required
-                    />
-                    <label>description:</label>
-                    <input
-                        name='description'
-                        type='text'
-                        value={this.state.description}
-                        onChange={this.handleChange}
-                        required
-                    />
-                    <label>price:</label>
-                    <input
-                        name='price'
-                        type='number'
-                        value={this.state.price}
-                        onChange={this.handleChange}
-                        required
-                    />
-                    <label>image URL:</label>
-                    <input
-                        name='imUrl'
-                        type='text'
-                        value={this.state.imUrl}
-                        onChange={this.handleChange}
-                        required
-                    />
-                    <label>inventory:</label>
-                    <input
-                        name='inventory'
-                        type='number'
-                        value={this.state.inventory}
-                        onChange={this.handleChange}
-                        required
-                    />
-                    <label>category:</label>
-                    <select name='category' onChange={this.handleChange}>
-                        {/* hardcoded the few categories we have. If we want categories to be dynamic, we will have to chnge this */}
-                        {this.props.categories.map(category => {
-                            if (category === this.props.product.category) {
-                                return (
-                                    <option selected='selected'>{category}</option>
-                                )
-                            } else {
-                                return (
-                                    <option>{category}</option>
-                                )
-                            }
-                        })}
-                    </select>
-                    <button type='submit'>Edit Product</button>
-                </form>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="product-content-right">
+                            <h2>Edit this product's information</h2>
+                            <form onSubmit={this.handleSubmit}>
+                                <div className="col-sm-3">
+                                    <div className="product-images">
+                                        <div className="product-main-img">
+                                            <img src={this.props.product.imUrl} alt />
+                                        </div>
+                                        <label>Image URL:</label>
+                                        <input
+                                            name='imUrl'
+                                            type='text'
+                                            value={this.state.imUrl}
+                                            onChange={this.handleChange}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-sm-9">
+                                    <div className="product-inner">
+                                        <div className="product-name">
+                                            <label>Title:</label>
+                                            <input
+                                                name='title'
+                                                type='text'
+                                                value={this.state.title}
+                                                onChange={this.handleChange}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="product-inner-price">
+                                            <label>price:</label>
+                                            <input
+                                                name='price'
+                                                type='number'
+                                                value={Number.parseInt(this.state.price).toFixed(2)}
+                                                onChange={this.handleChange}
+                                                required
+                                            />
+                                        </div>
+                                        <label>Quantity remaining:</label>
+                                        <input
+                                            name='inventory'
+                                            type='number'
+                                            value={this.state.inventory}
+                                            onChange={this.handleChange}
+                                            required
+                                        />
+                                        <div className="product-inner-category">
+                                            <label>Category:</label>
+                                            <select name='category' onChange={this.handleChange}>
+                                                {/* hardcoded the few categories we have. If we want categories to be dynamic, we will have to chnge this */}
+                                                {this.props.categories.map(category => {
+                                                    if (category === this.props.product.category) {
+                                                        return (
+                                                            <option selected='selected'>{category}</option>
+                                                        )
+                                                    } else {
+                                                        return (
+                                                            <option>{category}</option>
+                                                        )
+                                                    }
+                                                })}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <p>
+                                    <label>Description:</label>
+                                    <textarea
+                                        name='description'
+                                        type='text'
+                                        value={this.state.description}
+                                        onChange={this.handleChange}
+                                        required
+                                    /></p>
+                                    <button type='submit'>Edit Product</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
