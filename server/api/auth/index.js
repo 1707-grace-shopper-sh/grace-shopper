@@ -20,12 +20,14 @@ router.post('/create', (req, res, next) => {
     }
   })
     .spread((user, initialized) => {
-      if (initialized) {
-        user.password = req.body.password
+      console.log('user', user, 'intitialiezd', initialized)
+      if (!initialized) {
+        const error = new Error('User already exists')
+        throw (error)
       } else {
-        res.status(401).send('User already exists')        
+        user.password = req.body.password
+        return user
       }
-      return user
     })
     .then(user => {
       return user.save()

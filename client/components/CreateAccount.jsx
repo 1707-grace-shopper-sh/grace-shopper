@@ -26,7 +26,6 @@ class CreateAccount extends Component {
       email: this.state.emailInput,
       password: this.state.passwordInput
     }
-    console.log('in handleSUbmit', user)
     this.props.creatingUser(user)
   }
 
@@ -55,6 +54,7 @@ const mapStateToProps = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     creatingUser: function (user) {
+      console.log('in this.prps.creatingUser')
       dispatch(creatingUser(user))
     }
   }

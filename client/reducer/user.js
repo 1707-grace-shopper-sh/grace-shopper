@@ -19,11 +19,12 @@ export const creatingUser = (user) => {
   return function thunk(dispatch) {
     return axios.post('/api/auth/create', user)  
       .then(res=>{
-        console.log('res.data', res.data)
         dispatch(getUser(res.data))
         history.push('/')
       })
-      .catch(err=> {console.log("creating user was unsuccessful", err)})
+      .catch(err=> {
+        console.log("creating user was unsuccessful", err)
+      })
   }
 }
 
@@ -40,13 +41,13 @@ export const loggingInUser = (user) => {
 
 export const loggingOutUser = (userEmail) => {
   console.log('logging out user w email', userEmail)
-  function thunk(dispatch) {
+  return function thunk(dispatch) {
     return axios.post('/api/auth/logout', userEmail)
       .then(res => {
         dispatch(removeUser())
         history.push('/user/auth')
       })
-      .cathc(err=>{console.log("logging in user was unsuccessful", err)})
+      .cathc(err=>{console.log(err)})
   }
 }
 
