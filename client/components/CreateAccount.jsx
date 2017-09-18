@@ -10,11 +10,11 @@ class CreateAccount extends Component {
       emailInput: "",
       passwordInput: ""
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this); // OB - if you have the right babel, you can bind with an arrow function (handleChange = (evt) => {})
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(event) {
+  handleChange(event) { // EE - you can utilize event.target.name to match the name of the state (this.setState({[event.target.name] : event.target.value}))
     switch (event.target.name) {
       case "email": return this.setState({ emailInput: event.target.value })
       case "password": return this.setState({ passwordInput: event.target.value })
@@ -55,7 +55,7 @@ const mapStateToProps = (props) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     creatingUser: function (user) {
-      console.log('in this.prps.creatingUser')
+      console.log('in this.prps.creatingUser') // SH - console.logs!
       dispatch(creatingUser(user, ownProps.history))
     }
   }

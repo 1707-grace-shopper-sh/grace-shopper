@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function LogoArea(props) {
+function LogoArea(props) { // OB - rename banner?
 
 	return (
 		<div className="site-branding-area">

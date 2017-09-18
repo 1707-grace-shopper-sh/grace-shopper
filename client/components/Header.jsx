@@ -6,7 +6,7 @@ import {loggingOutUser} from '../reducer/user'
 class Header extends Component {
 	constructor(props) {
 		super(props)
-		this.handleClick = this.handleClick.bind(this)
+		this.handleClick = this.handleClick.bind(this) // ob - arrow function
 	}
 
 	handleClick(event) {
@@ -14,11 +14,11 @@ class Header extends Component {
 		this.props.logoutUser(this.props.userEmail)
 	}
 	
-	render(){
+	render(){ // SH - fix indentation below
 		const userName = this.props.userName
 		const userEmail = this.props.userEmail
 		const isLoggedIn = this.props.isLoggedIn
-		console.log('is logged in', isLoggedIn)
+		console.log('is logged in', isLoggedIn) // SH - console.logs
 		return (
 			<div className="header-area">
 				<div className="container">
@@ -60,7 +60,7 @@ class Header extends Component {
 
 const mapState = function (state) {
 	return {
-		isLoggedIn: !!state.currentUser.id,
+		isLoggedIn: !!state.currentUser.id, // ob - this is not not good practice
 		userName: state.currentUser.name,
 		userEmail: state.currentUser.email
 
@@ -70,7 +70,7 @@ const mapState = function (state) {
 const mapDispatch = function (dispatch) {
 	    return {
 	        logoutUser: function(userEmail){
-	            console.log('in logoutUser')
+	            console.log('in logoutUser') // SH - console.logs
 				dispatch(loggingOutUser(userEmail))
 	        }
 	    }

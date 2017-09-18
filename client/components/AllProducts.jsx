@@ -35,7 +35,7 @@ function AllProducts(props) {
 			products = props.products;
 		}
 
-		return (
+		return ( // OB - return could be its own component, and the rest could be front end routes (search, filter, all, and products- dumb)
 			<div className="single-product-area">
 				<div className="zigzag-bottom" />
 					<div className="container">

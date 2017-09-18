@@ -13,14 +13,14 @@ class WriteReview extends Component {
 			overall: 0,
 			dirty: false
 		}
-		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this) //ob - arrows
 		this.handleChange = this.handleChange.bind(this)
 	}
 
-	handleSubmit(event) {
+	handleSubmit(event) { // EE - clear the state for some visual feedback that you submitted the review 
 		event.preventDefault();
 		// need to add reviewerID
-		this.props.submitReview({
+		this.props.submitReview({ // ob - simplify with this.state.productData? not too important
 			productId: this.state.productId,
 			reviewerName: this.state.reviewerName,
 			reviewText: this.state.reviewText,
@@ -31,11 +31,11 @@ class WriteReview extends Component {
 	handleChange(event) {
 		const field = event.target.name;
 		const content = field==='overall' ? parseFloat(event.target.value) : event.target.value;
-		this.setState({[field]: content})
+		this.setState({[field]: content}) // ob - setState in one call
 		this.setState({dirty: true})
 	}
 
-	render() {
+	render() { // OB - there might be a react-bootstrap thing for stars! ***** 
 		return (
 			<div>
 				<div id="reviews">

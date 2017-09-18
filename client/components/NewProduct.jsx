@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { postProduct } from '../reducer/products';
 
 
-function NewProduct(props) {
+function NewProduct(props) { // OB - edit product and new product might be able to use the same form component?
     return (
         <div>
             <div className="container">

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { loggingInUser } from '../reducer/user'
 import {withRouter} from 'react-router'
 
-function Login(props) {
+function Login(props) { // Sh - Login is floating!? // OB - you could do type="password" to make the password dots
     return (
         <div> Login
             <form name="login" onSubmit={props.submitLogin}>

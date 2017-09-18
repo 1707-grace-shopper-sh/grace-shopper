@@ -23,6 +23,10 @@ function SingleProduct(props) {
     const cartEntry = { id, quantity }
     props.addToCart(cartEntry);
   }
+  // OB -  <ins>${Number.parseInt(product.price).toFixed(2)}</ins> function Number.parseInt could be put in a utils.js to handle any currency
+  // EE - could delete ins
+  // OB - tabs could be a nested front end route?
+  // OB - react-bootstrap could be the reason behind the responsive navbar not opening
 
   return (
     <div className="container">
@@ -98,7 +102,7 @@ const mapState = (state, ownProps) => {
   const id = ownProps.match.params.id;
   function thisId(product) {
     return product.id == +id;
-  }
+  } // OB - you can just use .find: it takes a callback!
   // find that element in the products on state
   const idx = state.products.findIndex(thisId);
   return {

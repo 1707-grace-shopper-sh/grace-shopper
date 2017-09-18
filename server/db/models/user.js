@@ -13,7 +13,7 @@ const User = db.define('user', {
       isEmail: true
     }
   },
-  type: {
+  type: { // SH - isAdmin true or false?
     // enums not working
     type: Sequelize.STRING
   },

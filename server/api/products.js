@@ -12,16 +12,16 @@ api.route('/categories')
 		res.status(200).json(categories)
 });
 
-api.route('/')
+api.route('/') // SH - handle your errors!
 	// load all data
 	.get(function(req, res) {
 		Product.findAll()
-		.then(products => res.status(200).json(products))
+		.then(products => res.status(200).json(products)) // SH - handle your errors
 	})
 	// post new product to database
 	.post(function(req,res){
 		Product.create(req.body)
-		.then(product => res.status(200).json(product))
+		.then(product => res.status(200).json(product)) // SH - handle your errors
 	});
 
 api.route('/:id')
@@ -32,7 +32,7 @@ api.route('/:id')
 				id: req.params.id
 			}
 		})
-		.then(product => res.status(200).json(product));
+		.then(product => res.status(200).json(product)); // SH - handle your errors
 	})
 	.put(function(req, res) {
 		Product.update(req.body, {
@@ -40,14 +40,14 @@ api.route('/:id')
 				id: req.params.id
 			}
 		})
-		.then(() => {
+		.then(() => { // SH - you don't need to find it if returns true
             return Product.findOne({
                 where: {
                     id: req.params.id
                 }
             })
 		})
-		.then(product => res.status(200).json(product))
+		.then(product => res.status(200).json(product)) // SH - handle your errors
 	})
 
 module.exports = api;

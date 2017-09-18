@@ -40,9 +40,9 @@ api.route('/')
 				console.log('updating entry')
 				return cartEntry.increment(['quantity'], { by: req.body.quantity })
 			}
-		})
+		}) // OB - you should write this (24 - 43) into a class method! 
 		.then((data) => {
-			console.log(data)
+			console.log(data) // SH - Console.log!
 			const newEntry = data[1]
 			res.status(200).json(newEntry)
 		})

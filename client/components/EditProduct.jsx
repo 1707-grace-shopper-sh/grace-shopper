@@ -15,7 +15,7 @@ class EditProduct extends Component {
             inventory: props.product.inventory,
             category: props.product.category
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this) // OB - arrow functions
         this.handleChange = this.handleChange.bind(this)
     }
 
@@ -31,10 +31,10 @@ class EditProduct extends Component {
     handleChange(event) {
         const field = event.target.name;
         const content = event.target.value;
-        this.setState({ [field]: content })
+        this.setState({ [field]: content }) // Sh - NICE
     }
 
-    render() {
+    render() { // OB - consider making presentational components
         return (
             <div className="container">
                 <div className="row">
@@ -136,7 +136,7 @@ const mapState = function (state, ownProps) {
 const mapDispatch = function (dispatch, ownProps) {
     return {
         submitNewProduct(state) {
-            dispatch(editProduct(state, ownProps.match.params.id, ownProps.history))
+            dispatch(editProduct(state, ownProps.match.params.id, ownProps.history)) // SH - delete anything you're not using anymore!
         }
     }
 }

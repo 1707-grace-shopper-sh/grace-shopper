@@ -7,7 +7,7 @@ import loggingOutUser from '../reducer/user'
 function Navbar(props) {
 
 	const categories = props.categories
-
+	// OB - note about using idx as a key - if the key of something hasn't changed, it won't rerender... use category.id? even using the string text works!
 	return (
 		<div className="mainmenu-area">
 	        <div className="container">

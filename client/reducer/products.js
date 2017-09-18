@@ -48,7 +48,7 @@ export function postProduct(product, history) {
 
 export function editProduct(product, prodID, history) {
 	return function thunk(dispatch) {
-		return axios.put(`/api/products/${prodID}`, product)
+		return axios.put(`/api/products/${prodID}`, product) // EE/OB - the product id? maybe change the local state to include the product id
 		.then(res => res.data)
 		.then(product => {
 			dispatch(updateProduct(product))
@@ -67,10 +67,10 @@ function productReducer(state = [], action) {
 		}
 		case UPDATE_PRODUCT: {
 			const productIndex = state.findIndex((product) => {
-				return product.id = action.product.id
+				return product.id = action.product.id // SH - You should add triple or double ='s 
 			})
 			const nextState = [...state]
-			nextState[productIndex] = action.product
+			nextState[productIndex] = action.product // OB - this could be simplified with a map func? (if product.id === action.product.id)
 			return nextState
 		}
 		default: {

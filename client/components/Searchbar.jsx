@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-class Searchbar extends React.Component {
+class Searchbar extends React.Component { // ob - this doesn't need to be connected
 
 	constructor(props) {
 		super(props);
@@ -12,8 +12,8 @@ class Searchbar extends React.Component {
 			input: ''
 		}
 
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this); // ob - arrow func
+		this.handleSubmit = this.handleSubmit.bind(this); // sh - semicolons?
 	}
 
 	handleChange(event) {
@@ -25,7 +25,7 @@ class Searchbar extends React.Component {
 		event.preventDefault();
 		const product = event.target.product.value;
 		this.setState({input: ''});
-		event.target.reset();
+		event.target.reset(); // Sh - you don't need to reset if it's controleld
 		this.props.history.push(`/search?product=${product}`);
 	}
 

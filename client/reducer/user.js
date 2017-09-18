@@ -22,7 +22,7 @@ export const creatingUser = (user, history) => {
         history.push('/')
       })
       .catch(err=> {
-        console.log("creating user was unsuccessful", err)
+        console.log("creating user was unsuccessful", err) // OB - this is where Toaster would come in 
       })
   }
 }
@@ -34,7 +34,7 @@ export const loggingInUser = (user, history) => {
         dispatch(getUser(res.data))
         history.push('/')
       })
-      .catch(err=>{console.log("logging in user was unsuccessful", err)})
+      .catch(err=>{console.log("logging in user was unsuccessful", err)}) // SH - some more Toaster
   }
 }
 
