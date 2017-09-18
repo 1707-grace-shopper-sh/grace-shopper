@@ -7,7 +7,7 @@ function Header(props) {
 	const userName = props.userName
 	const userEmail =  props.userEmail
 	const isLoggedIn = props.isLoggedIn
-
+	console.log('is loggedIn', isLoggedIn, userName, userEmail)
 	return (
 		<div className="header-area">
 	        <div className="container">
@@ -28,7 +28,7 @@ function Header(props) {
 		                	<ul className="list-unstyled list-inline">
 		                  		<li>
 		                  			{
-										isLoggedIn ? (Welcome, (userName || userEmail)) : ""
+										isLoggedIn ? <span>Welcome, {userName || userEmail}</span> : ""
 									}
 		                  		</li> 
 		                	</ul>

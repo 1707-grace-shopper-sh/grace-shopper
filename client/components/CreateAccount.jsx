@@ -26,7 +26,7 @@ class CreateAccount extends Component {
       email: this.state.emailInput,
       password: this.state.passwordInput
     }
-
+    console.log('in handleSUbmit', user)
     this.props.creatingUser(user)
   }
 

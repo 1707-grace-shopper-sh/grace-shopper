@@ -19,7 +19,8 @@ export const creatingUser = (user) => {
   return function thunk(dispatch) {
     return axios.post('/api/auth/create', user)  
       .then(res=>{
-        dispatch(getUser(user))
+        console.log('res.data', res.data)
+        dispatch(getUser(res.data))
         history.push('/')
       })
       .catch(err=> {console.log("creating user was unsuccessful", err)})

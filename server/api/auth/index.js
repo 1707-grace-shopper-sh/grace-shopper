@@ -33,7 +33,9 @@ router.post('/create', (req, res, next) => {
     .then(user => {
       req.login(user, err => err ? next(err) : user.sanitize())
     })
-    .then(user=>res.json(user))
+    .then(()=>{
+      res.json(req.user)
+    })
     .catch(next)
 })
 
@@ -53,7 +55,7 @@ router.post('/login', (req, res, next) => {
         req.login(user, err => err ? next(err) : user.sanitize())
       }
     })
-    .then(user=>res.json(user))
+    .then(()=>res.json(req.user))
     .catch(next)
 })
 
