@@ -10,7 +10,8 @@ class WriteReview extends Component {
 			productId: props.prodId,
 			reviewerName: props.reviewerName,
 			reviewText: '',
-			score: 0
+			overall: 0,
+			dirty: false
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -23,14 +24,15 @@ class WriteReview extends Component {
 			productId: this.state.productId,
 			reviewerName: this.state.reviewerName,
 			reviewText: this.state.reviewText,
-			score: this.state.score
+			overall: this.state.overall
 		})
 	}
 
 	handleChange(event) {
 		const field = event.target.name;
-		const content = event.target.value;
+		const content = field==='overall' ? parseFloat(event.target.value) : event.target.value;
 		this.setState({[field]: content})
+		this.setState({dirty: true})
 	}
 
 	render() {
@@ -43,12 +45,13 @@ class WriteReview extends Component {
 							<p><label htmlFor="name">Name</label> <input name="reviewerName" type="text" onChange={this.handleChange}/></p>
 							<div className="rating-chooser">
 						  		<p>Your rating</p>
-						  		<select name='score' onChange={this.handleChange}>
+						  		<select name='overall' onChange={this.handleChange}>
 									{[1, 2, 3, 4, 5].map((rating, idx) => (<option key={idx}>{rating}</option>))}
 								</select>
 							</div>
 							<p><label htmlFor="review">Your review</label> <textarea name="reviewText" onChange={this.handleChange} id cols={30} rows={10} defaultValue={""} required/></p>
-							<p><input type="submit" value="Submit" /></p>
+							{(this.state.dirty&&this.state.reviewText.length<10) ? <p>Your review must be longer</p> : null}
+							<p><button type="submit" value="Submit" disabled={this.state.reviewText.length<10}>Submit</button></p>
 						</form>
 					</div>
 				</div>
