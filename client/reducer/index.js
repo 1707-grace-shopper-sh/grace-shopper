@@ -5,15 +5,17 @@ import { createLogger } from 'redux-logger';
 // IMPORT SUBREDUCERS
 import products from './products'
 import cart from './cart'
-import users from './usersReducer';
-import currentUser from './currentUserReducer'
+import currentUser from './user';
+import reviews from './review'
+import categories from './category'
 
 
 const reducer = combineReducers({
+	categories, 
   products,
-  users,
   cart, 
-  currentUser 
+  reviews,
+  currentUser
 });
 
 

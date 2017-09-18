@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //TYPES
 const GET_REVIEWS = 'GET_REVIEWS';
-const ADD_REVIEW = 'ADD_PRODUCT'
+const ADD_REVIEW = 'ADD_REVIEW'
 
 //CREATORS
 export function getReviews(reviews) {
@@ -16,13 +16,23 @@ export function addReview(review) {
 }
 
 //THUNK
-export function newReview(review, prodId, history){
+export function fetchReviews(prodId) {
+	return function thunk(dispatch) {
+		return axios.get(`/api/reviews/by-product/${prodId}`)
+		.then(res => res.data)
+		.then(reviews => {
+			const action = getReviews(reviews);
+			dispatch(action);
+		});
+	};
+}
+
+export function newReview(review){
     return function thunk(dispatch){
         return axios.post('/api/reviews', review)
         .then(res => res.data)
         .then(review => {
             dispatch(addReview(review))
-            history.push(`/product/${prodId}`)
         })
     }
 }

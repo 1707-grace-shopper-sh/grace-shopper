@@ -1,8 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Tabs, Tab } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 import { postCartEntry } from '../reducer/cart';
+import WriteReview from './WriteReview.jsx'
+import Reviews from './Reviews.jsx';
 
 function SingleProduct(props) {
 
@@ -21,35 +24,85 @@ function SingleProduct(props) {
 		props.addToCart(cartEntry);
 	}
 
-		return (
-			<div className="row"> 
-				<div className="col-lg-6 col-md-6 col-s-12 col-xs-12">
-					<p>{product.title}</p>
-					<img className="card-img-top" src={product.imUrl} alt />
-					<h5>Price: {product.price}</h5>
-					<p className="card-text">{product.description}</p>
-				</div>
-				<div className="col-lg-6 col-md-6 col-s-12 col-xs-12">
-					<form name="addToCart" onSubmit={handleSubmit}>
-					  Quantity ({product.inventory} remaining)
-						<select name="quantity"> {options} </select>
-					  <button type="submit">Add To Cart</button>
-					</form>
-				</div>
-			</div>
-		);
+	return (
+		<div className="container">
+
+		<div className="row">
+		<div className="col-md-12">
+            <div className="product-content-right">
+        <div className="col-sm-3">
+          <div className="product-images">
+            <div className="product-main-img">
+              <img src={product.imUrl} alt />
+            </div>
+          </div>
+        </div>
+        <div className="col-sm-9">
+          <div className="product-inner">
+            <h2 className="product-name">{product.title}</h2>
+            <div className="product-inner-price">
+              <ins>${Number.parseInt(product.price).toFixed(2)}</ins>
+            </div>      
+            <form name="cart" onSubmit={handleSubmit}>
+              <div className="cart-component">
+                Quantity ({product.inventory} remaining)
+              </div>
+              <div className="cart-component">
+                <select name="quantity" className="text qty"> {options} </select>
+              </div>
+              <div className="cart-component">
+                <button className="add_to_cart_button" type="submit">Add To Cart</button>
+              </div>
+            </form>
+            <div className="product-inner-category">
+              <p>Category: <Link to={`/filter?category=${product.category}`}>{product.category}</Link>. Tags: <a href>awesome</a>, <a href>best</a>, <a href>sale</a>, <a href>shoes</a>. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+
+
+      <div className="row">
+        <div className="col-md-12">
+          <div role="tabpanel">
+            <Tabs defaultActiveKey={1} id='products-and-reviews'>
+              <Tab eventKey={1} title="Description">
+                <div className="panel-container">
+                  <h2>Product Description</h2>  
+                  <p>{product.description}</p>
+                </div>
+              </Tab>
+              <Tab eventKey={2} title="Reviews">
+                <div className="panel-container">
+                  <Reviews prodId={product.id}/>
+                </div>
+              </Tab>
+              <Tab eventKey={3} title="Add Your Review">
+                <div className="panel-container">
+                  <WriteReview prodId={product.id}/>
+                </div>
+              </Tab>
+            </Tabs>
+            </div>
+        </div>
+      </div>
+		</div>
+	);
 };
 
-const mapState = function(state, ownProps) {
+const mapStateToProps = function (state, ownProps) {
 	// pull id off the url
 	const id = ownProps.match.params.id;
 	function thisId(product) {
-		return product.id == id;
+		return product.id == +id;
 	}
 	// find that element in the products on state
 	const idx = state.products.findIndex(thisId);
 	return {
-		currentProduct: state.products[idx]
+		currentProduct: state.products[idx] || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' },
+		prodId: +id
 	}
 };
 
