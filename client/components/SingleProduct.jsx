@@ -46,6 +46,8 @@ function SingleProduct(props) {
               <div className="cart-component">
                 Quantity ({product.inventory} remaining)
               </div>
+            </form>
+            </div>
             </div>
             <div className="col-sm-9">
               <div className="product-inner">
@@ -56,7 +58,7 @@ function SingleProduct(props) {
                 <form name="cart" >
                   <div className="cart-component">
                     Quantity ({product.inventory} remaining)
-              </div>
+                  </div>
                   <div className="cart-component">
                     <select name="quantity" className="text qty"> {options} </select>
                   </div>
