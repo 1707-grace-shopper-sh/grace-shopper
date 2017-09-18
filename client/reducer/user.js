@@ -1,6 +1,5 @@
 
 import axios from 'axios'
-import history from '../history'
 
 
 const GET_USER = 'GET_USER'
@@ -11,14 +10,43 @@ const getUser = user => {
   return { type: GET_USER, user }
 }
 
-export const creatingUser = (user) => {
+const removeUser = () => {
+  return {type: REMOVE_USER}
+}
+
+export const creatingUser = (user, history) => {
   return function thunk(dispatch) {
-    return axios.post('/api/auth', user)  
+    return axios.post('/api/auth/create', user)  
       .then(res=>{
-        dispatch(getUser({id: res.data.id, email: res.data.email}))
-        history.push('/home')
+        dispatch(getUser(res.data))
+        history.push('/')
       })
-      .catch(err=> {console.log("creating user was unsuccessful", err)})
+      .catch(err=> {
+        console.log("creating user was unsuccessful", err)
+      })
+  }
+}
+
+export const loggingInUser = (user, history) => {
+  return function thunk(dispatch) {
+    return axios.post('/api/auth/login', user)
+      .then(res=>{
+        dispatch(getUser(res.data))
+        history.push('/')
+      })
+      .catch(err=>{console.log("logging in user was unsuccessful", err)})
+  }
+}
+
+export const loggingOutUser = (userEmail) => {
+  return function thunk(dispatch) {
+    return axios.post('/api/auth/logout', userEmail)
+      .then(() => {
+        dispatch(removeUser())
+        console.log('getting here')
+        history.push('/user/auth')
+      })
+      .catch(err=>{console.log(err)})
   }
 }
 
@@ -32,9 +60,12 @@ export const me = () => {
   }
 }
 
+
+
 export default function (state = {}, action) {
   switch (action.type) {
     case GET_USER: return action.user
+    case REMOVE_USER: return {}
     default: return state
   }
 }
