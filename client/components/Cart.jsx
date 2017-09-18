@@ -7,14 +7,10 @@ class Cart extends Component {
 
 	constructor(props) {
 		super(props)
-		var trackedCart = props.cart.map(function(el) {
-			var trackedEntry = Object.assign({}, el)
-			trackedEntry.wasModified = false
-			return trackedEntry
-		})
 		this.state = {
-			cart: trackedCart
+			cart: props.cart
 		}
+
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 	}
