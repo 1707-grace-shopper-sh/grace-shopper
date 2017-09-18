@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-function Cart(props) {
+class Cart extends Component {
 
-	console.log('the cart is')
-	console.log(props.cart)
+	constructor(props) {
+		super(props)
+		this.state = {
+			cart: props.cart
+		}
+		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleChange = this.handleChange.bind(this)
+	}
 
+
+	handleChange(event) {
+		const idx = event.target.id
+		const newQuantity = event.target.value
+		let cartCopy = this.state.cart
+		cartCopy[idx].quantity = newQuantity
+		this.setState({cart: cartCopy})
+	}
+
+	handleSubmit(event) {
+		event.preventDefault()
+	}
+
+	render () {
 	return (
 		<div className="site-branding-area">
 			<div className="single-product-area">
@@ -27,25 +47,24 @@ function Cart(props) {
 							  </thead>
 							  <tbody>
 								{
-									props.cart.map(entry => {
+									this.props.cart.map((entry, idx) => {
 										return (<tr className="cart_item" key={entry.id}>
 										  <td className="product-remove">
 											<a title="Remove this item" className="remove" href="#">×</a> 
 										  </td>
 										  <td className="product-thumbnail">
-											<a href="single-product.html"><img width={145} height={145} alt="poster_1_up" className="shop_thumbnail" src={entry.product.imUrl} /></a>
+											<Link to={`/product/${entry.product.id}`}><img width={145} height={145} alt="poster_1_up" className="shop_thumbnail" src={entry.product.imUrl} /></Link>
 										  </td>
 										  <td className="product-name">
-											<a href="single-product.html">{entry.product.title}</a> 
+											<Link to={`/product/${entry.product.id}`}>{entry.product.title}</Link>
 										  </td>
 										  <td className="product-price">
 											<span className="amount">${Number.parseInt(entry.product.price).toFixed(2)}</span> 
 										  </td>
 										  <td className="product-quantity">
 											<div className="quantity buttons_added">
-											  <input type="button" className="minus" defaultValue="-" />
-											  <input type="number" size={4} className="input-text qty text" title="Qty" defaultValue={entry.quantity} min={1} step={1} />
-											  <input type="button" className="plus" defaultValue="+" />
+											  
+											  <input type="number" size={4} className="input-text qty text" title="Qty" id={idx} defaultValue={entry.id} min={1} step={1} onChange={this.handleChange}/>
 											</div>
 										  </td>
 										  <td className="product-subtotal">
@@ -74,6 +93,7 @@ function Cart(props) {
 			</div>
 		</div>
 	)
+	}
 }
 
 const mapState = state => {
