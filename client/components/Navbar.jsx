@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Searchbar from './Searchbar.jsx';
+import loggingOutUser from '../reducer/user'
 
 function Navbar(props) {
 
@@ -22,7 +23,12 @@ function Navbar(props) {
 				}
 				<Searchbar />
 				{
-					isLoggedIn ? <h3>Welcome, {userName || userEmail}</h3> : <Link to ="/user/auth">Login or Sign Up</Link>
+					isLoggedIn ? 
+						<span>
+							<h3>Welcome, {userName || userEmail}</h3>
+							<button onClick = {props.logoutUser}>Logout</button>
+						</span> 
+						: <Link to ="/user/auth">Login or Sign Up</Link>
 				}
 			</div>
 		</nav>
@@ -39,6 +45,13 @@ const mapState = function (state) {
 	}
 }
 
+const mapDispatch = function (dispatch) {
+	return {
+		logoutUser: function(userEmail){
+			dispatch(loggingOutUser(userEmail))
+		}
+	}
+}
 
 
 export default withRouter(connect(mapState)(Navbar));

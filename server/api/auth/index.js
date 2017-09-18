@@ -12,7 +12,7 @@ router.get('/me', (req, res, next) => {
 })
 
 
-//Local Login
+//Local sign up
 router.post('/create', (req, res, next) => {
   User.findOrBuild({
     where: {
@@ -31,11 +31,13 @@ router.post('/create', (req, res, next) => {
       return user.save()
     })
     .then(user => {
-      req.login(user, err => err ? next(err) : res.json(user))
+      req.login(user, err => err ? next(err) : user.sanitize())
     })
+    .then(user=>res.json(user))
     .catch(next)
 })
 
+//local login
 router.post('/login', (req, res, next) => {
   User.findOne({
     where: {
@@ -48,12 +50,18 @@ router.post('/login', (req, res, next) => {
       } else if (!user.correctPassword(req.body.password)) {
         res.status(401).send('Incorrect password')
       } else {
-        req.login(user, err => err ? next(err) : res.json(user))
+        req.login(user, err => err ? next(err) : user.sanitize())
       }
     })
-    .catch(nexst)
+    .then(user=>res.json(user))
+    .catch(next)
 })
 
+//logout
+router.post('/logout', (req, res, next) => {
+  req.logout();
+  res.sendStatus(200);
+});
 
 
 module.exports = router;
