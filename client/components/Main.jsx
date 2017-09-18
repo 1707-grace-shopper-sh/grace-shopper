@@ -1,9 +1,10 @@
 // general imports
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router'
 import { Route, Switch } from 'react-router-dom';
 import React, { Component} from 'react';
 import { fetchProducts } from '../reducer/products';
 import { fetchCategories } from '../reducer/category'
+import { fetchCart } from '../reducer/cart'
 import { connect } from 'react-redux';
 import { me } from '../reducer/user'
 
@@ -17,13 +18,14 @@ import LogoArea from './LogoArea.jsx'
 import Header from './Header.jsx'
 import Auth from './Auth.jsx'
 import Footer from './Footer.jsx'
+import Cart from './Cart.jsx'
 
 
 class Main extends Component {
 
 	componentDidMount() {
-		this.props.fetchInitialData();
-		this.props.loadSessionData();
+		this.props.fetchInitialData()
+		this.props.loadSessionData()
 	}
 
 	render() {
@@ -38,7 +40,8 @@ class Main extends Component {
 					<Route exact path="/product/new" component={NewProduct} />
 					<Route path='/filter' component={AllProducts} />
 					<Route path='/search' component={AllProducts} />
-					<Route path='/user/auth' component = {Auth}/>
+					<Route path='/user/auth' component={Auth}/>
+					<Route path='/cart' component={Cart} />
 					<Route component={AllProducts} />
 				</Switch>
 				<Footer />
@@ -55,6 +58,7 @@ const mapDispatchToProps = function (dispatch) {
 			const categoriesThunk = fetchCategories();
 			dispatch(productsThunk);
 			dispatch(categoriesThunk);
+			dispatch(fetchCart())
 		},
 		loadSessionData: function () {
 			const meThunk = me();

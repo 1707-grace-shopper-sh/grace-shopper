@@ -6,20 +6,10 @@ const Order = db.define('order', {
 	user: {
 		type: Sequelize.STRING
 	},
-	products: {
-		// an array of objects?
-		// needs to contain product name, id, price, and quantity, maybe others?
-		type: Sequelize.ARRAY(Sequelize.JSON)
+	quantity: {
+		type: Sequelize.INTEGER
 	}, 
-	total: {
-		type: Sequelize.DECIMAL
-	}, 
-	complete: {
-		// error when using enums
-		type: Sequelize.STRING
-	}, 
-	shipped: {
-		// error when using enums
+	status: {
 		type: Sequelize.STRING
 	}
 });
