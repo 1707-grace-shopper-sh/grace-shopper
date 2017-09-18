@@ -28,7 +28,6 @@ class Main extends Component {
 	}
 
 	render() {
-		console.log('this.props.isLoggedIn', this.props.isLoggedIn)
 		return (
 			<div>
 				<Header />

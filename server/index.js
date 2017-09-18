@@ -31,13 +31,14 @@ app.use(require('./middleware/passport'));
 // serve api routes
 app.use('/api', require('./api')); // matches all requests to /api
 
+// error handling
+app.use(require('./middleware/error'));
+
 // serve index.html for all non-api routes
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-// error handling
-app.use(require('./middleware/error'));
 
 // process.env.PORT for deploying to Heroku or 3000 for local
 const port = process.env.PORT || 3000; 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Searchbar from './Searchbar.jsx';
+import loggingOutUser from '../reducer/user'
 
 function Navbar(props) {
 
@@ -42,6 +43,13 @@ const mapState = function (state) {
 	}
 }
 
+const mapDispatch = function (dispatch) {
+	return {
+		logoutUser: function(userEmail){
+			dispatch(loggingOutUser(userEmail))
+		}
+	}
+}
 
 
 export default connect(mapState)(Navbar);
