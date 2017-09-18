@@ -13,9 +13,11 @@ class Reviews extends Component {
     }
 
     render() {
+        console.log('i have reviews')
+        console.log(this.props.reviews)
         return (
             <div>
-                {this.props.reviews.map(review=>{
+                {this.props.reviews.map(review => {
                     return (
                         <div key={review.id}>
                             <h4>{review.reviewerName}</h4>

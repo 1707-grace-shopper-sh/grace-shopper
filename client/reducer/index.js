@@ -5,8 +5,10 @@ import { createLogger } from 'redux-logger';
 import products from './products'
 import currentUser from './user';
 import reviews from './review'
+import categories from './category'
 
 const reducer = combineReducers({
+	categories, 
   products,
   reviews,
   currentUser,

@@ -6,8 +6,8 @@ const Product = db.define('product', {
     type: Sequelize.STRING
   },
   category: {
-    // change to enum?
-    type: Sequelize.STRING
+    type: Sequelize.ENUM,
+    values: ['Candy', 'Condiments and Seasonings', 'Tea and Beverages', 'Seafood']
   }, 
   description: {
     type: Sequelize.TEXT, 
@@ -27,18 +27,10 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER
   }
 }, {
-  // getterMethods: {
-  //   snippet: function() {
-  //     const len = 50;
-  //     const snippet = this.description.slice(0,len) + "...";
-  //     console.log(snippet);
-  //     return snippet;
-  //   }
-  // },
   hooks: {
-    // randomly generate quantity given max and min
+    // randomly generate inventory given max and min
     beforeCreate: (product, options) => {
-      const max = 5;
+      const max = 10;
       const min = 1;
       let quantity = Math.floor(Math.random() * (max - min + 1)) + min;
       product.inventory = quantity;

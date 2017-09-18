@@ -3,17 +3,11 @@ const db = require('../db');
 const sentiment = require('sentiment');
 
 const Review = db.define('review', {
-  reviewerID: {
-    type: Sequelize.STRING
-  },
   asin: {
     type: Sequelize.STRING
   },
   reviewerName: {
     type: Sequelize.STRING
-  },
-  helpful: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER)
   },
   reviewText: {
     type: Sequelize.TEXT,
@@ -27,13 +21,7 @@ const Review = db.define('review', {
   }, 
   summary: {
     type: Sequelize.TEXT
-  }, 
-  unixReviewTime: {
-    type: Sequelize.BIGINT
-  }, 
-  reviewTime: {
-    type: Sequelize.TEXT
-  }, 
+  },
   score: {
     type: Sequelize.INTEGER
   },
@@ -41,11 +29,6 @@ const Review = db.define('review', {
     type: Sequelize.ARRAY(Sequelize.TEXT)
   }
 }, {
-  getterMethods: {
-    link: function() {
-      return 'https://www.amazon.com/dp/' + this.asin;
-    }
-  }, 
   hooks: {
     beforeCreate: (review, options) => {
       let data = sentiment(review.reviewText);
