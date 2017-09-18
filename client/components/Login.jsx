@@ -1,31 +1,33 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {loggingInUser} from '../reducer/user'
+import { loggingInUser } from '../reducer/user'
+import {withRouter} from 'react-router'
 
 function Login(props) {
     return (
         <div> Login
-            <form name = "login" onSubmit = {props.submitLogin}>
+            <form name="login" onSubmit={props.submitLogin}>
                 <label>Email</label>
-                <input 
-                    type="text" 
-                    name="email" 
+                <input
+                    type="text"
+                    name="email"
                     required
                 />
-                <label>Email</label>    
-                <input 
-                    type="text" 
-                    name="email" 
+                <label>Password</label>
+                <input
+                    type="text"
+                    name="password"
                     required
                 />
+                <button type='submit'>Login</button>
             </form>
-            <button type='submit'>Login</button>
         </div>
     )
 }
 
 
-const mapProps = (props) => {
+const mapProps = (dispatch, ownProps) => {
+    console.log('ownProps', ownProps)    
     return {
         submitLogin(event) {
             event.preventDefault()
@@ -33,9 +35,9 @@ const mapProps = (props) => {
                 email: event.target.email.value,
                 password: event.target.password.value
             }
-            dispatch(loggingInUser(loginDetails))
+            dispatch(loggingInUser(loginDetails, ownProps.history))
         }
     }
 }
 
-export default connect(null, mapProps)(Login)
+export default withRouter(connect(null, mapProps)(Login))

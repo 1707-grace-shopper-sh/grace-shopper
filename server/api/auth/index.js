@@ -20,7 +20,6 @@ router.post('/create', (req, res, next) => {
     }
   })
     .spread((user, initialized) => {
-      console.log('user', user, 'intitialiezd', initialized)
       if (!initialized) {
         const error = new Error('User already exists')
         throw (error)
@@ -49,9 +48,12 @@ router.post('/login', (req, res, next) => {
     }
   })
     .then(user => {
+      console.log('req.body', req.body)
+      console.log("user", user)
+      console.log("correctPassword", user.correctPassword(req.body.password))
       if (!user) {
         res.status(401).send('User not found')
-      } else if (!user.correctPassword(req.body.password)) {
+      } else if (!(user.correctPassword(req.body.password))) {
         res.status(401).send('Incorrect password')
       } else {
         req.login(user, err => err ? next(err) : user.sanitize())

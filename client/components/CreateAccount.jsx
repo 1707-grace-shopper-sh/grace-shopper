@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { creatingUser } from '../reducer/user'
+import {withRouter} from 'react-router'
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -51,13 +52,13 @@ class CreateAccount extends Component {
 const mapStateToProps = (props) => {
   return {};
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     creatingUser: function (user) {
       console.log('in this.prps.creatingUser')
-      dispatch(creatingUser(user))
+      dispatch(creatingUser(user, ownProps.history))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateAccount))

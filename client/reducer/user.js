@@ -1,6 +1,5 @@
 
 import axios from 'axios'
-import history from '../history'
 
 
 const GET_USER = 'GET_USER'
@@ -15,7 +14,7 @@ const removeUser = () => {
   return {type: REMOVE_USER}
 }
 
-export const creatingUser = (user) => {
+export const creatingUser = (user, history) => {
   return function thunk(dispatch) {
     return axios.post('/api/auth/create', user)  
       .then(res=>{
@@ -28,26 +27,26 @@ export const creatingUser = (user) => {
   }
 }
 
-export const loggingInUser = (user) => {
+export const loggingInUser = (user, history) => {
   return function thunk(dispatch) {
     return axios.post('/api/auth/login', user)
       .then(res=>{
-        dispatch(getUser(user))
+        dispatch(getUser(res.data))
         history.push('/')
       })
-      .cathc(err=>{console.log("logging in user was unsuccessful", err)})
+      .catch(err=>{console.log("logging in user was unsuccessful", err)})
   }
 }
 
 export const loggingOutUser = (userEmail) => {
-  console.log('logging out user w email', userEmail)
   return function thunk(dispatch) {
     return axios.post('/api/auth/logout', userEmail)
-      .then(res => {
+      .then(() => {
         dispatch(removeUser())
+        console.log('getting here')
         history.push('/user/auth')
       })
-      .cathc(err=>{console.log(err)})
+      .catch(err=>{console.log(err)})
   }
 }
 
