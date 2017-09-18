@@ -23,7 +23,6 @@ class Cart extends Component {
 		cartCopy[+idx].quantity = +newQuantity
 		cartCopy[+idx].wasModified = true
 		this.setState({cart: cartCopy})
-		console.log(this.state)
 	}
 
 	handleSubmit(event) {
@@ -35,6 +34,11 @@ class Cart extends Component {
 				this.props.addToCart(cartEntry)
 			}
 		}
+	}
+
+	handleClick(event) {
+		console.log('you tried to delete!')
+
 	}
 
 	render () {
@@ -61,7 +65,7 @@ class Cart extends Component {
 									this.props.cart.map((entry, idx) => {
 										return (<tr className="cart_item" key={entry.id}>
 											<td className="product-remove">
-												<a title="Remove this item" className="remove" onClick={this.handleClick}>×</a> 
+												<a title="Remove this item" className="remove" id={idx} onClick={this.handleClick}>×</a> 
 											</td>
 											<td className="product-thumbnail">
 												<Link to={`/product/${entry.product.id}`}><img width={145} height={145} alt="poster_1_up" className="shop_thumbnail" src={entry.product.imUrl} /></Link>

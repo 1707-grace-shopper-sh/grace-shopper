@@ -3,6 +3,7 @@ import axios from 'axios'
 // ACTION
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const REMOVE_ENTRY = 'REMOVE_ENTRY'
 
 // ACTION CREATOR
 export function getCart(cart) {
@@ -12,6 +13,11 @@ export function getCart(cart) {
 
 export function addToCart(cartEntry) {
 	const action = {type: ADD_TO_CART, cartEntry}
+	return action
+}
+
+export function removeEntry(cartEntry) {
+	const action = {type: REMOVE_ENTRY, cartEntry}
 	return action
 }
 
@@ -32,8 +38,19 @@ export function postCartEntry(cartEntry) {
 		return axios.post('/api/cart', cartEntry)
 		.then(res => res.data)
 		.then(cartEntry => {
-			const action = addToCart(cartEntry);
-			dispatch(action);
+			const action = addToCart(cartEntry)
+			dispatch(action)
+		})
+	}
+}
+
+export function deleteCartEntry(cartEntry) {
+	return function thunk(dispatch) {
+		return axios.delete('/api/cart/')
+		.then(res => res.data)
+		.then(cartEntry => {
+			const action = removeEntry(cartEntry)
+			dispatch(action)
 		})
 	}
 }

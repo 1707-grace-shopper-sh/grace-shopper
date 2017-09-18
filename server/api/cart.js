@@ -18,8 +18,6 @@ api.route('/')
 	})
 
 	.post(function(req, res) {
-		console.log('in api route')
-		console.log(req.body)
 		Order.findOrCreate(
 			{ where: { productId: req.body.id } }
 		)
@@ -34,16 +32,18 @@ api.route('/')
 					}
 				)
 			} else {
-				console.log('updating entry')
 				return cartEntry.increment(['quantity'], { by: req.body.quantity })
 			}
 		})
 		.then((data) => {
-			console.log(data)
 			const newEntry = data[1]
 			res.status(200).json(newEntry)
 		})
 		.catch(console.log)
+	})
+
+	.delete(function(req, res) {
+
 	})
 
 module.exports = api;
