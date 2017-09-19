@@ -18,7 +18,6 @@ class Header extends Component {
 		const userName = this.props.userName
 		const userEmail = this.props.userEmail
 		const isLoggedIn = this.props.isLoggedIn
-		console.log('is logged in', isLoggedIn)
 		return (
 			<div className="header-area">
 				<div className="container">
