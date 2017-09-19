@@ -79,7 +79,7 @@ class Cart extends Component {
 												<Link to={`/product/${entry.product.id}`}>{entry.product.title}</Link>
 											</td>
 											<td className="product-price">
-												<span className="amount">${Number.parseInt(entry.product.price).toFixed(2)}</span> 
+												<span className="amount">${Number.parseFloat(entry.product.price).toFixed(2)}</span> 
 											</td>
 											<td className="product-quantity">
 												<div className="quantity buttons_added">
@@ -88,7 +88,7 @@ class Cart extends Component {
 												</div>
 											</td>
 											<td className="product-subtotal">
-												<span className="amount">${Number.parseInt(entry.product.price * entry.quantity).toFixed(2)}</span> 
+												<span className="amount">${Number.parseFloat(entry.product.price * entry.quantity).toFixed(2)}</span> 
 											</td>
 										</tr>)
 										
