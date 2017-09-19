@@ -18,6 +18,8 @@ class Header extends Component {
 		const userName = this.props.userName
 		const userEmail = this.props.userEmail
 		const isLoggedIn = this.props.isLoggedIn
+		const isAdmin = this.props.isAdmin
+		
 		return (
 			<div className="header-area">
 				<div className="container">
@@ -28,7 +30,11 @@ class Header extends Component {
 									<li><a href="#"><i className="fa fa-user" />My Account</a></li>
 									<li><a href="#"><i className="fa fa-heart" />Wishlist</a></li>
 									<li><Link to="/cart"><i className="fa fa-user" />Checkout</Link></li>
-                  					<li><Link to={`/admin`}>Admin Options</Link></li>
+                  					<li>
+                  						{ 
+                  							isAdmin ? <Link to={`/admin`}>Admin Options</Link> : ""
+                  						}
+                  					</li>
 									<li>
 										{
 											!isLoggedIn ? <Link to="/user/auth"><i className="fa fa-user" />Login or Create Account</Link> : <a onClick = {this.handleClick}><i className="fa fa-user" />Logout</a>
@@ -60,14 +66,14 @@ const mapState = function (state) {
 	return {
 		isLoggedIn: !!state.currentUser.id,
 		userName: state.currentUser.name,
-		userEmail: state.currentUser.email
-
+		userEmail: state.currentUser.email,
+		isAdmin: state.currentUser.isAdmin
 	}
 }
 
 const mapDispatch = function (dispatch) {
 	    return {
-	        logoutUser: function(userEmail){
+	        logoutUser: function(userEmail) {
 				dispatch(loggingOutUser(userEmail))
 	        }
 	    }
