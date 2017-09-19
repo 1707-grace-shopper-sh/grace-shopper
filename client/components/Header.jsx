@@ -25,10 +25,9 @@ class Header extends Component {
 						<div className="col-md-8">
 							<div className="user-menu">
 								<ul>
-									<li><a href="#"><i className="fa fa-user" /> My Account</a></li>
-									<li><a href="#"><i className="fa fa-heart" /> Wishlist</a></li>
-									<li><a href="cart.html"><i className="fa fa-user" /> My Cart</a></li>
-									<li><Link to="/cart"><i className="fa fa-user" /> Checkout</Link></li>
+									<li><a href="#"><i className="fa fa-user" />My Account</a></li>
+									<li><a href="#"><i className="fa fa-heart" />Wishlist</a></li>
+									<li><Link to="/cart"><i className="fa fa-user" />Checkout</Link></li>
                   					<li><Link to={`/admin`}>Admin Options</Link></li>
 									<li>
 										{
