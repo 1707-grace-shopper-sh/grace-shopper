@@ -15,10 +15,11 @@ router.get('/me', (req, res, next) => {
         { user: req.user.id },
         {
           where: {
-            session: req.session.id          },
+            session: req.session.id
+          },
           returning: true
         }))
-        .then(()=>Order.findAll({
+        .then(() => Order.findAll({
           where: {
             session: req.session.id,
             status: "incomplete"
@@ -77,9 +78,6 @@ router.post('/login', (req, res, next) => {
     }
   })
     .then(user => {
-      console.log('req.body', req.body)
-      console.log("user", user)
-      console.log("correctPassword", user.correctPassword(req.body.password))
       if (!user) {
         res.status(401).send('User not found')
       } else if (!(user.correctPassword(req.body.password))) {
