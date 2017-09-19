@@ -22,6 +22,12 @@ class Cart extends Component {
 	// 	})
 	// }
 
+	componentWillReceiveProps(nextProps) {
+		console.log('props', this.props)
+		console.log('nextProps', nextProps)
+		this.setState({cart : nextProps.cart})
+	}
+
 	handleChange(event) {
 		const idx = event.target.id
 		const newQuantity = event.target.value
@@ -50,6 +56,7 @@ class Cart extends Component {
 	}
 
 	render () {
+		console.log('state in render', this.state)
 	return (
 		<div className="site-branding-area">
 			<div className="single-product-area">
@@ -121,7 +128,7 @@ class Cart extends Component {
 
 const mapState = state => {
 	return {
-		cart: state.cart 
+		cart: state.cart
 	}
 }
 
