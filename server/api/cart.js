@@ -7,6 +7,8 @@ const Product = db.models.product
 
 api.route('/')
 	.post(function (req, res) {
+		console.log('current req.session.id')
+		console.log(req.session.id)
 		Order.findOrCreate(
 			{
 				where: {

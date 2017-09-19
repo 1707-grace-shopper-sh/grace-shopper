@@ -8,7 +8,7 @@ class Cart extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			cart: []
+			cart: props.cart
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -16,11 +16,11 @@ class Cart extends Component {
 		this.handleClick = this.handleClick.bind(this)
 	}
 
-	componentWillReceiveProps(nextProps){
-		this.setState ({
-			cart: nextProps.cart
-		})
-	}
+	// componentWillReceiveProps(nextProps){
+	// 	this.setState ({
+	// 		cart: nextProps.cart
+	// 	})
+	// }
 
 	handleChange(event) {
 		const idx = event.target.id
@@ -121,7 +121,7 @@ class Cart extends Component {
 
 const mapState = state => {
 	return {
-		cart: state.cart
+		cart: state.cart 
 	}
 }
 

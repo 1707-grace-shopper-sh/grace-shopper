@@ -1,6 +1,5 @@
-
 import axios from 'axios'
-import {getCart} from './cart'
+import { getCart } from './cart'
 
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
@@ -51,6 +50,7 @@ export const loggingOutUser = (userEmail) => {
 
 export const me = () => {
   return function thunk(dispatch) {
+    console.log('in auth/me api route')
     axios.get('api/auth/me')
       .then(res => {
         dispatch(getUser(res.data.userData))
