@@ -102,7 +102,7 @@ class Cart extends Component {
 											<input type="submit" defaultValue="Apply Coupon" name="apply_coupon" className="button" />
 										</div>
 										<input type="submit" defaultValue="Update Cart" name="update_cart" className="button" />
-										<input type="submit" defaultValue="Checkout" name="proceed" className="checkout-button button alt wc-forward" />
+										<Link to={`/checkout`}><input type="submit" defaultValue="Checkout" name="proceed" className="checkout-button button alt wc-forward" /></Link>
 									</td>
 								</tr>
 							  </tbody>

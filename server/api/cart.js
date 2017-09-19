@@ -7,8 +7,6 @@ const Product = db.models.product
 
 api.route('/')
 	.post(function (req, res) {
-		console.log('current req.session.id')
-		console.log(req.session.id)
 		Order.findOrCreate(
 			{
 				where: {
@@ -50,8 +48,7 @@ api.route('/')
 			// update will return an array; if so, use it
 			// increment doesn't -- in that case use all the data
 			// const newEntry = data[1] ? data[1][0] : data
-			console.log('raw data')
-			console.log(data)
+
 			res.status(200).json(data)
 		})
 		.catch(console.log)
