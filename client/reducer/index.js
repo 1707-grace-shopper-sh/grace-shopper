@@ -8,6 +8,7 @@ import cart from './cart'
 import currentUser from './user';
 import reviews from './review'
 import categories from './category'
+// import orders from './orders'
 
 
 const reducer = combineReducers({
@@ -15,7 +16,8 @@ const reducer = combineReducers({
   products,
   cart, 
   reviews,
-  currentUser
+  currentUser,
+  // orders
 });
 
 
