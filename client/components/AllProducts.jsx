@@ -56,7 +56,7 @@ function AllProducts(props) {
 												</Link>
 											</div>
 											<div className="product-carousel-price">
-									  			<ins>Price: ${Number.parseInt(product.price).toFixed(2)}</ins>
+									  			<ins>Price: ${Number.parseFloat(product.price).toFixed(2)}</ins>
 											</div>  
 											<div className="product-option-shop">
 										  		<a className="add_to_cart_button" data-quantity={1} data-product_sku data-product_id={70} rel="nofollow" href="/">Add to cart</a>
