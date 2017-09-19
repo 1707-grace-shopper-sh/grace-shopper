@@ -132,8 +132,6 @@ const mapState = state => {
 const mapDispatch = (dispatch) => {
 	return {
 		addToCart: function(cartEntry) {
-			console.log('dispatching')
-			console.log(cartEntry)
 			dispatch(postCartEntry(cartEntry))
 		},
 		removeFromCart: function(entryId) {

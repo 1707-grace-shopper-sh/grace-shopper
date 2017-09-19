@@ -30,7 +30,6 @@ class Checkout extends Component {
             shipaddress: this.state.shipaddress
         }
         this.state.cart.map(item => {
-            console.log(item.id)
             let orderInfo = {
                 order: item,
                 recipient: recip
