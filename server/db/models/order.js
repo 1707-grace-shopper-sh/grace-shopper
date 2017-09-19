@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const Product = db.models.product
 
 const Order = db.define('order', {
 	session: {
@@ -12,7 +13,14 @@ const Order = db.define('order', {
 		type: Sequelize.INTEGER
 	}, 
 	status: {
-		type: Sequelize.STRING
+		type: Sequelize.STRING,
+		defaultValue: "Incomplete"
+	}
+}, {
+	defaultScope: {
+		include: [
+			{model: Product}
+		]
 	}
 });
 

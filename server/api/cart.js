@@ -6,23 +6,13 @@ const Order = db.models.order
 const Product = db.models.product
 
 api.route('/')
-	// fetch the cart on page load
-	// .get(function (req, res) {
-	// 	// will eventually filter by user/session
-	// 	Order.findAll({
-	// 		include: [{
-	// 			model: Product
-	// 		}]
-	// 	})
-	// 		.then(entries => res.status(200).json(entries))
-	// })
 
 	.post(function (req, res) {
-		// need to add the session id here
 		Order.findOrCreate(
 			{
 				where: {
 					productId: req.body.id,
+					status: "incomplete",
 					$or : [
 						{
 							user: req.body.userId
@@ -52,8 +42,7 @@ api.route('/')
 				}
 			})
 			.then((data) => {
-				const newEntry = data[1]
-				res.status(200).json(newEntry)
+				res.status(200).json(data)
 			})
 			.catch(console.log)
 	})

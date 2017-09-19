@@ -9,23 +9,32 @@ const Order = db.models.order
 router.use('/google', require('./google'))
 
 router.get('/me', (req, res, next) => {
-  function ifThen(){
-    if(req.user){
-       return Order.update(
-      {user: req.user.id},
-      {
-        where: { session: req.session.id },
-        returning: true
-      })
+  function ifThen() {
+    if (req.user) {
+      return (Order.update(
+        { user: req.user.id },
+        {
+          where: {
+            session: req.session.id          },
+          returning: true
+        }))
+        .then(()=>Order.findAll({
+          where: {
+            session: req.session.id,
+            status: "incomplete"
+          }
+        }))
     } else {
-      return Order.findAll({where: {
-        session: req.session.ide
-      }})
+      return Order.findAll({
+        where: {
+          session: req.session.id,
+          status: "incomplete"
+        }
+      })
     }
-  }  
+  }
   ifThen()
-    .then(orders=>{
-      console.log('orders', orders)
+    .then(orders => {
       const userInfo = {
         orders: orders,
         userData: req.user
@@ -55,10 +64,7 @@ router.post('/create', (req, res, next) => {
       return user.save()
     })
     .then(user => {
-      req.login(user, err => err ? next(err) : user.sanitize())
-    })
-    .then(() => {
-      res.json(req.user)
+      req.login(user, err => err ? next(err) : user.sanitize().then(() => res.json(req.user).catch(next)))
     })
     .catch(next)
 })
@@ -79,10 +85,9 @@ router.post('/login', (req, res, next) => {
       } else if (!(user.correctPassword(req.body.password))) {
         res.status(401).send('Incorrect password')
       } else {
-        req.login(user, err => err ? next(err) : user.sanitize())
+        req.login(user, err => err ? next(err) : user.sanitize().then(() => res.json(req.user).catch(next)))
       }
     })
-    .then(() => res.json(req.user))
     .catch(next)
 })
 
