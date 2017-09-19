@@ -7,8 +7,8 @@ const Product = db.models.product
 
 api.route('/')
 	.post(function (req, res) {
-		console.log('current req.session.id')
-		console.log(req.session.id)
+		console.log('req.body')
+		console.log(req.body)
 		Order.findOrCreate(
 			{
 				where: {
@@ -25,6 +25,8 @@ api.route('/')
 			}
 		)
 		.then((res) => {
+			console.log('the response is')
+			console.log(res)
 			const cartEntry = res[0]
 			const wasCreated = res[1]
 			if (wasCreated || req.body.replaceValue) {
