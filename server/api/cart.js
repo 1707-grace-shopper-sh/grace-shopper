@@ -35,11 +35,18 @@ api.route('/')
 				return cartEntry.increment(['quantity'], { by: req.body.quantity })
 			}
 		})
+		.then(() => {
+			return Order.findOne(
+				{ where: { productId: req.body.id} }
+			)
+		})
 		.then((data) => {
 			// update will return an array; if so, use it
 			// increment doesn't -- in that case use all the data
-			const newEntry = data[1] ? data[1][0] : data
-			res.status(200).json(newEntry)
+			// const newEntry = data[1] ? data[1][0] : data
+			console.log('raw data')
+			console.log(data)
+			res.status(200).json(data)
 		})
 		.catch(console.log)
 	})
