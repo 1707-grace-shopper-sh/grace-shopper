@@ -7,12 +7,17 @@ class Cart extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			cart: props.cart
+			cart: []
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 	}
 
+	componentWillReceiveProps(nextProps){
+		this.setState ({
+			cart: nextProps.cart
+		})
+	}
 
 	handleChange(event) {
 		const idx = event.target.id

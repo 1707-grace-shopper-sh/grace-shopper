@@ -16,16 +16,6 @@ export function addToCart(cartEntry) {
 }
 
 // THUNK CREATOR
-export function fetchCart() {
-	return function thunk(dispatch) {
-		return axios.get('/api/cart')
-		.then(res => res.data)
-		.then(cart => {
-			const action = getCart(cart)
-			dispatch(action)
-		})
-	}
-}
 
 export function postCartEntry(cartEntry, history) {
 	return function thunk(dispatch) {
