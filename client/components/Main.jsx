@@ -64,7 +64,6 @@ const mapDispatchToProps = function (dispatch) {
 			const categoriesThunk = fetchCategories();
 			dispatch(productsThunk);
 			dispatch(categoriesThunk);
-			dispatch(fetchCart())
 		},
 		loadSessionData: function () {
 			const meThunk = me();

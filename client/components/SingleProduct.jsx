@@ -16,13 +16,14 @@ function SingleProduct(props) {
     options.push(<option key={i}>{i}</option>);
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const id = product.id
+	function handleSubmit(event) {
+		event.preventDefault();
+		const id = product.id
     const quantity = event.target.quantity.value
-    const cartEntry = { id, quantity }
-    props.addToCart(cartEntry);
-  }
+    const userId = props.userId
+		const cartEntry = {id, quantity, userId}
+		props.addToCart(cartEntry);
+	}
 
   return (
     <div className="container">
@@ -94,27 +95,27 @@ function SingleProduct(props) {
 };
 
 const mapState = (state, ownProps) => {
-  // pull id off the url
-  const id = ownProps.match.params.id;
-  function thisId(product) {
-    return product.id == +id;
-  }
-  // find that element in the products on state
-  const idx = state.products.findIndex(thisId);
-  return {
-    currentProduct: state.products[idx] || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' },
-    prodId: +id
-  }
+	// pull id off the url
+	const id = ownProps.match.params.id;
+	function thisId(product) {
+		return product.id == +id;
+	}
+	// find that element in the products on state
+	const idx = state.products.findIndex(thisId);
+	return {
+		currentProduct: state.products[idx] || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' },
+    prodId: +id, 
+    userId: state.currentUser.id    
+	}
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    addToCart: function (cartEntry) {
-      console.log('in add to cart!')
-      const cartThunk = postCartEntry(cartEntry)
-      dispatch(cartThunk)
-    }
-  }
+const mapDispatch = (dispatch) => { 
+	return {
+		addToCart: function(cartEntry) {
+			const cartThunk = postCartEntry(cartEntry)
+			dispatch(cartThunk)
+		}
+	}
 };
 
 

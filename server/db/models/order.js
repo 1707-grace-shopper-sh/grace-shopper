@@ -1,17 +1,33 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const Product = db.models.product
 
 const Order = db.define('order', {
-	// orders must belong to a user or a guess session (auth vs. unauth)
-	user: {
+	session: {
 		type: Sequelize.STRING
+	},
+	user: {
+		type: Sequelize.INTEGER
 	},
 	quantity: {
 		type: Sequelize.INTEGER
 	}, 
 	status: {
-		type: Sequelize.STRING
+		type: Sequelize.STRING,
+		defaultValue: "Incomplete"
 	}
+}, {
+	defaultScope: {
+		include: [
+			{model: Product}
+		]
+	}
+}, {
+	defaultScope: {
+		include: [
+			{ model: Product }
+		]
+  	}		  	
 });
 
 module.exports = Order;

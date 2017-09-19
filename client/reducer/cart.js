@@ -3,6 +3,7 @@ import axios from 'axios'
 // ACTION
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const REMOVE_ENTRY = 'REMOVE_ENTRY'
 
 // ACTION CREATOR
 export function getCart(cart) {
@@ -15,25 +16,33 @@ export function addToCart(cartEntry) {
 	return action
 }
 
+export function removeEntry(entryId) {
+	const action = {type: REMOVE_ENTRY, entryId}
+	return action
+}
+
 // THUNK CREATOR
-export function fetchCart() {
+
+export function postCartEntry(cartEntry) {
 	return function thunk(dispatch) {
-		return axios.get('/api/cart')
+		console.log('in post cart entry thunk')
+		return axios.post('/api/cart', cartEntry)
 		.then(res => res.data)
-		.then(cart => {
-			const action = getCart(cart)
+		.then(cartEntry => {
+			const action = addToCart(cartEntry)
 			dispatch(action)
 		})
 	}
 }
 
-export function postCartEntry(cartEntry, history) {
+export function deleteCartEntry(entryId) {
 	return function thunk(dispatch) {
-		return axios.post('/api/cart', cartEntry)
+		console.log('in thunk')
+		return axios.delete(`/api/cart/${entryId}`)
 		.then(res => res.data)
 		.then(cartEntry => {
-			const action = addToCart(cartEntry);
-			dispatch(action);
+			const action = removeEntry(entryId)
+			dispatch(action)
 		})
 	}
 }
@@ -44,7 +53,26 @@ function cartReducer(state = [], action) {
 			return action.cart
 		}
 		case ADD_TO_CART: {
-			return [...state, action.cartEntry]
+			function thisEntry(entry) {
+				return entry.id == action.cartEntry.id
+			}
+			const idx = state.findIndex(thisEntry)
+			if (idx == -1) {
+				return [...state, action.cartEntry]
+			} else {
+				const newState = [...state]
+				newState[idx].quantity = action.cartEntry.quantity
+				return newState
+			}
+		}
+		case REMOVE_ENTRY: {
+			function thisEntry(entry) {
+				return entry.id == action.entryId
+			}
+			const idx = state.findIndex(thisEntry)
+			const newState = [...state]
+			newState.splice(idx, 1)
+			return newState
 		}
 		default: {
 			return state

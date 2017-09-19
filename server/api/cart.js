@@ -6,47 +6,67 @@ const Order = db.models.order
 const Product = db.models.product
 
 api.route('/')
-	// fetch the cart on page load
-	.get(function(req, res) {
-		// will eventually filter by user/session
-		Order.findAll({
-      		include: [{
-        		model: Product
-		    }]
-		})
-		.then(entries => res.status(200).json(entries))
-	})
-
-	.post(function(req, res) {
-		// need to add the session id here
-		// console.log('req.session.id')
-		// console.log(req.session.id)
+	.post(function (req, res) {
+		console.log('current req.session.id')
+		console.log(req.session.id)
 		Order.findOrCreate(
-			{ where: { productId: req.body.id } }
+			{
+				where: {
+					productId: req.body.id,
+					status: "incomplete",
+					$or : [
+						{
+							user: req.body.userId
+						}, {
+							session: req.session.id
+						}
+					]
+				}
+			}
 		)
 		.then((res) => {
 			const cartEntry = res[0]
 			const wasCreated = res[1]
-
-			if (wasCreated) {
-				console.log('creating new entry')
+			if (wasCreated || req.body.replaceValue) {
 				return Order.update(
-					{ quantity: req.body.quantity },
-					{ where: { id: cartEntry.id },
+					{ quantity: req.body.quantity,
+						  session: req.session.id,
+						  user: req.body.userId  },
+					{
+						where: { id: cartEntry.id },
 						returning: true
 					}
 				)
 			} else {
-				console.log('updating entry')
 				return cartEntry.increment(['quantity'], { by: req.body.quantity })
 			}
 		})
+		.then(() => {
+			return Order.findOne(
+				{ where: { productId: req.body.id} }
+			)
+		})
 		.then((data) => {
+			// update will return an array; if so, use it
+			// increment doesn't -- in that case use all the data
+			// const newEntry = data[1] ? data[1][0] : data
+			console.log('raw data')
 			console.log(data)
-			const newEntry = data[1]
-			res.status(200).json(newEntry)
+			res.status(200).json(data)
 		})
 		.catch(console.log)
+	})
+
+api.route('/:entryId')
+	.delete(function(req, res) {
+		Order.destroy(
+			{ where: { id: req.params.entryId }
+			}
+		)
+		.then(() => {
+			res.status(200).json(req.params.entryId)
+		})
+
 	})
 
 module.exports = api;

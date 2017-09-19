@@ -3,7 +3,6 @@ const router = require('express').Router();
 
 router.use('/products', require('./products'));
 
-console.log('about to match to cart')
 router.use('/cart', require('./cart'))
 router.use('/checkout', require('./checkout'))
 router.use('/reviews', require('./reviews'));

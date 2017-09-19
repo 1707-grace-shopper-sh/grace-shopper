@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 function LogoArea(props) {
+
+	const total = props.cart.reduce(function(sum, entry) {
+		console.log('price')
+		console.log(typeof +entry.product.price)
+		return sum + (entry.quantity * +entry.product.price)
+	}, 0)
 
 	return (
 		<div className="site-branding-area">
@@ -14,7 +21,7 @@ function LogoArea(props) {
 					</div>
 					<div className="col-sm-6">
 						<div className="shopping-item">
-							<Link to="/cart">Cart - <span className="cart-amunt">$100</span> <i className="fa fa-shopping-cart" /> <span className="product-count">5</span></Link>
+							<Link to="/cart">Cart - <span className="cart-amunt">${total}</span> <i className="fa fa-shopping-cart" /> <span className="product-count">{props.cart.length}</span></Link>
 						</div>
 					</div>
 				</div>
@@ -23,4 +30,12 @@ function LogoArea(props) {
 	)
 }
 
-export default LogoArea;
+const mapState = state => {
+	return {
+		cart: state.cart
+	}
+}
+
+const mapDispatch = null
+
+export default connect(mapState, mapDispatch)(LogoArea);
