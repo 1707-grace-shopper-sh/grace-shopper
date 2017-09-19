@@ -62,7 +62,7 @@ class Cart extends Component {
 							  </thead>
 							  <tbody>
 								{
-									this.props.cart.map((entry, idx) => {
+									this.state.cart.map((entry, idx) => {
 										return (<tr className="cart_item" key={entry.id}>
 											<td className="product-remove">
 												<a title="Remove this item" className="remove" id={idx} onClick={this.handleClick}>×</a> 

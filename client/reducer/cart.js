@@ -62,21 +62,24 @@ function cartReducer(state = [], action) {
 			return action.cart
 		}
 		case ADD_TO_CART: {
-			console.log('the state is')
-			console.log(state)
-			const newState = [...state]
-			console.log('the new state is')
-			console.log(newState)
-			function thisEntry(entry) {
-				return entry.id == action.cartEntry[0].id
-			}
 			console.log('action cart Entry')
+			console.log(typeof action.cartEntry)
 			console.log(action.cartEntry)
-			const idx = newState.findIndex(thisEntry)
+			function thisEntry(entry) {
+				return entry.id == action.cartEntry.id
+			}
+			const idx = state.findIndex(thisEntry)
 			console.log('need to modify')
 			console.log(idx)
-			newState[idx].quantity = action.cartEntry[0].quantity
-			return newState
+			if (idx == -1) {
+				console.log('adding product')
+				return [...state, action.cartEntry]
+			} else {
+				console.log('editing product')
+				const newState = [...state]
+				newState[idx].quantity = action.cartEntry.quantity
+				return newState
+			}
 		}
 		default: {
 			return state

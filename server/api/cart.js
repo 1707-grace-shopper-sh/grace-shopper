@@ -36,14 +36,14 @@ api.route('/')
 			}
 		})
 		.then((data) => {
-			if (req.body.replaceValue) {
-
-			} else {
-				console.log('sending back')
-				console.log(data[1])
-				const newEntry = data[1]
-				res.status(200).json(newEntry)
-			}
+			// update will return an array; if so, use it
+			// increment doesn't -- in that case use all the data
+			console.log('data')
+			console.log(data)
+			const newEntry = data[1] ? data[1][0] : data
+			console.log('sending back')
+			console.log(newEntry)
+			res.status(200).json(newEntry)
 		})
 		.catch(console.log)
 	})
