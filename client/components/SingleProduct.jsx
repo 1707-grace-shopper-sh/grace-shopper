@@ -39,7 +39,7 @@ function SingleProduct(props) {
             </div>
             <div className="col-sm-9">
               <div className="product-inner">
-                <h2 className="product-name">{product.title}</h2>
+                <h2 className="product-name">{product.title}</h2><Link to={`/product/${product.id}/edit`}><button>Edit</button></Link>
                 <div className="product-inner-price">
                   <ins>${Number.parseInt(product.price).toFixed(2)}</ins>
                 </div>
