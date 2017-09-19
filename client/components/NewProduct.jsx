@@ -4,65 +4,88 @@ import { connect } from 'react-redux';
 import { postProduct } from '../reducer/products';
 
 
-function NewProduct (props){
+function NewProduct(props) {
     return (
         <div>
-            <h2>Enter new product information</h2>
-            <form onSubmit={props.submitNewProduct}>
-                <label>title:</label>
-                <input 
-                    name='title'
-                    type='text'
-                    required
-                />
-                <label>description:</label>
-                <input 
-                    name='description'
-                    type='text'
-                    required
-                />
-                <label>price:</label>
-                <input 
-                    name='price'
-                    type='number'
-                    required
-                />
-                <label>image URL:</label>
-                <input 
-                    name='imageURL'
-                    type='text'
-                    required
-                />
-                <label>inventory:</label>
-                <input 
-                    name='inventory'
-                    type='number'
-                    required
-                />
-                <label>category:</label>
-                <select name='category'>
-                    {/* hardcoded the few categories we have. If we want categories to be dynamic, we will have to chnge this */}
-                     {props.categories.map(category => {
-                        return (
-                             <option>{category}</option> 
-                        )
-                    })} 
-                </select>
-                <button type='submit'>Create Product</button>
-            </form>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="product-content-right">
+                            <h2>Enter new product information</h2>
+                            <form onSubmit={props.submitNewProduct}>
+                                <div className="col-sm-3">
+                                    <label>Image URL:</label>
+                                    <input
+                                        name='imageURL'
+                                        type='text'
+                                        required
+                                    />
+                                </div>
+                                <div className="col-sm-9">
+                                    <div className="product-inner">
+                                        <div>
+                                        <label>Title:</label>
+                                        <input
+                                            name='title'
+                                            type='text'
+                                            required
+                                        />
+                                        </div>
+                                        <div>
+                                        <label>Price:</label>
+                                        <input
+                                            name='price'
+                                            type='number'
+                                            required
+                                        />
+                                        </div>
+                                        <div>
+                                        <label>Inventory:</label>
+                                        <input
+                                            name='inventory'
+                                            type='number'
+                                            required
+                                        />
+                                        </div>
+                                        <div>
+                                        <label>Category:</label>
+                                        <select name='category'>
+                                            {/* hardcoded the few categories we have. If we want categories to be dynamic, we will have to chnge this */}
+                                            {props.categories.map(category => {
+                                                return (
+                                                    <option>{category}</option>
+                                                )
+                                            })}
+                                        </select>
+                                        </div>
+                                        <p>
+                                            <label>Description:</label>
+                                            <textarea
+                                                name='description'
+                                                type='text'
+                                                required
+                                            /></p>
+                                        <button type='submit'>Create Product</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
 
-const mapState = function(state){
+const mapState = function (state) {
     return {
         categories: ['Seafood', 'Candy', 'Condiments & Seasonings', 'Tea & Beverages']
     }
 }
 
-const mapDispatch = function(dispatch, ownProps){
+const mapDispatch = function (dispatch, ownProps) {
     return {
-        submitNewProduct(event){
+        submitNewProduct(event) {
             event.preventDefault();
             const newProductDetails = {
                 category: event.target.category.value,

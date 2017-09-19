@@ -29,6 +29,7 @@ class Header extends Component {
 									<li><a href="#"><i className="fa fa-heart" /> Wishlist</a></li>
 									<li><a href="cart.html"><i className="fa fa-user" /> My Cart</a></li>
 									<li><a href="checkout.html"><i className="fa fa-user" /> Checkout</a></li>
+                  <li><Link to={`/admin`}>Admin Options</Link></li>
 									<li>
 										{
 											!isLoggedIn ? <Link to="/user/auth"><i className="fa fa-user" />Login or Create Account</Link> : <button onClick = {this.handleClick}><i className="fa fa-user" />Logout</button>
