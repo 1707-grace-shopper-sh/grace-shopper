@@ -32,7 +32,8 @@ class CreateAccount extends Component {
 
   render() {
     return (
-      <div> Create an Account
+      <div className="submit-review"> 
+        <h2 className="sidebar-title">Create an Account</h2>
         <form onSubmit={this.handleSubmit}>
           <label>
             Email:
@@ -42,7 +43,7 @@ class CreateAccount extends Component {
             Password:
           <input type="text" name="password" onChange={this.handleChange} value={this.state.passwordInput} />
           </label>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Sign Up" />
         </form>
       </div>
     )

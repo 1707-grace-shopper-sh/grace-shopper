@@ -32,7 +32,7 @@ class Header extends Component {
                   					<li><Link to={`/admin`}>Admin Options</Link></li>
 									<li>
 										{
-											!isLoggedIn ? <Link to="/user/auth"><i className="fa fa-user" />Login or Create Account</Link> : <button onClick = {this.handleClick}><i className="fa fa-user" />Logout</button>
+											!isLoggedIn ? <Link to="/user/auth"><i className="fa fa-user" />Login or Create Account</Link> : <a onClick = {this.handleClick}><i className="fa fa-user" />Logout</a>
 										}
 									</li>
 								</ul>
