@@ -68,7 +68,6 @@ const mapState = function (state) {
 const mapDispatch = function (dispatch) {
 	    return {
 	        logoutUser: function(userEmail){
-	            console.log('in logoutUser')
 				dispatch(loggingOutUser(userEmail))
 	        }
 	    }
