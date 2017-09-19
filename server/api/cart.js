@@ -38,21 +38,21 @@ api.route('/')
 		.then((data) => {
 			// update will return an array; if so, use it
 			// increment doesn't -- in that case use all the data
-			console.log('data')
-			console.log(data)
 			const newEntry = data[1] ? data[1][0] : data
-			console.log('sending back')
-			console.log(newEntry)
 			res.status(200).json(newEntry)
 		})
 		.catch(console.log)
 	})
 
+api.route('/:entryId')
 	.delete(function(req, res) {
-		Order.delete(
-			{ where: { productId: req.body.productId },
+		Order.destroy(
+			{ where: { id: req.params.entryId }
 			}
 		)
+		.then(() => {
+			res.status(200).json(req.params.entryId)
+		})
 
 	})
 

@@ -16,8 +16,8 @@ export function addToCart(cartEntry) {
 	return action
 }
 
-export function removeEntry(cartEntry) {
-	const action = {type: REMOVE_ENTRY, cartEntry}
+export function removeEntry(entryId) {
+	const action = {type: REMOVE_ENTRY, entryId}
 	return action
 }
 
@@ -45,12 +45,13 @@ export function postCartEntry(cartEntry) {
 	}
 }
 
-export function deleteCartEntry(cartEntry) {
+export function deleteCartEntry(entryId) {
 	return function thunk(dispatch) {
-		return axios.delete('/api/cart/')
+		console.log('in thunk')
+		return axios.delete(`/api/cart/${entryId}`)
 		.then(res => res.data)
 		.then(cartEntry => {
-			const action = removeEntry(cartEntry)
+			const action = removeEntry(entryId)
 			dispatch(action)
 		})
 	}
@@ -62,24 +63,26 @@ function cartReducer(state = [], action) {
 			return action.cart
 		}
 		case ADD_TO_CART: {
-			console.log('action cart Entry')
-			console.log(typeof action.cartEntry)
-			console.log(action.cartEntry)
 			function thisEntry(entry) {
 				return entry.id == action.cartEntry.id
 			}
 			const idx = state.findIndex(thisEntry)
-			console.log('need to modify')
-			console.log(idx)
 			if (idx == -1) {
-				console.log('adding product')
 				return [...state, action.cartEntry]
 			} else {
-				console.log('editing product')
 				const newState = [...state]
 				newState[idx].quantity = action.cartEntry.quantity
 				return newState
 			}
+		}
+		case REMOVE_ENTRY: {
+			function thisEntry(entry) {
+				return entry.id == action.entryId
+			}
+			const idx = state.findIndex(thisEntry)
+			const newState = [...state]
+			newState.splice(idx, 1)
+			return newState
 		}
 		default: {
 			return state

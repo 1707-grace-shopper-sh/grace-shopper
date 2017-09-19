@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postCartEntry } from '../reducer/cart'
+import { postCartEntry, deleteCartEntry } from '../reducer/cart'
 
 class Cart extends Component {
 
@@ -13,6 +13,7 @@ class Cart extends Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
+		this.handleClick = this.handleClick.bind(this)
 	}
 
 
@@ -38,7 +39,9 @@ class Cart extends Component {
 
 	handleClick(event) {
 		console.log('you tried to delete!')
-
+		console.log('product', event.target.id)
+		const entryId = event.target.id
+		this.props.removeFromCart(entryId)
 	}
 
 	render () {
@@ -65,7 +68,7 @@ class Cart extends Component {
 									this.state.cart.map((entry, idx) => {
 										return (<tr className="cart_item" key={entry.id}>
 											<td className="product-remove">
-												<a title="Remove this item" className="remove" id={idx} onClick={this.handleClick}>×</a> 
+												<a title="Remove this item" className="remove" id={entry.id} onClick={this.handleClick}>×</a> 
 											</td>
 											<td className="product-thumbnail">
 												<Link to={`/product/${entry.product.id}`}><img width={145} height={145} alt="poster_1_up" className="shop_thumbnail" src={entry.product.imUrl} /></Link>
@@ -120,8 +123,10 @@ const mapState = state => {
 const mapDispatch = (dispatch) => {
 	return {
 		addToCart: function(cartEntry) {
-			const cartThunk = postCartEntry(cartEntry)
-			dispatch(cartThunk)
+			dispatch(postCartEntry(cartEntry))
+		},
+		removeFromCart: function(entryId) {
+			dispatch(deleteCartEntry(entryId))
 		}
 	}
 }
