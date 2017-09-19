@@ -4,6 +4,7 @@ const router = require('express').Router();
 router.use('/products', require('./products'));
 
 router.use('/cart', require('./cart'))
+router.use('/checkout', require('./checkout'))
 router.use('/reviews', require('./reviews'));
 router.use('/auth', require('./auth'))
 
