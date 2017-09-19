@@ -16,7 +16,6 @@ function SingleProduct(props) {
     options.push(<option key={i}>{i}</option>);
   }
 
-<<<<<<< HEAD
 	function handleSubmit(event) {
 		event.preventDefault();
 		const id = product.id
@@ -25,15 +24,6 @@ function SingleProduct(props) {
 		const cartEntry = {id, quantity, userId}
 		props.addToCart(cartEntry);
 	}
-=======
-  function handleSubmit(event) {
-    event.preventDefault();
-    const id = product.id
-    const quantity = event.target.quantity.value
-    const cartEntry = { id, quantity }
-    props.addToCart(cartEntry);
-  }
->>>>>>> master
 
   return (
     <div className="container">
