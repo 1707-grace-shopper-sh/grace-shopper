@@ -6,8 +6,9 @@ const Order = db.models.order
 const Product = db.models.product
 
 api.route('/')
-
 	.post(function (req, res) {
+		console.log('current req.session.id')
+		console.log(req.session.id)
 		Order.findOrCreate(
 			{
 				where: {
@@ -23,28 +24,49 @@ api.route('/')
 				}
 			}
 		)
-			.then((res) => {
-				const cartEntry = res[0]
-				const wasCreated = res[1]
-
-				if (wasCreated) {
-					return Order.update(
-						{ quantity: req.body.quantity,
+		.then((res) => {
+			const cartEntry = res[0]
+			const wasCreated = res[1]
+			if (wasCreated || req.body.replaceValue) {
+				return Order.update(
+					{ quantity: req.body.quantity,
 						  session: req.session.id,
 						  user: req.body.userId  },
-						{
-							where: { id: cartEntry.id },
-							returning: true
-						}
-					)
-				} else {
-					return cartEntry.increment(['quantity'], { by: req.body.quantity })
-				}
-			})
-			.then((data) => {
-				res.status(200).json(data)
-			})
-			.catch(console.log)
+					{
+						where: { id: cartEntry.id },
+						returning: true
+					}
+				)
+			} else {
+				return cartEntry.increment(['quantity'], { by: req.body.quantity })
+			}
+		})
+		.then(() => {
+			return Order.findOne(
+				{ where: { productId: req.body.id} }
+			)
+		})
+		.then((data) => {
+			// update will return an array; if so, use it
+			// increment doesn't -- in that case use all the data
+			// const newEntry = data[1] ? data[1][0] : data
+			console.log('raw data')
+			console.log(data)
+			res.status(200).json(data)
+		})
+		.catch(console.log)
+	})
+
+api.route('/:entryId')
+	.delete(function(req, res) {
+		Order.destroy(
+			{ where: { id: req.params.entryId }
+			}
+		)
+		.then(() => {
+			res.status(200).json(req.params.entryId)
+		})
+
 	})
 
 module.exports = api;

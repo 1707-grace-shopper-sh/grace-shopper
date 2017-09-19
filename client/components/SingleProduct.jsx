@@ -109,8 +109,6 @@ const mapState = (state, ownProps) => {
 	}
 };
 
-
-
 const mapDispatch = (dispatch) => { 
 	return {
 		addToCart: function(cartEntry) {

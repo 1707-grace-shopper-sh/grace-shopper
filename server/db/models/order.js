@@ -22,6 +22,12 @@ const Order = db.define('order', {
 			{model: Product}
 		]
 	}
+}, {
+	defaultScope: {
+		include: [
+			{ model: Product }
+		]
+  	}		  	
 });
 
 module.exports = Order;

@@ -26,6 +26,9 @@ router.get('/me', (req, res, next) => {
           }
         }))
     } else {
+      console.log('trying to find by session')
+      console.log('session id')
+      console.log(req.session.id)
       return Order.findAll({
         where: {
           session: req.session.id,
@@ -36,6 +39,7 @@ router.get('/me', (req, res, next) => {
   }
   ifThen()
     .then(orders => {
+      console.log(orders)
       const userInfo = {
         orders: orders,
         userData: req.user

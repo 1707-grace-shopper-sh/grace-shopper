@@ -23,7 +23,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'a wildly insecure secret',
   store: dbStore,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true
 }));
 
 app.use(require('./middleware/passport'));
