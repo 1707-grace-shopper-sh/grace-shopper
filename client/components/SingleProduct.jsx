@@ -41,7 +41,7 @@ function SingleProduct(props) {
               <div className="product-inner">
                 <h2 className="product-name">{product.title}</h2><Link to={`/product/${product.id}/edit`}><button>Edit</button></Link>
                 <div className="product-inner-price">
-                  <ins>${Number.parseInt(product.price).toFixed(2)}</ins>
+                  <ins>${Number.parseFloat(product.price).toFixed(2)}</ins>
                 </div>
                 <form name="cart" onSubmit={handleSubmit}>
                   <div className="cart-component">

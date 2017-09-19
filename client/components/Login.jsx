@@ -5,23 +5,27 @@ import {withRouter} from 'react-router'
 
 function Login(props) {
     return (
-        <div> Login
-            <form name="login" onSubmit={props.submitLogin}>
-                <label>Email</label>
-                <input
-                    type="text"
-                    name="email"
-                    required
-                />
-                <label>Password</label>
-                <input
-                    type="text"
-                    name="password"
-                    required
-                />
-                <button type='submit'>Login</button>
-            </form>
-        </div>
+            <div className="submit-review">
+                <h2 className="sidebar-title">Login</h2>
+                <form name="login" onSubmit={props.submitLogin}>
+                    <label>Email</label>
+                    <input
+                        type="text"
+                        name="email"
+                        required
+                    />
+                    <label>Password</label>
+                    <input
+                        type="text"
+                        name="password"
+                        required
+                    />
+                    <div id="login-buttons">
+                        <button type='submit'>Login</button>
+                        <a href='/api/auth/google'><img id="google-button" src="https://www.theorgwiki.com/static/orgwiki/img/login-button-google.899dbdb72597.png"/></a>
+                    </div>
+                </form>
+            </div>
     )
 }
 
