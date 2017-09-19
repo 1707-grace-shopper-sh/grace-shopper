@@ -45,7 +45,7 @@ function SingleProduct(props) {
                 </div>
                 <form name="cart" onSubmit={handleSubmit}>
                   <div className="cart-component">
-                    Quantity ({product.inventory} remaining)
+                                                                                                                                                                                        Quantity ({product.inventory} remaining)
                   </div>
 
 
