@@ -1,4 +1,4 @@
-'use strict'
+																																																																																																																																																																																																																																																																																																																																													'use strict'
 const api = require('express').Router()
 const db = require('../db')
 
@@ -7,12 +7,14 @@ const Product = db.models.product
 
 api.route('/')
 	.post(function (req, res) {
+		console.log('req.body')
+		console.log(req.body)
 		Order.findOrCreate(
 			{
 				where: {
 					productId: req.body.id,
 					status: "incomplete",
-					$or : [
+					$or : [																																							 
 						{
 							user: req.body.userId
 						}, {
@@ -23,6 +25,8 @@ api.route('/')
 			}
 		)
 		.then((res) => {
+			console.log('the response is')
+			console.log(res)
 			const cartEntry = res[0]
 			const wasCreated = res[1]
 			if (wasCreated || req.body.replaceValue) {

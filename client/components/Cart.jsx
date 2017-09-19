@@ -8,7 +8,8 @@ class Cart extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			cart: props.cart
+			cart: props.cart,
+			userId: props.userId
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -18,7 +19,7 @@ class Cart extends Component {
 
 
 	componentWillReceiveProps(nextProps) {
-		this.setState({cart : nextProps.cart})
+		this.setState({cart: nextProps.cart, userId: nextProps.userId})
 	}
 
 	handleChange(event) {
@@ -35,7 +36,12 @@ class Cart extends Component {
 		for (let i = 0; i < this.state.cart.length; i++) {
 			let cartEntry = this.state.cart[i]
 			if (cartEntry.wasModified) {
-				cartEntry.replaceValue = true
+				cartEntry = {
+					id: this.state.cart[i].product.id,
+					quantity: this.state.cart[i].quantity,
+					replaceValue: true, 
+					userId: this.state.userId
+				}
 				this.props.addToCart(cartEntry)
 			}
 		}
@@ -79,7 +85,7 @@ class Cart extends Component {
 												<Link to={`/product/${entry.product.id}`}>{entry.product.title}</Link>
 											</td>
 											<td className="product-price">
-												<span className="amount">${Number.parseInt(entry.product.price).toFixed(2)}</span> 
+												<span className="amount">${Number.parseFloat(entry.product.price).toFixed(2)}</span> 
 											</td>
 											<td className="product-quantity">
 												<div className="quantity buttons_added">
@@ -88,7 +94,7 @@ class Cart extends Component {
 												</div>
 											</td>
 											<td className="product-subtotal">
-												<span className="amount">${Number.parseInt(entry.product.price * entry.quantity).toFixed(2)}</span> 
+												<span className="amount">${Number.parseFloat(entry.product.price * entry.quantity).toFixed(2)}</span> 
 											</td>
 										</tr>)
 										
@@ -118,13 +124,16 @@ class Cart extends Component {
 
 const mapState = state => {
 	return {
-		cart: state.cart
+		cart: state.cart,
+		userId: state.currentUser.id 
 	}
 }
 
 const mapDispatch = (dispatch) => {
 	return {
 		addToCart: function(cartEntry) {
+			console.log('dispatching')
+			console.log(cartEntry)
 			dispatch(postCartEntry(cartEntry))
 		},
 		removeFromCart: function(entryId) {
