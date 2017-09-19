@@ -21,7 +21,7 @@ function LogoArea(props) {
 					</div>
 					<div className="col-sm-6">
 						<div className="shopping-item">
-							<Link to="/cart">Cart - <span className="cart-amunt">${total}</span> <i className="fa fa-shopping-cart" /> <span className="product-count">{props.cart.length}</span></Link>
+							<Link to="/cart">Cart - <span className="cart-amunt">${Number.parseFloat(total).toFixed(2)}</span> <i className="fa fa-shopping-cart" /> <span className="product-count">{props.cart.length}</span></Link>
 						</div>
 					</div>
 				</div>
