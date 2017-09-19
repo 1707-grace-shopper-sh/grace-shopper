@@ -20,6 +20,8 @@ import Auth from './Auth.jsx'
 import Footer from './Footer.jsx'
 import AdminPanel from './AdminPanel.jsx'
 import Cart from './Cart.jsx'
+import Checkout from './Checkout.jsx'
+import ThankYou from './ThankYou.jsx'
 
 
 class Main extends Component {
@@ -36,7 +38,9 @@ class Main extends Component {
 				<LogoArea />
 				<Navbar />
 				<Switch>
+					<Route exact path="/thankyou" component={ThankYou} />
 					<Route exact path="/admin" component={AdminPanel} />
+					<Route exact path="/checkout" component={Checkout} />
 					<Route exact path="/product/new" component={NewProduct} />
 					<Route exact path="/product/:id" component={SingleProduct} />
 					<Route path="/product/:id/edit" component={EditProduct} />
