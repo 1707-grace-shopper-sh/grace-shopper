@@ -16,15 +16,8 @@ class Cart extends Component {
 		this.handleClick = this.handleClick.bind(this)
 	}
 
-	// componentWillReceiveProps(nextProps){
-	// 	this.setState ({
-	// 		cart: nextProps.cart
-	// 	})
-	// }
 
 	componentWillReceiveProps(nextProps) {
-		console.log('props', this.props)
-		console.log('nextProps', nextProps)
 		this.setState({cart : nextProps.cart})
 	}
 
@@ -49,14 +42,11 @@ class Cart extends Component {
 	}
 
 	handleClick(event) {
-		console.log('you tried to delete!')
-		console.log('product', event.target.id)
 		const entryId = event.target.id
 		this.props.removeFromCart(entryId)
 	}
 
 	render () {
-		console.log('state in render', this.state)
 	return (
 		<div className="site-branding-area">
 			<div className="single-product-area">
