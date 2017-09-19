@@ -1,4 +1,4 @@
-import axios from 'axios'
+																																																																																																																								import axios from 'axios'
 
 // ACTION
 const GET_CART = 'GET_CART'
@@ -25,10 +25,12 @@ export function removeEntry(entryId) {
 
 export function postCartEntry(cartEntry) {
 	return function thunk(dispatch) {
-		console.log('in post cart entry thunk')
 		return axios.post('/api/cart', cartEntry)
-		.then(res => res.data)
+		.then(res => {
+			console.log(res.data)
+			return res.data})
 		.then(cartEntry => {
+			console.log(cartEntry)
 			const action = addToCart(cartEntry)
 			dispatch(action)
 		})
@@ -37,7 +39,6 @@ export function postCartEntry(cartEntry) {
 
 export function deleteCartEntry(entryId) {
 	return function thunk(dispatch) {
-		console.log('in thunk')
 		return axios.delete(`/api/cart/${entryId}`)
 		.then(res => res.data)
 		.then(cartEntry => {

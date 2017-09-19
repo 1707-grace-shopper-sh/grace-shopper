@@ -12,7 +12,6 @@ import { me } from '../reducer/user'
 import SingleProduct from './SingleProduct.jsx';
 import AllProducts from './AllProducts.jsx';
 import EditProduct from './EditProduct.jsx';
-import NewProduct from './NewProduct.jsx';
 import Navbar from './Navbar.jsx';
 import LogoArea from './LogoArea.jsx'
 import Header from './Header.jsx'
@@ -21,6 +20,8 @@ import Footer from './Footer.jsx'
 import AdminPanel from './AdminPanel.jsx'
 import Cart from './Cart.jsx'
 import Account from './Account.jsx'
+import Checkout from './Checkout.jsx'
+import ThankYou from './ThankYou.jsx'
 
 
 class Main extends Component {
@@ -37,8 +38,9 @@ class Main extends Component {
 				<LogoArea />
 				<Navbar />
 				<Switch>
+					<Route exact path="/thankyou" component={ThankYou} />
 					<Route exact path="/admin" component={AdminPanel} />
-					<Route exact path="/product/new" component={NewProduct} />
+          <Route exact path="/checkout" component={Checkout} />
 					<Route exact path="/product/:id" component={SingleProduct} />
 					<Route path="/product/:id/edit" component={EditProduct} />
 					<Route path='/filter' component={AllProducts} />

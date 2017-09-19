@@ -9,6 +9,7 @@ import currentUser from './user';
 import reviews from './review'
 import categories from './category'
 import orders from './orders'
+import checkout from './checkout'
 
 
 const reducer = combineReducers({
