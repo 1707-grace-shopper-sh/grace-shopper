@@ -28,8 +28,17 @@ h6 {
     margin: 0 0 15px;
 }
 body { font-family:Arial, Helvetica, sans-serif; }
-
-
+#login-buttons {
+  display:inline-flex;
+  margin-bottom: 20px;
+}
+#google-button {
+  height: 55px;
+  margin-left: 140px;
+}
+#or {
+  margin: 0 5px 15px 5px;
+}
 
 .header-area {
     background: none repeat scroll 0 0 #f4f4f4;
