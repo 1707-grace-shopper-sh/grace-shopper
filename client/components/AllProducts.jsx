@@ -59,7 +59,7 @@ function AllProducts(props) {
 									  			<ins>Price: ${Number.parseFloat(product.price).toFixed(2)}</ins>
 											</div>  
 											<div className="product-option-shop">
-										  		<a className="add_to_cart_button" data-quantity={1} data-product_sku data-product_id={70} rel="nofollow" href="/">Add to cart</a>
+										  		<Link className="add_to_cart_button" to={`/product/${product.id}`}>View Product</Link>
 											</div>   
 										</div>                    
 								  	</div>

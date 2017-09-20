@@ -15,6 +15,7 @@ class Cart extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 		this.handleClick = this.handleClick.bind(this)
+		this.handleCheckout = this.handleCheckout.bind(this)
 	}
 
 
@@ -50,6 +51,16 @@ class Cart extends Component {
 	handleClick(event) {
 		const entryId = event.target.id
 		this.props.removeFromCart(entryId)
+	}
+
+
+	handleCheckout(event) {
+		console.log('you tried to checkout!')
+		for (let i = 0; i < this.state.cart.length; i++) {
+			console.log('removing from cart ')
+			let entryId = this.state.cart[i].id
+			this.props.removeFromCart(entryId)
+		}
 	}
 
 	render () {
@@ -104,11 +115,11 @@ class Cart extends Component {
 									<td className="actions" colSpan={6}>
 										<div className="coupon">
 											<label htmlFor="coupon_code">Coupon:</label>
-											<input type="text" placeholder="Coupon code" defaultValue id="coupon_code" className="input-text" name="coupon_code" />
+											<input type="text" placeholder="Coupon code" id="coupon_code" className="input-text" name="coupon_code" />
 											<input type="submit" defaultValue="Apply Coupon" name="apply_coupon" className="button" />
 										</div>
 										<input type="submit" defaultValue="Update Cart" name="update_cart" className="button" />
-										<Link to={`/checkout`}><input type="submit" defaultValue="Checkout" name="proceed" className="checkout-button button alt wc-forward" /></Link>
+										<Link onClick={this.handleCheckout} to={`/checkout`}><input type="submit" defaultValue="Checkout" name="proceed" className="checkout-button button alt wc-forward" /></Link>
 									</td>
 								</tr>
 							  </tbody>

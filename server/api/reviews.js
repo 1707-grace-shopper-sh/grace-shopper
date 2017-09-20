@@ -2,7 +2,8 @@
 const api = require('express').Router()
 const db = require('../db')
 
-const Review = db.models.review;
+const Review = db.models.review
+const Product = db.models.product
 
 api.route('/')    
     //post new review
@@ -15,12 +16,23 @@ api.route('/')
 api.route('/by-product/:id')
     //get by product id
     .get(function(req,res) {
-        Review.findAll({
-            where: {
-                productId: req.params.id
-            }
+        Product.findOne({
+            where: {id: req.params.id}
         })
-        .then(reviews => res.status(200).json(reviews))
+        .then(product => {
+            return Review.findAll({
+                where: {
+                   $or: [
+                    { productId: product.id },
+                    { asin: product.asin }
+                   ],
+                },
+                order: [['createdAt', 'DESC']]
+            })
+        })
+        .then(reviews => {
+            res.status(200).json(reviews)
+        })
     })
 
 module.exports = api;

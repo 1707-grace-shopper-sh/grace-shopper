@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from 'axios'
 
 
 //THUNK
-export default function checkout(orderInfo, history){
+export default function checkout(orderInfo, history) {
 	return function thunk(dispatch) {
 		return axios.put('/api/checkout', orderInfo)
 		.then(res => {

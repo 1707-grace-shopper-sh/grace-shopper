@@ -13,9 +13,8 @@ const User = db.define('user', {
       isEmail: true
     }
   },
-  type: {
-    // enums not working
-    type: Sequelize.STRING
+  isAdmin: {
+    type: Sequelize.BOOLEAN
   },
   name: {
     type: Sequelize.STRING

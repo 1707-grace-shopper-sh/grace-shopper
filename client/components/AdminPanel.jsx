@@ -33,7 +33,6 @@ function AdminPanel(props) {
                                             <p>
                                                 <label>Category:</label>
                                                 <select name='category'>
-                                                    {/* hardcoded the few categories we have. If we want categories to be dynamic, we will have to chnge this */}
                                                     {props.categories.map(category => {
                                                         return (
                                                             <option key={category}>{category}</option>
@@ -67,7 +66,7 @@ function AdminPanel(props) {
 
 const mapState = function (state) {
     return {
-        categories: ['Seafood', 'Candy', 'Condiments & Seasonings', 'Tea & Beverages']
+        categories: state.categories
     }
 }
 

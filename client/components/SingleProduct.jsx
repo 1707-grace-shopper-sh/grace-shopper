@@ -39,7 +39,7 @@ function SingleProduct(props) {
             </div>
             <div className="col-sm-9">
               <div className="product-inner">
-                <h2 className="product-name">{product.title}</h2><Link to={`/product/${product.id}/edit`}><button>Edit</button></Link>
+                <h2 className="product-name">{product.title}</h2>
                 <div className="product-inner-price">
                   <ins>${Number.parseFloat(product.price).toFixed(2)}</ins>
                 </div>
@@ -57,7 +57,12 @@ function SingleProduct(props) {
                   </div>
                 </form>
                 <div className="product-inner-category">
-                  <p>Category: <Link to={`/filter?category=${product.category}`}>{product.category}</Link>. Tags: <a href>awesome</a>, <a href>best</a>, <a href>sale</a>, <a href>shoes</a>. </p>
+                  <p>Category: <Link to={`/filter?category=${product.category}`}>{product.category}</Link>. Tags: <a href>awesome</a>, <a href>best</a>, <a href>yummy</a>, <a href>exotic</a>. </p>
+                </div>
+                <div>
+                  {
+                    props.isAdmin ? <Link to={`/product/${product.id}/edit`}><button>Edit</button></Link> : ""
+                  }
                 </div>
               </div>
             </div>
@@ -105,7 +110,8 @@ const mapState = (state, ownProps) => {
 	return {
 		currentProduct: state.products[idx] || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' },
     prodId: +id, 
-    userId: state.currentUser.id    
+    userId: state.currentUser.id,
+    isAdmin: state.currentUser.isAdmin 
 	}
 };
 

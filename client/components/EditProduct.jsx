@@ -47,19 +47,21 @@ class EditProduct extends Component {
                                         <div className="product-main-img">
                                             <img src={this.props.product.imUrl} alt />
                                         </div>
-                                        <label>Image URL:</label>
-                                        <input
-                                            name='imUrl'
-                                            type='text'
-                                            value={this.state.imUrl}
-                                            onChange={this.handleChange}
-                                            required
-                                        />
                                     </div>
                                 </div>
                                 <div className="col-sm-9">
-                                    <div className="product-inner">
-                                        <div className="product-name">
+                                    <div className="product-inner submit-review">
+                                        <p>
+                                            <label>Image URL:</label>
+                                                <input
+                                                    name='imUrl'
+                                                    type='text'
+                                                    value={this.state.imUrl}
+                                                    onChange={this.handleChange}
+                                                    required
+                                                />
+                                        </p>
+                                        <p>
                                             <label>Title:</label>
                                             <input
                                                 name='title'
@@ -68,8 +70,8 @@ class EditProduct extends Component {
                                                 onChange={this.handleChange}
                                                 required
                                             />
-                                        </div>
-                                        <div className="product-inner-price">
+                                        </p>
+                                        <p>
                                             <label>Price:</label>
                                             <input
                                                 name='price'
@@ -78,19 +80,20 @@ class EditProduct extends Component {
                                                 onChange={this.handleChange}
                                                 required
                                             />
-                                        </div>
-                                        <label>Quantity remaining:</label>
-                                        <input
-                                            name='inventory'
-                                            type='number'
-                                            value={this.state.inventory}
-                                            onChange={this.handleChange}
-                                            required
-                                        />
-                                        <div className="product-inner-category">
+                                        </p>
+                                        <p>
+                                            <label>Quantity remaining:</label>
+                                            <input
+                                                name='inventory'
+                                                type='number'
+                                                value={this.state.inventory}
+                                                onChange={this.handleChange}
+                                                required
+                                            />
+                                        </p>
+                                        <p>
                                             <label>Category:</label>
                                             <select name='category' onChange={this.handleChange}>
-                                                {/* hardcoded the few categories we have. If we want categories to be dynamic, we will have to chnge this */}
                                                 {this.props.categories.map(category => {
                                                     if (category === this.props.product.category) {
                                                         return (
@@ -103,18 +106,20 @@ class EditProduct extends Component {
                                                     }
                                                 })}
                                             </select>
-                                        </div>
+                                        </p>
+                                        <p>
+                                            <label>Description:</label>
+                                            <textarea
+                                                name='description'
+                                                type='text'
+                                                value={this.state.description}
+                                                onChange={this.handleChange}
+                                                required
+                                            /></p>
                                     </div>
                                     <p>
-                                    <label>Description:</label>
-                                    <textarea
-                                        name='description'
-                                        type='text'
-                                        value={this.state.description}
-                                        onChange={this.handleChange}
-                                        required
-                                    /></p>
-                                    <button type='submit'>Edit Product</button>
+                                        <button type='submit'>Edit Product</button>
+                                    </p>
                                 </div>
                             </form>
                         </div>
@@ -128,7 +133,7 @@ class EditProduct extends Component {
 const mapState = function (state, ownProps) {
     const prodId = ownProps.match.params.id //last part after params can change potentially depending on frontend router
     return {
-        categories: ['Seafood', 'Candy', 'Condiments & Seasonings', 'Tea & Beverages'],
+        categories: state.categories,
         product: state.products.find(product => product.id === +prodId) || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' }
     }
 }
