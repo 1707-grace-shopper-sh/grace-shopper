@@ -8,7 +8,7 @@
     "start-dev": "webpack -w & nodemon server/index.js",
     "build": "webpack",
     "build-watch": "webpack -w",
-    "test": "mocha ./tests/*.spec.js --compilers js:babel-register"
+    "test": "mocha ./spec/*.spec.js --compilers js:babel-register"
   },
   "author": "",
   "license": "ISC",
@@ -44,7 +44,7 @@
     "chai": "^4.1.2",
     "css-loader": "^0.28.7",
     "enzyme": "^2.9.1",
-    "mocha": "^3.5.2",
+    "mocha": "^3.5.3",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
