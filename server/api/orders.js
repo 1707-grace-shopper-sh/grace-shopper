@@ -6,13 +6,13 @@ const Order = db.models.order
 const orders = []
 
 api.route('/')
-    .get((res, req, next)=> {
+    .get((req, res, next)=> {
          Order.findAll({
              where: {
                  user: req.user.id 
              },
              order: [
-                 'updatedAt', 'DESC'
+                 ['updatedAt', 'DESC']
              ]
          })
          .then(orders=>{

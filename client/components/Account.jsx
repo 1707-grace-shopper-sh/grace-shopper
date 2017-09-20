@@ -17,6 +17,7 @@ class Cart extends Component {
     }
 
     componentWillReceiveProps(nextProps){
+        console.log('nextProps', nextProps)
         this.setState({orders: nextProps.orders})
     }
 
@@ -32,33 +33,38 @@ class Cart extends Component {
                                 <table cellSpacing={0} className="shop_table cart">
                                     <thead>
                                         <tr>
-                                            <th className="product-remove">&nbsp;</th>
                                             <th className="product-thumbnail">&nbsp;</th>
                                             <th className="product-name">Product</th>
                                             <th className="product-price">Price</th>
                                             <th className="product-quantity">Quantity</th>
                                             <th className="product-subtotal">Total</th>
+                                            <th className="product-price">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {orders.map((order, idx) => {
+                                            if(order.status==='complete'){
+                                                order.status=`Purchased ${order.updatedAt.slice(0,10)}, Not Yet Shipped`
+                                            } else {
+                                                order.status = 'Order Incomplete'
+                                            }
                                             return (<tr className="cart_item" key={order.id}>
                                                 <td className="product-thumbnail">
-                                                    <Link to={`/product/${order.id}`}><img width={145} height={145} alt="poster_1_up" className="shop_thumbnail" src={order.imUrl} /></Link>
+                                                    <Link to={`/product/${order.product.id}`}><img width={145} height={145} alt="poster_1_up" className="shop_thumbnail" src={order.product.imUrl} /></Link>
                                                 </td>
                                                 <td className="product-name">
-                                                    <Link to={`/product/${order.id}`}>{order.title}</Link>
+                                                    <Link to={`/product/${order.product.id}`}>{order.product.title}</Link>
                                                 </td>
                                                 <td className="product-price">
-                                                    <span className="amount">${Number.parseFloat(order.price).toFixed(2)}</span>
+                                                    <span className="amount">${Number.parseFloat(order.product.price).toFixed(2)}</span>
                                                 </td>
                                                 <td className="product-price">
-                                                    <span className="amount">${Number.parseFloat(order.price).toFixed(2)}</span>
+                                                    <span className="amount">${Number.parseFloat(order.quantity).toFixed(2)}</span>
                                                 </td>
                                                 <td className="product-subtotal">
-                                                    <span className="amount">${Number.parseFloat(order.price * order.quantity).toFixed(2)}</span>
+                                                    <span className="amount">${Number.parseFloat(order.product.price * order.quantity).toFixed(2)}</span>
                                                 </td>
-                                                <td className="product-price">
+                                                <td className="product-name">
                                                     <span className="amount">{order.status}</span>
                                                 </td>
                                             </tr>)
@@ -77,7 +83,7 @@ class Cart extends Component {
 
 const mapState = state => {
     return {
-        cart: state.orders
+        orders: state.orders
     }
 }
 
