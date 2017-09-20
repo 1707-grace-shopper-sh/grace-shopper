@@ -19,6 +19,7 @@ import Auth from './Auth.jsx'
 import Footer from './Footer.jsx'
 import AdminPanel from './AdminPanel.jsx'
 import Cart from './Cart.jsx'
+import Account from './Account.jsx'
 import Checkout from './Checkout.jsx'
 import ThankYou from './ThankYou.jsx'
 
@@ -45,6 +46,7 @@ class Main extends Component {
 					<Route path='/filter' component={AllProducts} />
 					<Route path='/search' component={AllProducts} />
 					<Route path='/user/auth' component={Auth}/>
+					<Route path = '/user/account' component = {Account} />
 					<Route path='/cart' component={Cart} />
 					<Route component={AllProducts} />
 				</Switch>
