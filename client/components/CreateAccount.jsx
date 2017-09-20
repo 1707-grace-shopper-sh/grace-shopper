@@ -56,7 +56,6 @@ const mapStateToProps = (props) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     creatingUser: function (user) {
-      console.log('in this.prps.creatingUser')
       dispatch(creatingUser(user, ownProps.history))
     }
   }

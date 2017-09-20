@@ -59,10 +59,6 @@ api.route('/')
 				)
 			})
 			.then((data) => {
-				// update will return an array; if so, use it
-				// increment doesn't -- in that case use all the data
-				// const newEntry = data[1] ? data[1][0] : data
-
 				res.status(200).json(data)
 			})
 			.catch(console.log)

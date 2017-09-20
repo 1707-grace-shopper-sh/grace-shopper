@@ -110,7 +110,7 @@ const mapDispatch = function (dispatch, ownProps) {
 
     return {
         submitOrder(orderSet) {
-            dispatch(checkout(orderSet, ownProps.history)) //order and recipient need to be joined into 1 object here
+            dispatch(checkout(orderSet, ownProps.history)) 
         },
         deleteEntry: function(entryId) {
 			dispatch(removeEntry(entryId))

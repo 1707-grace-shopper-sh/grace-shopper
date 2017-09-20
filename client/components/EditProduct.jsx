@@ -131,7 +131,7 @@ class EditProduct extends Component {
 }
 
 const mapState = function (state, ownProps) {
-    const prodId = ownProps.match.params.id //last part after params can change potentially depending on frontend router
+    const prodId = ownProps.match.params.id 
     return {
         categories: state.categories,
         product: state.products.find(product => product.id === +prodId) || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' }

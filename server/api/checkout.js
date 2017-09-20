@@ -9,7 +9,6 @@ const Product = db.models.product
 api.route('/')
     .put(function (req, res, next) {
         let orderSetComplete = Object.assign({},req.body.order, {status: 'complete'})
-        console.log(req.body.order)
         Order.update(orderSetComplete, {
             where: {
                 id: orderSetComplete.id
@@ -36,7 +35,6 @@ api.route('/')
 
                 };
                 transporter.sendMail(mailOptions, (error, info) => {
-                    //console.log("HELLO")
                     if (error) {
                         return console.log(error);
                     }

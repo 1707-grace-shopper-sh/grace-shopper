@@ -9,6 +9,5 @@ const Related = require('./models/related');
 Product.belongsTo(Related);
 Order.belongsTo(Product);
 Review.belongsTo(Product);
-// Order.belongsTo(User);
 
 module.exports = db;

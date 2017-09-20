@@ -65,7 +65,6 @@ const mapState = null
 const mapDispatch = function(dispatch, ownProps) {
 	return {
 		submitReview(review) {
-			// not sure ownProps.history is necessary
 			dispatch(newReview(review, ownProps.prodId, ownProps.history))
 		}
 	}

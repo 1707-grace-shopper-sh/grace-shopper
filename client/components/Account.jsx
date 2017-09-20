@@ -17,7 +17,6 @@ class Cart extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log('nextProps', nextProps)
         this.setState({orders: nextProps.orders})
     }
 

@@ -27,10 +27,8 @@ export function postCartEntry(cartEntry) {
 	return function thunk(dispatch) {
 		return axios.post('/api/cart', cartEntry)
 		.then(res => {
-			console.log(res.data)
 			return res.data})
 		.then(cartEntry => {
-			console.log(cartEntry)
 			const action = addToCart(cartEntry)
 			dispatch(action)
 		})

@@ -50,7 +50,6 @@ export const loggingOutUser = (userEmail) => {
 
 export const me = () => {
   return function thunk(dispatch) {
-    console.log('in auth/me api route')
     axios.get('api/auth/me')
       .then(res => {
         dispatch(getUser(res.data.userData))

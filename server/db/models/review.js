@@ -32,7 +32,6 @@ const Review = db.define('review', {
   hooks: {
     beforeCreate: (review, options) => {
       let data = sentiment(review.reviewText);
-      console.log(sentiment);
       review.score = data.score;
       review.words = data.words;
     }

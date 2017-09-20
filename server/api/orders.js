@@ -16,7 +16,6 @@ api.route('/')
              ]
          })
          .then(orders=>{
-            console.log('orders', orders) 
             return res.json(orders)
             })
          .catch(next)

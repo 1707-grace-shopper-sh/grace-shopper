@@ -31,7 +31,6 @@ function Login(props) {
 
 
 const mapProps = (dispatch, ownProps) => {
-    console.log('ownProps', ownProps)    
     return {
         submitLogin(event) {
             event.preventDefault()

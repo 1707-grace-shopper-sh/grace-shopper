@@ -11,23 +11,17 @@ const Order = db.define('order', {
 	},
 	quantity: {
 		type: Sequelize.INTEGER
-	}, 
+	},
 	status: {
 		type: Sequelize.STRING,
 		defaultValue: "Incomplete"
 	}
 }, {
-	defaultScope: {
-		include: [
-			{model: Product}
-		]
-	}
-}, {
-	defaultScope: {
-		include: [
-			{ model: Product }
-		]
-  	}		  	
-});
+		defaultScope: {
+			include: [
+				{ model: Product }
+			]
+		}
+	});
 
 module.exports = Order;
