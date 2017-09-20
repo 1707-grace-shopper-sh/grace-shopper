@@ -9,7 +9,6 @@ const Product = db.models.product
 api.route('/')
     .put(function (req, res, next) {
         let orderSetComplete = Object.assign({},req.body.order, {status: 'complete'})
-        console.log('*****', orderSetComplete.id)
         Order.update(orderSetComplete, {
             where: {
                 id: orderSetComplete.id
