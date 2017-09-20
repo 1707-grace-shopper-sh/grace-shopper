@@ -44,44 +44,50 @@ class Checkout extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
-                            <h2>Checkout</h2>
+                            <div className="product-content-right">
+                            <h2 className="sidebar-title">Checkout</h2>
                             <form onSubmit={this.handleSubmit}>
-                                <div>
-                                    <h4>Payment Options:</h4>
-                                    <select>
-                                        {['MasterCard', 'Pay Pal'].map(option => (<option>{option}</option>))}
-                                    </select>
-                                </div>
-                                <div>
-                                    <h4>Ship to:</h4>
-                                    <label>Name:</label>
+                                <div className="submit-review">
+                                <h4>Ship to:</h4>
+                                <p>
+                                    <label>Name</label>
                                     <input
                                         name='name'
                                         type='text'
                                         required
                                         onChange={this.handleChange}
                                     />
-                                </div>
-                                <div>
-                                    <label>Email:</label>
+                                </p>
+                                <p>
+                                    <label>Email</label>
                                     <input
                                         name='email'
                                         type='text'
                                         required
                                         onChange={this.handleChange}
                                     />
-                                </div>
-                                <div>
-                                    <label>Shipping Address:</label>
+                                </p>
+                                <p>
+                                    <label>Shipping Address</label>
                                     <input
                                         name='shipaddress'
                                         type='text'
                                         required
                                         onChange={this.handleChange}
                                     />
+                                </p>
+                                <p>
+                                    <label>Select Payment Option</label>
+                                    <select>
+                                        {['Visa', 'Amex', 'MasterCard', 'PayPal'].map(option => (<option key={option}>{option}</option>))}
+                                    </select>
+                                </p>
+                                <p>
+                                    <button type='submit'>Submit</button>
+                                </p>
                                 </div>
-                                <button type='submit'>Submit</button>
                             </form>
+                            </div>
                         </div>
                     </div>
                 </div>
