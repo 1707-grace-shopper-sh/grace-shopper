@@ -9,8 +9,9 @@ function ThankYou(props) {
             <div className='container'>
                 <div className='row'>
                     <div className="col-md-12">
-                        <h1>THANK YOU</h1>
-                        <h2>for your order</h2>
+                        <div className="product-content-right">
+                        <h2 className="sidebar-title">Thank you for your order!</h2>
+                        </div>
                     </div>
                 </div>
 

@@ -111,8 +111,7 @@ const mapState = (state, ownProps) => {
 		currentProduct: state.products[idx] || { id: 0, title: '', description: '', price: 0, imURL: '', inventory: 0, category: '' },
     prodId: +id, 
     userId: state.currentUser.id,
-    // isAdmin: state.currentUser.isAdmin 
-    isAdmin: true
+    isAdmin: state.currentUser.isAdmin 
 	}
 };
 

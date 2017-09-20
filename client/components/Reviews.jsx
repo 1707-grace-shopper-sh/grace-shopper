@@ -12,14 +12,26 @@ class Reviews extends Component {
         this.props.fetchReviewData(this.props.prodId)
     }
 
+    returnStars(rating) {
+        let stars = []
+        for (let i = 0; i < rating; i++) {
+            stars.push(<i className="fa fa-star" />)
+        }
+        return stars
+    }
+
+    parseDate(string) {
+        return string.slice(0,10)
+    }
+
     render() {
         return (
             <div>
                 {this.props.reviews.map(review => {
                     return (
                         <div key={review.id}>
-                            <h4>{review.reviewerName}</h4>
-                            <p>{review.overall}</p>
+                            <h4>By {review.reviewerName} on {this.parseDate(review.createdAt)}</h4>
+                            <p>{this.returnStars(review.overall)}</p>
                             <p>{review.reviewText}</p>
                         </div>
                     )
@@ -29,15 +41,16 @@ class Reviews extends Component {
     }
 }
 
-const mapState = function (state) {
+const mapState = function(state) {
     return {
         reviews: state.reviews
     }
 }
 
-const mapDispatch = function (dispatch) {
+const mapDispatch = function(dispatch) {
     return {
         fetchReviewData(prodId) {
+            console.log('trying to fetch reviews')
             dispatch(fetchReviews(prodId))
         }
     }

@@ -82,8 +82,9 @@ class Checkout extends Component {
                                         {['Visa', 'Amex', 'MasterCard', 'PayPal'].map(option => (<option key={option}>{option}</option>))}
                                     </select>
                                 </p>
+                                    <button type='submit'>Submit order</button>
                                 <p>
-                                    <button type='submit'>Submit</button>
+                                 
                                 </p>
                                 </div>
                             </form>

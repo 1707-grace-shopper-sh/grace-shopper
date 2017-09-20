@@ -104,7 +104,7 @@ class Cart extends Component {
 									<td className="actions" colSpan={6}>
 										<div className="coupon">
 											<label htmlFor="coupon_code">Coupon:</label>
-											<input type="text" placeholder="Coupon code" defaultValue id="coupon_code" className="input-text" name="coupon_code" />
+											<input type="text" placeholder="Coupon code" id="coupon_code" className="input-text" name="coupon_code" />
 											<input type="submit" defaultValue="Apply Coupon" name="apply_coupon" className="button" />
 										</div>
 										<input type="submit" defaultValue="Update Cart" name="update_cart" className="button" />
