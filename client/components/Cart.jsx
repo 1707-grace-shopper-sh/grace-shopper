@@ -15,7 +15,6 @@ class Cart extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
 		this.handleClick = this.handleClick.bind(this)
-		this.handleCheckout = this.handleCheckout.bind(this)
 	}
 
 
@@ -51,16 +50,6 @@ class Cart extends Component {
 	handleClick(event) {
 		const entryId = event.target.id
 		this.props.removeFromCart(entryId)
-	}
-
-
-	handleCheckout(event) {
-		console.log('you tried to checkout!')
-		for (let i = 0; i < this.state.cart.length; i++) {
-			console.log('removing from cart ')
-			let entryId = this.state.cart[i].id
-			this.props.removeFromCart(entryId)
-		}
 	}
 
 	render () {
@@ -144,7 +133,7 @@ const mapDispatch = (dispatch) => {
 	return {
 		addToCart: function(cartEntry) {
 			dispatch(postCartEntry(cartEntry))
-		},
+		}, 
 		removeFromCart: function(entryId) {
 			dispatch(deleteCartEntry(entryId))
 		}

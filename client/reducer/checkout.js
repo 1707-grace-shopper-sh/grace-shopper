@@ -8,7 +8,6 @@ export default function checkout(orderInfo, history) {
 		.then(res => {
             return res.data})
 		.then(() => {
-            console.log('trying to redirect')
 			history.push(`/thankyou`)
 		})
 	}
