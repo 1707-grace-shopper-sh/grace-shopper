@@ -71,7 +71,6 @@ const mapState = function(state) {
 const mapDispatch = function(dispatch) {
     return {
         fetchReviewData(prodId) {
-            console.log('trying to fetch reviews')
             dispatch(fetchReviews(prodId))
         }
     }

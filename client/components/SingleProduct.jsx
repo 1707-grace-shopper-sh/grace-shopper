@@ -57,7 +57,7 @@ function SingleProduct(props) {
                   </div>
                 </form>
                 <div className="product-inner-category">
-                  <p>Category: <Link to={`/filter?category=${product.category}`}>{product.category}</Link>. Tags: <a href>awesome</a>, <a href>best</a>, <a href>sale</a>, <a href>shoes</a>. </p>
+                  <p>Category: <Link to={`/filter?category=${product.category}`}>{product.category}</Link>. Tags: <a href>awesome</a>, <a href>best</a>, <a href>yummy</a>, <a href>exotic</a>. </p>
                 </div>
                 <div>
                   {
