@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import checkout from '../reducer/checkout';
+import { removeEntry } from '../reducer/cart'
 
 class Checkout extends Component {
     constructor(props) {
@@ -30,11 +31,13 @@ class Checkout extends Component {
             shipaddress: this.state.shipaddress
         }
         this.state.cart.map(item => {
+            let entryId = item.id
             let orderInfo = {
                 order: item,
                 recipient: recip
             }
             this.props.submitOrder(orderInfo)
+            this.props.deleteEntry(entryId)
         })
     }
 
@@ -108,7 +111,10 @@ const mapDispatch = function (dispatch, ownProps) {
     return {
         submitOrder(orderSet) {
             dispatch(checkout(orderSet, ownProps.history)) //order and recipient need to be joined into 1 object here
-        }
+        },
+        deleteEntry: function(entryId) {
+			dispatch(removeEntry(entryId))
+		}
     }
 }
 

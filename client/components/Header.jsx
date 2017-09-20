@@ -27,9 +27,11 @@ class Header extends Component {
 						<div className="col-md-8">
 							<div className="user-menu">
 								<ul>
+								<li>
 								{
 									isLoggedIn ? <Link to="/user/account"><i className="fa fa-user" />My Account</Link> :  <Link to="/user/auth"><i className="fa fa-user" />My Account</Link>
 								}
+								</li>
 									<li><a href="#"><i className="fa fa-heart" />Wishlist</a></li>
 									<li><Link to="/cart"><i className="fa fa-user" />Checkout</Link></li>
                   					<li>
